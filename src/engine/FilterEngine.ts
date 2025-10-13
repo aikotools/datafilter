@@ -1,4 +1,4 @@
-import { DateTime } from 'luxon';
+import { DateTime } from 'luxon'
 import type {
   FilterCriterion,
   FilterCheckResult,
@@ -8,8 +8,8 @@ import type {
   CheckArraySize,
   CheckTimeRange,
   CheckNumericRange,
-} from '../core/types';
-import { getValueFromPath } from '../utils/ObjectAccess';
+} from '../core/types'
+import { getValueFromPath } from '../utils/ObjectAccess'
 
 /**
  * Filter engine that evaluates filter criteria against data objects.
@@ -21,12 +21,12 @@ export class FilterEngine {
    */
   // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private context?: {
-    startTimeScript?: string;
-    startTimeTest?: string;
-  };
+    startTimeScript?: string
+    startTimeTest?: string
+  }
 
   constructor(context?: { startTimeScript?: string; startTimeTest?: string }) {
-    this.context = context;
+    this.context = context
   }
 
   /**
@@ -38,31 +38,31 @@ export class FilterEngine {
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   evaluateCriterion(data: any, criterion: FilterCriterion): FilterCheckResult {
-    const check = criterion.check;
+    const check = criterion.check
 
     // Determine check type and delegate to appropriate method
     if ('value' in check) {
-      return this.checkValue(data, criterion.path, check as CheckValue);
+      return this.checkValue(data, criterion.path, check as CheckValue)
     }
 
     if ('exists' in check) {
-      return this.checkExists(data, criterion.path, check as CheckExists);
+      return this.checkExists(data, criterion.path, check as CheckExists)
     }
 
     if ('itemExists' in check && 'item' in check) {
-      return this.checkArrayElement(data, criterion.path, check as CheckArrayElement);
+      return this.checkArrayElement(data, criterion.path, check as CheckArrayElement)
     }
 
     if ('type' in check && 'size' in check) {
-      return this.checkArraySize(data, criterion.path, check as CheckArraySize);
+      return this.checkArraySize(data, criterion.path, check as CheckArraySize)
     }
 
     if ('min' in check && 'max' in check) {
       // Distinguish between numeric and time ranges based on type
       if (typeof check.min === 'number' && typeof check.max === 'number') {
-        return this.checkNumericRange(data, criterion.path, check as CheckNumericRange);
+        return this.checkNumericRange(data, criterion.path, check as CheckNumericRange)
       } else {
-        return this.checkTimeRange(data, criterion.path, check as CheckTimeRange);
+        return this.checkTimeRange(data, criterion.path, check as CheckTimeRange)
       }
     }
 
@@ -70,7 +70,7 @@ export class FilterEngine {
       status: false,
       checkType: 'unknown',
       reason: `Unknown check type: ${JSON.stringify(check)}`,
-    };
+    }
   }
 
   /**
@@ -87,7 +87,7 @@ export class FilterEngine {
     path: (string | number)[],
     check: CheckValue
   ): FilterCheckResult {
-    const accessResult = getValueFromPath(data, path);
+    const accessResult = getValueFromPath(data, path)
 
     if (!accessResult.found) {
       return {
@@ -97,17 +97,17 @@ export class FilterEngine {
           message: accessResult.error || 'Path not found',
           path,
         },
-      };
+      }
     }
 
-    const actual = accessResult.value;
-    const expected = check.value;
+    const actual = accessResult.value
+    const expected = check.value
 
     if (this.deepEqual(actual, expected)) {
       return {
         status: true,
         checkType: 'checkValue',
-      };
+      }
     }
 
     return {
@@ -119,7 +119,7 @@ export class FilterEngine {
         expected,
         actual,
       },
-    };
+    }
   }
 
   /**
@@ -136,14 +136,14 @@ export class FilterEngine {
     path: (string | number)[],
     check: CheckExists
   ): FilterCheckResult {
-    const accessResult = getValueFromPath(data, path);
-    const exists = accessResult.found && accessResult.value !== undefined;
+    const accessResult = getValueFromPath(data, path)
+    const exists = accessResult.found && accessResult.value !== undefined
 
     if (check.exists === exists) {
       return {
         status: true,
         checkType: 'checkExists',
-      };
+      }
     }
 
     return {
@@ -155,7 +155,7 @@ export class FilterEngine {
           : 'Path should not exist but does',
         path,
       },
-    };
+    }
   }
 
   /**
@@ -172,7 +172,7 @@ export class FilterEngine {
     path: (string | number)[],
     check: CheckArrayElement
   ): FilterCheckResult {
-    const accessResult = getValueFromPath(data, path);
+    const accessResult = getValueFromPath(data, path)
 
     if (!accessResult.found) {
       return {
@@ -182,10 +182,10 @@ export class FilterEngine {
           message: accessResult.error || 'Path not found',
           path,
         },
-      };
+      }
     }
 
-    const array = accessResult.value;
+    const array = accessResult.value
 
     if (!Array.isArray(array)) {
       return {
@@ -196,17 +196,17 @@ export class FilterEngine {
           path,
           actualType: typeof array,
         },
-      };
+      }
     }
 
     // Check if item exists in array
-    const found = array.some(elem => this.deepEqual(elem, check.item));
+    const found = array.some(elem => this.deepEqual(elem, check.item))
 
     if (check.itemExists === found) {
       return {
         status: true,
         checkType: 'checkArrayElement',
-      };
+      }
     }
 
     return {
@@ -219,7 +219,7 @@ export class FilterEngine {
         path,
         item: check.item,
       },
-    };
+    }
   }
 
   /**
@@ -236,7 +236,7 @@ export class FilterEngine {
     path: (string | number)[],
     check: CheckArraySize
   ): FilterCheckResult {
-    const accessResult = getValueFromPath(data, path);
+    const accessResult = getValueFromPath(data, path)
 
     if (!accessResult.found) {
       return {
@@ -246,10 +246,10 @@ export class FilterEngine {
           message: accessResult.error || 'Path not found',
           path,
         },
-      };
+      }
     }
 
-    const array = accessResult.value;
+    const array = accessResult.value
 
     if (!Array.isArray(array)) {
       return {
@@ -260,35 +260,35 @@ export class FilterEngine {
           path,
           actualType: typeof array,
         },
-      };
+      }
     }
 
-    const actualSize = array.length;
-    const expectedSize = check.size;
+    const actualSize = array.length
+    const expectedSize = check.size
 
-    let passes = false;
-    let message = '';
+    let passes = false
+    let message = ''
 
     switch (check.type) {
       case 'equal':
-        passes = actualSize === expectedSize;
-        message = `Array length should be ${expectedSize} but is ${actualSize}`;
-        break;
+        passes = actualSize === expectedSize
+        message = `Array length should be ${expectedSize} but is ${actualSize}`
+        break
       case 'lessThan':
-        passes = actualSize < expectedSize;
-        message = `Array length should be less than ${expectedSize} but is ${actualSize}`;
-        break;
+        passes = actualSize < expectedSize
+        message = `Array length should be less than ${expectedSize} but is ${actualSize}`
+        break
       case 'greaterThan':
-        passes = actualSize > expectedSize;
-        message = `Array length should be greater than ${expectedSize} but is ${actualSize}`;
-        break;
+        passes = actualSize > expectedSize
+        message = `Array length should be greater than ${expectedSize} but is ${actualSize}`
+        break
     }
 
     if (passes) {
       return {
         status: true,
         checkType: 'checkArraySize',
-      };
+      }
     }
 
     return {
@@ -300,7 +300,7 @@ export class FilterEngine {
         expected: expectedSize,
         actual: actualSize,
       },
-    };
+    }
   }
 
   /**
@@ -317,7 +317,7 @@ export class FilterEngine {
     path: (string | number)[],
     check: CheckTimeRange
   ): FilterCheckResult {
-    const accessResult = getValueFromPath(data, path);
+    const accessResult = getValueFromPath(data, path)
 
     if (!accessResult.found) {
       return {
@@ -327,15 +327,15 @@ export class FilterEngine {
           message: accessResult.error || 'Path not found',
           path,
         },
-      };
+      }
     }
 
-    const value = accessResult.value;
+    const value = accessResult.value
 
     // Handle numeric timestamps (milliseconds or seconds)
     if (typeof value === 'number') {
-      const min = parseInt(check.min);
-      const max = parseInt(check.max);
+      const min = parseInt(check.min)
+      const max = parseInt(check.max)
 
       if (isNaN(min) || isNaN(max)) {
         return {
@@ -346,14 +346,14 @@ export class FilterEngine {
             min: check.min,
             max: check.max,
           },
-        };
+        }
       }
 
       if (value >= min && value <= max) {
         return {
           status: true,
           checkType: 'checkTimeRange',
-        };
+        }
       }
 
       return {
@@ -366,14 +366,14 @@ export class FilterEngine {
           min,
           max,
         },
-      };
+      }
     }
 
     // Handle ISO timestamps
     if (typeof value === 'string') {
-      const timestamp = DateTime.fromISO(value);
-      const minTime = DateTime.fromISO(check.min);
-      const maxTime = DateTime.fromISO(check.max);
+      const timestamp = DateTime.fromISO(value)
+      const minTime = DateTime.fromISO(check.min)
+      const maxTime = DateTime.fromISO(check.max)
 
       if (!timestamp.isValid) {
         return {
@@ -383,7 +383,7 @@ export class FilterEngine {
             message: `Invalid timestamp: ${value}`,
             path,
           },
-        };
+        }
       }
 
       if (!minTime.isValid || !maxTime.isValid) {
@@ -395,14 +395,14 @@ export class FilterEngine {
             min: check.min,
             max: check.max,
           },
-        };
+        }
       }
 
       if (timestamp >= minTime && timestamp <= maxTime) {
         return {
           status: true,
           checkType: 'checkTimeRange',
-        };
+        }
       }
 
       return {
@@ -415,7 +415,7 @@ export class FilterEngine {
           min: check.min,
           max: check.max,
         },
-      };
+      }
     }
 
     return {
@@ -425,7 +425,7 @@ export class FilterEngine {
         message: `Timestamp must be a string or number, got ${typeof value}`,
         path,
       },
-    };
+    }
   }
 
   /**
@@ -442,7 +442,7 @@ export class FilterEngine {
     path: (string | number)[],
     check: CheckNumericRange
   ): FilterCheckResult {
-    const accessResult = getValueFromPath(data, path);
+    const accessResult = getValueFromPath(data, path)
 
     if (!accessResult.found) {
       return {
@@ -452,10 +452,10 @@ export class FilterEngine {
           message: accessResult.error || 'Path not found',
           path,
         },
-      };
+      }
     }
 
-    const value = accessResult.value;
+    const value = accessResult.value
 
     if (typeof value !== 'number') {
       return {
@@ -466,14 +466,14 @@ export class FilterEngine {
           path,
           actual: value,
         },
-      };
+      }
     }
 
     if (value >= check.min && value <= check.max) {
       return {
         status: true,
         checkType: 'checkNumericRange',
-      };
+      }
     }
 
     return {
@@ -486,7 +486,7 @@ export class FilterEngine {
         min: check.min,
         max: check.max,
       },
-    };
+    }
   }
 
   /**
@@ -496,37 +496,37 @@ export class FilterEngine {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   private deepEqual(a: any, b: any): boolean {
     // Same reference
-    if (a === b) return true;
+    if (a === b) return true
 
     // Null checks
-    if (a === null || b === null) return a === b;
-    if (a === undefined || b === undefined) return a === b;
+    if (a === null || b === null) return a === b
+    if (a === undefined || b === undefined) return a === b
 
     // Type check
-    if (typeof a !== typeof b) return false;
+    if (typeof a !== typeof b) return false
 
     // Dates
     if (a instanceof Date && b instanceof Date) {
-      return a.getTime() === b.getTime();
+      return a.getTime() === b.getTime()
     }
 
     // Arrays
     if (Array.isArray(a) && Array.isArray(b)) {
-      if (a.length !== b.length) return false;
-      return a.every((val, idx) => this.deepEqual(val, b[idx]));
+      if (a.length !== b.length) return false
+      return a.every((val, idx) => this.deepEqual(val, b[idx]))
     }
 
     // Objects
     if (typeof a === 'object' && typeof b === 'object') {
-      const keysA = Object.keys(a);
-      const keysB = Object.keys(b);
+      const keysA = Object.keys(a)
+      const keysB = Object.keys(b)
 
-      if (keysA.length !== keysB.length) return false;
+      if (keysA.length !== keysB.length) return false
 
-      return keysA.every(key => this.deepEqual(a[key], b[key]));
+      return keysA.every(key => this.deepEqual(a[key], b[key]))
     }
 
     // Primitives
-    return a === b;
+    return a === b
   }
 }

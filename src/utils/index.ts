@@ -2,4 +2,4 @@
  * Utility exports
  */
 
-export * from './ObjectAccess';
+export * from './ObjectAccess'

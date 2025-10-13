@@ -27,23 +27,23 @@ export type {
   UnmappedFile,
   FilterResult,
   FilterRequest,
-} from './core/types';
+} from './core/types'
 
-export { isWildcardRule, isSingleMatchRule } from './core/types';
+export { isWildcardRule, isSingleMatchRule } from './core/types'
 
 // Engine exports
-export { FilterEngine } from './engine';
+export { FilterEngine } from './engine'
 
 // Matcher exports
-export { Matcher } from './matcher';
+export { Matcher } from './matcher'
 
 // Utility exports
-export { getValueFromPath, pathExists, getValueOr } from './utils';
-export type { AccessResult } from './utils';
+export { getValueFromPath, pathExists, getValueOr } from './utils'
+export type { AccessResult } from './utils'
 
 // Convenience function
-import { Matcher } from './matcher';
-import type { FilterRequest, FilterResult } from './core/types';
+import { Matcher } from './matcher'
+import type { FilterRequest, FilterResult } from './core/types'
 
 /**
  * Convenience function for filtering files with a single call.
@@ -80,15 +80,15 @@ import type { FilterRequest, FilterResult } from './core/types';
  * ```
  */
 export function filterFiles(request: FilterRequest): FilterResult {
-  const matcher = new Matcher(request.context);
+  const matcher = new Matcher(request.context)
 
   // Validate: either rules or groups should be provided
   if (request.rules && request.groups) {
-    throw new Error('FilterRequest: Provide either "rules" or "groups", not both');
+    throw new Error('FilterRequest: Provide either "rules" or "groups", not both')
   }
 
   if (!request.rules && !request.groups) {
-    throw new Error('FilterRequest: Must provide either "rules" or "groups"');
+    throw new Error('FilterRequest: Must provide either "rules" or "groups"')
   }
 
   // Use groups-based filtering if groups are provided
@@ -98,9 +98,13 @@ export function filterFiles(request: FilterRequest): FilterResult {
       request.groups,
       request.sortFn,
       request.preFilter
-    );
+    )
   }
 
   // Use traditional flat rules filtering
-  return matcher.filterFiles(request.files, request.rules!, request.sortFn, request.preFilter);
+  // At this point, we know request.rules exists because we validated above
+  if (!request.rules) {
+    throw new Error('FilterRequest: Rules are required')
+  }
+  return matcher.filterFiles(request.files, request.rules, request.sortFn, request.preFilter)
 }

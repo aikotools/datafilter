@@ -8,19 +8,19 @@ import type {
   MatchResult,
   FilterCriterion,
   FilterGroup,
-} from '../core/types';
-import { isWildcardRule, isSingleMatchRule } from '../core/types';
-import { FilterEngine } from '../engine/FilterEngine';
+} from '../core/types'
+import { isWildcardRule, isSingleMatchRule } from '../core/types'
+import { FilterEngine } from '../engine/FilterEngine'
 
 /**
  * Matcher system that matches files against rules.
  * Supports single matches, flexible ordering, and wildcard matches.
  */
 export class Matcher {
-  private engine: FilterEngine;
+  private engine: FilterEngine
 
   constructor(context?: { startTimeScript?: string; startTimeTest?: string }) {
-    this.engine = new FilterEngine(context);
+    this.engine = new FilterEngine(context)
   }
 
   /**
@@ -31,19 +31,19 @@ export class Matcher {
    * @returns MatchResult indicating if all criteria matched
    */
   matchFile(file: JsonFile, rule: MatchRule): MatchResult {
-    const criteria = isWildcardRule(rule) ? rule.matchAny : rule.match;
+    const criteria = isWildcardRule(rule) ? rule.matchAny : rule.match
 
     const checks = criteria.map(criterion => {
-      return this.engine.evaluateCriterion(file.data, criterion);
-    });
+      return this.engine.evaluateCriterion(file.data, criterion)
+    })
 
-    const matched = checks.every(check => check.status);
+    const matched = checks.every(check => check.status)
 
     return {
       matched,
       checks,
       rule,
-    };
+    }
   }
 
   /**
@@ -56,10 +56,10 @@ export class Matcher {
   private applyPreFilter(files: JsonFile[], preFilter: FilterCriterion[]): JsonFile[] {
     return files.filter(file => {
       const checks = preFilter.map(criterion => {
-        return this.engine.evaluateCriterion(file.data, criterion);
-      });
-      return checks.every(check => check.status);
-    });
+        return this.engine.evaluateCriterion(file.data, criterion)
+      })
+      return checks.every(check => check.status)
+    })
   }
 
   /**
@@ -78,26 +78,26 @@ export class Matcher {
     preFilter?: FilterCriterion[]
   ): FilterResult {
     // Apply pre-filter if provided
-    const filteredFiles = preFilter ? this.applyPreFilter(files, preFilter) : files;
+    const filteredFiles = preFilter ? this.applyPreFilter(files, preFilter) : files
 
     // Sort files if sort function provided
-    const sortedFiles = sortFn ? [...filteredFiles].sort(sortFn) : [...filteredFiles];
+    const sortedFiles = sortFn ? [...filteredFiles].sort(sortFn) : [...filteredFiles]
 
-    const mapped: MappedFile[] = [];
-    const wildcardMatched: WildcardMappedFile[] = [];
-    const unmapped: UnmappedFile[] = [];
+    const mapped: MappedFile[] = []
+    const wildcardMatched: WildcardMappedFile[] = []
+    const unmapped: UnmappedFile[] = []
 
     // Track which files have been matched
-    const matchedFileIndices = new Set<number>();
+    const matchedFileIndices = new Set<number>()
 
     // Track which flexible rules have been used
-    const usedFlexibleRules = new Map<number, Set<number>>();
+    const usedFlexibleRules = new Map<number, Set<number>>()
 
-    let fileIndex = 0;
-    let ruleIndex = 0;
+    let fileIndex = 0
+    let ruleIndex = 0
 
     while (fileIndex < sortedFiles.length) {
-      const file = sortedFiles[fileIndex];
+      const file = sortedFiles[fileIndex]
 
       if (ruleIndex >= rules.length) {
         // No more rules - file is unmapped
@@ -105,36 +105,39 @@ export class Matcher {
           unmapped.push({
             file,
             attemptedRules: [],
-          });
+          })
         }
-        fileIndex++;
-        continue;
+        fileIndex++
+        continue
       }
 
-      const ruleOrRules = rules[ruleIndex];
-      const attemptedMatches: MatchResult[] = [];
-      let fileMatched = false;
+      const ruleOrRules = rules[ruleIndex]
+      const attemptedMatches: MatchResult[] = []
+      let fileMatched = false
 
       // Handle array of rules (flexible ordering)
       if (Array.isArray(ruleOrRules)) {
         // Try each rule in the array
         for (let subIndex = 0; subIndex < ruleOrRules.length; subIndex++) {
           // Check if this subrule was already used
-          const used = usedFlexibleRules.get(ruleIndex)?.has(subIndex);
+          const used = usedFlexibleRules.get(ruleIndex)?.has(subIndex)
           if (used) {
-            continue;
+            continue
           }
 
-          const rule = ruleOrRules[subIndex];
-          const matchResult = this.matchFile(file, rule);
-          attemptedMatches.push(matchResult);
+          const rule = ruleOrRules[subIndex]
+          const matchResult = this.matchFile(file, rule)
+          attemptedMatches.push(matchResult)
 
           if (matchResult.matched && isSingleMatchRule(rule)) {
             // Mark this subrule as used
             if (!usedFlexibleRules.has(ruleIndex)) {
-              usedFlexibleRules.set(ruleIndex, new Set());
+              usedFlexibleRules.set(ruleIndex, new Set())
             }
-            usedFlexibleRules.get(ruleIndex)!.add(subIndex);
+            const usedSet = usedFlexibleRules.get(ruleIndex)
+            if (usedSet) {
+              usedSet.add(subIndex)
+            }
 
             mapped.push({
               expected: rule.expected,
@@ -142,31 +145,31 @@ export class Matcher {
               matchResult,
               optional: rule.optional || false,
               info: rule.info,
-            });
+            })
 
-            matchedFileIndices.add(fileIndex);
-            fileMatched = true;
-            break;
+            matchedFileIndices.add(fileIndex)
+            fileMatched = true
+            break
           }
         }
 
         // Check if all subrules are exhausted
-        const allUsed = usedFlexibleRules.get(ruleIndex)?.size === ruleOrRules.length;
+        const allUsed = usedFlexibleRules.get(ruleIndex)?.size === ruleOrRules.length
         if (allUsed) {
-          ruleIndex++;
+          ruleIndex++
         }
 
         if (fileMatched) {
-          fileIndex++;
+          fileIndex++
         } else {
           // Try next file with same rule group
-          fileIndex++;
+          fileIndex++
         }
       } else {
         // Single rule
-        const rule = ruleOrRules;
-        const matchResult = this.matchFile(file, rule);
-        attemptedMatches.push(matchResult);
+        const rule = ruleOrRules
+        const matchResult = this.matchFile(file, rule)
+        attemptedMatches.push(matchResult)
 
         if (matchResult.matched) {
           if (isSingleMatchRule(rule)) {
@@ -177,45 +180,45 @@ export class Matcher {
               matchResult,
               optional: rule.optional || false,
               info: rule.info,
-            });
+            })
 
-            matchedFileIndices.add(fileIndex);
-            ruleIndex++;
-            fileIndex++;
+            matchedFileIndices.add(fileIndex)
+            ruleIndex++
+            fileIndex++
           } else if (isWildcardRule(rule)) {
             // Wildcard match
             wildcardMatched.push({
               file,
               matchResult,
               info: rule.info,
-            });
+            })
 
-            matchedFileIndices.add(fileIndex);
+            matchedFileIndices.add(fileIndex)
 
             if (rule.greedy) {
               // Stay on same rule, move to next file
-              fileIndex++;
+              fileIndex++
             } else {
               // Non-greedy: match once and move to next rule
-              ruleIndex++;
-              fileIndex++;
+              ruleIndex++
+              fileIndex++
             }
           }
         } else {
           // No match
           if (rule.optional) {
             // Optional rule didn't match - skip to next rule
-            ruleIndex++;
+            ruleIndex++
           } else if (isWildcardRule(rule)) {
             // Wildcard rule (always optional) didn't match - skip to next rule
-            ruleIndex++;
+            ruleIndex++
           } else {
             // Mandatory rule didn't match - file is unmapped
             unmapped.push({
               file,
               attemptedRules: attemptedMatches,
-            });
-            fileIndex++;
+            })
+            fileIndex++
           }
         }
       }
@@ -230,14 +233,14 @@ export class Matcher {
       totalRules: this.countRules(rules),
       mandatoryRules: this.countMandatoryRules(rules),
       optionalRules: this.countOptionalRules(rules),
-    };
+    }
 
     return {
       mapped,
       wildcardMatched,
       unmapped,
       stats,
-    };
+    }
   }
 
   /**
@@ -246,10 +249,10 @@ export class Matcher {
   private countRules(rules: (MatchRule | MatchRule[])[]): number {
     return rules.reduce((count, rule) => {
       if (Array.isArray(rule)) {
-        return count + rule.length;
+        return count + rule.length
       }
-      return count + 1;
-    }, 0);
+      return count + 1
+    }, 0)
   }
 
   /**
@@ -258,10 +261,10 @@ export class Matcher {
   private countMandatoryRules(rules: (MatchRule | MatchRule[])[]): number {
     return rules.reduce((count, rule) => {
       if (Array.isArray(rule)) {
-        return count + rule.filter(r => !r.optional && !isWildcardRule(r)).length;
+        return count + rule.filter(r => !r.optional && !isWildcardRule(r)).length
       }
-      return count + (rule.optional || isWildcardRule(rule) ? 0 : 1);
-    }, 0);
+      return count + (rule.optional || isWildcardRule(rule) ? 0 : 1)
+    }, 0)
   }
 
   /**
@@ -270,10 +273,10 @@ export class Matcher {
   private countOptionalRules(rules: (MatchRule | MatchRule[])[]): number {
     return rules.reduce((count, rule) => {
       if (Array.isArray(rule)) {
-        return count + rule.filter(r => r.optional || isWildcardRule(r)).length;
+        return count + rule.filter(r => r.optional || isWildcardRule(r)).length
       }
-      return count + (rule.optional || isWildcardRule(rule) ? 1 : 0);
-    }, 0);
+      return count + (rule.optional || isWildcardRule(rule) ? 1 : 0)
+    }, 0)
   }
 
   /**
@@ -294,50 +297,50 @@ export class Matcher {
     preFilter?: FilterCriterion[]
   ): FilterResult {
     // Apply pre-filter if provided
-    const preFilteredFiles = preFilter ? this.applyPreFilter(files, preFilter) : files;
+    const preFilteredFiles = preFilter ? this.applyPreFilter(files, preFilter) : files
 
     // Sort files if sort function provided
-    const sortedFiles = sortFn ? [...preFilteredFiles].sort(sortFn) : [...preFilteredFiles];
+    const sortedFiles = sortFn ? [...preFilteredFiles].sort(sortFn) : [...preFilteredFiles]
 
-    const mapped: MappedFile[] = [];
-    const wildcardMatched: WildcardMappedFile[] = [];
-    const unmapped: UnmappedFile[] = [];
+    const mapped: MappedFile[] = []
+    const wildcardMatched: WildcardMappedFile[] = []
+    const unmapped: UnmappedFile[] = []
 
     // Process each group
     for (const group of groups) {
       // Find files that match this group's filter
       const groupFiles = sortedFiles.filter(file => {
         const checks = group.groupFilter.map(criterion => {
-          return this.engine.evaluateCriterion(file.data, criterion);
-        });
-        return checks.every(check => check.status);
-      });
+          return this.engine.evaluateCriterion(file.data, criterion)
+        })
+        return checks.every(check => check.status)
+      })
 
       if (groupFiles.length === 0) {
         // No files match this group - continue to next group
-        continue;
+        continue
       }
 
       // Apply the group's rules to the matched files
       // Convert rules to the format expected by filterFiles
       const rulesArray: (MatchRule | MatchRule[])[] = group.rules.map(rule => {
         if (Array.isArray(rule)) {
-          return rule;
+          return rule
         }
-        return rule;
-      });
+        return rule
+      })
 
       // Use the existing filterFiles logic (without preFilter, already applied)
-      const groupResult = this.filterFiles(groupFiles, rulesArray);
+      const groupResult = this.filterFiles(groupFiles, rulesArray)
 
       // Merge results
-      mapped.push(...groupResult.mapped);
-      wildcardMatched.push(...groupResult.wildcardMatched);
-      unmapped.push(...groupResult.unmapped);
+      mapped.push(...groupResult.mapped)
+      wildcardMatched.push(...groupResult.wildcardMatched)
+      unmapped.push(...groupResult.unmapped)
     }
 
     // Calculate total rules across all groups
-    const allRules = groups.flatMap(g => g.rules);
+    const allRules = groups.flatMap(g => g.rules)
     const stats = {
       totalFiles: files.length,
       mappedFiles: mapped.length,
@@ -346,13 +349,13 @@ export class Matcher {
       totalRules: this.countRules(allRules),
       mandatoryRules: this.countMandatoryRules(allRules),
       optionalRules: this.countOptionalRules(allRules),
-    };
+    }
 
     return {
       mapped,
       wildcardMatched,
       unmapped,
       stats,
-    };
+    }
   }
 }

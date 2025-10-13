@@ -9,7 +9,7 @@
  * @example
  * ['data', 'stations', 0, 'name'] → data.stations[0].name
  */
-export type PathElement = string | number;
+export type PathElement = string | number
 
 /**
  * Time unit for time-based comparisons
@@ -22,54 +22,54 @@ export type TimeUnit =
   | 'days'
   | 'weeks'
   | 'months'
-  | 'years';
+  | 'years'
 
 /**
  * Check if a value matches an expected value (deep equality)
  */
 export interface CheckValue {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  value: any;
+  value: any
 }
 
 /**
  * Check if a path exists in the object
  */
 export interface CheckExists {
-  exists: boolean;
+  exists: boolean
 }
 
 /**
  * Check if an array contains (or doesn't contain) a specific item
  */
 export interface CheckArrayElement {
-  itemExists: boolean;
+  itemExists: boolean
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  item: any;
+  item: any
 }
 
 /**
  * Check if an array has a specific size
  */
 export interface CheckArraySize {
-  type: 'equal' | 'lessThan' | 'greaterThan';
-  size: number;
+  type: 'equal' | 'lessThan' | 'greaterThan'
+  size: number
 }
 
 /**
  * Check if a timestamp is within a time range
  */
 export interface CheckTimeRange {
-  min: string;
-  max: string;
+  min: string
+  max: string
 }
 
 /**
  * Check if a numeric value is within a numeric range
  */
 export interface CheckNumericRange {
-  min: number;
-  max: number;
+  min: number
+  max: number
 }
 
 /**
@@ -79,7 +79,7 @@ export interface FilterCriterion {
   /**
    * Path to the value to check
    */
-  path: PathElement[];
+  path: PathElement[]
 
   /**
    * The check to perform on the value
@@ -90,7 +90,7 @@ export interface FilterCriterion {
     | CheckArrayElement
     | CheckArraySize
     | CheckTimeRange
-    | CheckNumericRange;
+    | CheckNumericRange
 }
 
 /**
@@ -100,22 +100,22 @@ export interface SingleMatchRule {
   /**
    * Filter criteria - all must match (AND logic)
    */
-  match: FilterCriterion[];
+  match: FilterCriterion[]
 
   /**
    * Expected file name/identifier
    */
-  expected: string;
+  expected: string
 
   /**
    * Whether this match is optional
    */
-  optional?: boolean;
+  optional?: boolean
 
   /**
    * Additional metadata for reporting
    */
-  info?: Record<string, unknown>;
+  info?: Record<string, unknown>
 }
 
 /**
@@ -126,42 +126,42 @@ export interface WildcardMatchRule {
   /**
    * Filter criteria for wildcard matching
    */
-  matchAny: FilterCriterion[];
+  matchAny: FilterCriterion[]
 
   /**
    * Whether to match greedily (as many as possible) or stop after first match
    * Default: false (stop after first match)
    */
-  greedy?: boolean;
+  greedy?: boolean
 
   /**
    * Wildcard matches are always optional
    */
-  optional: true;
+  optional: true
 
   /**
    * Additional metadata for reporting
    */
-  info?: Record<string, unknown>;
+  info?: Record<string, unknown>
 }
 
 /**
  * A match rule can be either a single match or a wildcard match
  */
-export type MatchRule = SingleMatchRule | WildcardMatchRule;
+export type MatchRule = SingleMatchRule | WildcardMatchRule
 
 /**
  * Type guard to check if a rule is a wildcard rule
  */
 export function isWildcardRule(rule: MatchRule): rule is WildcardMatchRule {
-  return 'matchAny' in rule;
+  return 'matchAny' in rule
 }
 
 /**
  * Type guard to check if a rule is a single match rule
  */
 export function isSingleMatchRule(rule: MatchRule): rule is SingleMatchRule {
-  return 'match' in rule && 'expected' in rule;
+  return 'match' in rule && 'expected' in rule
 }
 
 /**
@@ -173,17 +173,17 @@ export interface FilterGroup {
    * Common filter criteria that all files in this group must match
    * These are checked before evaluating individual rules
    */
-  groupFilter: FilterCriterion[];
+  groupFilter: FilterCriterion[]
 
   /**
    * Rules to apply to files that match the group filter
    */
-  rules: MatchRule[];
+  rules: MatchRule[]
 
   /**
    * Additional metadata for reporting
    */
-  info?: Record<string, unknown>;
+  info?: Record<string, unknown>
 }
 
 /**
@@ -193,18 +193,18 @@ export interface JsonFile {
   /**
    * File name or identifier
    */
-  fileName: string;
+  fileName: string
 
   /**
    * The JSON data
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  data: any;
+  data: any
 
   /**
    * Optional metadata
    */
-  metadata?: Record<string, unknown>;
+  metadata?: Record<string, unknown>
 }
 
 /**
@@ -214,17 +214,17 @@ export interface FilterCheckResult {
   /**
    * Whether the check passed
    */
-  status: boolean;
+  status: boolean
 
   /**
    * The check that was performed
    */
-  checkType: string;
+  checkType: string
 
   /**
    * Reason for failure (if status is false)
    */
-  reason?: string | Record<string, unknown>;
+  reason?: string | Record<string, unknown>
 }
 
 /**
@@ -234,17 +234,17 @@ export interface MatchResult {
   /**
    * Whether all criteria matched
    */
-  matched: boolean;
+  matched: boolean
 
   /**
    * Individual check results
    */
-  checks: FilterCheckResult[];
+  checks: FilterCheckResult[]
 
   /**
    * The rule that was tested
    */
-  rule: MatchRule;
+  rule: MatchRule
 }
 
 /**
@@ -254,27 +254,27 @@ export interface MappedFile {
   /**
    * Expected identifier
    */
-  expected: string;
+  expected: string
 
   /**
    * The actual file that was matched
    */
-  file: JsonFile;
+  file: JsonFile
 
   /**
    * Match result details
    */
-  matchResult: MatchResult;
+  matchResult: MatchResult
 
   /**
    * Optional flag from the rule
    */
-  optional: boolean;
+  optional: boolean
 
   /**
    * Additional info from the rule
    */
-  info?: Record<string, unknown>;
+  info?: Record<string, unknown>
 }
 
 /**
@@ -284,17 +284,17 @@ export interface WildcardMappedFile {
   /**
    * The file that was matched
    */
-  file: JsonFile;
+  file: JsonFile
 
   /**
    * Match result details
    */
-  matchResult: MatchResult;
+  matchResult: MatchResult
 
   /**
    * Additional info from the rule
    */
-  info?: Record<string, unknown>;
+  info?: Record<string, unknown>
 }
 
 /**
@@ -304,12 +304,12 @@ export interface UnmappedFile {
   /**
    * The file that couldn't be matched
    */
-  file: JsonFile;
+  file: JsonFile
 
   /**
    * All rules that were tried
    */
-  attemptedRules: MatchResult[];
+  attemptedRules: MatchResult[]
 }
 
 /**
@@ -319,30 +319,30 @@ export interface FilterResult {
   /**
    * Successfully mapped files (expected identifier → actual file)
    */
-  mapped: MappedFile[];
+  mapped: MappedFile[]
 
   /**
    * Files matched by wildcard rules
    */
-  wildcardMatched: WildcardMappedFile[];
+  wildcardMatched: WildcardMappedFile[]
 
   /**
    * Files that couldn't be matched to any rule
    */
-  unmapped: UnmappedFile[];
+  unmapped: UnmappedFile[]
 
   /**
    * Statistics
    */
   stats: {
-    totalFiles: number;
-    mappedFiles: number;
-    wildcardMatchedFiles: number;
-    unmappedFiles: number;
-    totalRules: number;
-    mandatoryRules: number;
-    optionalRules: number;
-  };
+    totalFiles: number
+    mappedFiles: number
+    wildcardMatchedFiles: number
+    unmappedFiles: number
+    totalRules: number
+    mandatoryRules: number
+    optionalRules: number
+  }
 }
 
 /**
@@ -352,21 +352,21 @@ export interface FilterRequest {
   /**
    * Files to be filtered
    */
-  files: JsonFile[];
+  files: JsonFile[]
 
   /**
    * Matching rules in order (flat structure)
    * Can be a single rule or an array of rules (for flexible ordering)
    * Either 'rules' or 'groups' should be provided, not both
    */
-  rules?: (MatchRule | MatchRule[])[];
+  rules?: (MatchRule | MatchRule[])[]
 
   /**
    * Grouped rules with common filter criteria (hierarchical structure)
    * Either 'rules' or 'groups' should be provided, not both
    * NEW: Allows organizing rules by common criteria (e.g., by line number, event type)
    */
-  groups?: FilterGroup[];
+  groups?: FilterGroup[]
 
   /**
    * Sort function for ordering files before matching
@@ -374,21 +374,21 @@ export interface FilterRequest {
    * @param b - Second file
    * @returns Negative if a < b, positive if a > b, zero if equal
    */
-  sortFn?: (a: JsonFile, b: JsonFile) => number;
+  sortFn?: (a: JsonFile, b: JsonFile) => number
 
   /**
    * Optional pre-filter criteria that all files must match before rule/group matching
    * Files that don't match the pre-filter are excluded entirely (not added to unmapped)
    * Applied before group filters
    */
-  preFilter?: FilterCriterion[];
+  preFilter?: FilterCriterion[]
 
   /**
    * Optional context for time-based filtering
    */
   context?: {
-    startTimeScript?: string;
-    startTimeTest?: string;
-    pathTime?: PathElement[];
-  };
+    startTimeScript?: string
+    startTimeTest?: string
+    pathTime?: PathElement[]
+  }
 }

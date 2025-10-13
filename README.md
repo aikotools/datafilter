@@ -3,7 +3,7 @@
 Advanced data filtering engine for JSON file matching in E2E testing.
 
 [![npm version](https://badge.fury.io/js/@aikotools%2Fdatafilter.svg)](https://www.npmjs.com/package/@aikotools/datafilter)
-[![License: DBISL](https://img.shields.io/badge/License-DBISL-blue.svg)](LICENSE)
+[![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](LICENSE)
 
 ## Overview
 
@@ -385,7 +385,7 @@ Utilities
 
 ## License
 
-DBISL
+MIT - See [LICENSE](LICENSE) file for details.
 
 ## Contributing
 

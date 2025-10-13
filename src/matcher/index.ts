@@ -2,4 +2,4 @@
  * Matcher exports
  */
 
-export * from './Matcher';
+export * from './Matcher'

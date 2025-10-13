@@ -1,0 +1,42 @@
+# Tests the current code in the GitHub repository after all tests
+# where successful.
+
+name: Test
+
+env:
+  GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
+  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
+on:
+  pull_request:
+  
+  push:
+    branches-ignore:
+      - main
+   
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      issues: write
+      pull-requests: write
+      packages: write   # umfasst read+write
+
+    strategy:
+      matrix:
+        node-version: [24.x]
+
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: ${{ matrix.node-version }}
+
+      - run: npm ci
+      - run: npm test

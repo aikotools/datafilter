@@ -1,4 +1,4 @@
-import type { PathElement } from '../core/types';
+import type { PathElement } from '../core/types'
 
 /**
  * Result of accessing a value from an object
@@ -8,22 +8,22 @@ export interface AccessResult {
    * The value found at the path (undefined if not found)
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  value: any;
+  value: any
 
   /**
    * Whether the path was successfully resolved
    */
-  found: boolean;
+  found: boolean
 
   /**
    * Error message if path couldn't be resolved
    */
-  error?: string;
+  error?: string
 
   /**
    * The portion of the path that was successfully resolved
    */
-  validPath: PathElement[];
+  validPath: PathElement[]
 }
 
 /**
@@ -47,7 +47,7 @@ export function getValueFromPath(
   object: any,
   path: PathElement[]
 ): AccessResult {
-  const validPath: PathElement[] = [];
+  const validPath: PathElement[] = []
 
   // Handle empty path
   if (path.length === 0) {
@@ -55,15 +55,15 @@ export function getValueFromPath(
       value: object,
       found: true,
       validPath: [],
-    };
+    }
   }
 
   // Navigate through the path
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  let current: any = object;
+  let current: any = object
 
   for (let i = 0; i < path.length; i++) {
-    const segment = path[i];
+    const segment = path[i]
 
     // Handle null or undefined
     if (current === null || current === undefined) {
@@ -72,12 +72,12 @@ export function getValueFromPath(
         found: false,
         error: `Cannot read property '${segment}' of ${current}`,
         validPath,
-      };
+      }
     }
 
     // Handle array access
     if (Array.isArray(current)) {
-      const index = typeof segment === 'number' ? segment : parseInt(String(segment), 10);
+      const index = typeof segment === 'number' ? segment : parseInt(String(segment), 10)
 
       if (isNaN(index)) {
         return {
@@ -85,7 +85,7 @@ export function getValueFromPath(
           found: false,
           error: `Array index must be a number, got '${segment}'`,
           validPath,
-        };
+        }
       }
 
       if (index < 0 || index >= current.length) {
@@ -94,17 +94,17 @@ export function getValueFromPath(
           found: false,
           error: `Array index ${index} out of bounds (length: ${current.length})`,
           validPath,
-        };
+        }
       }
 
-      validPath.push(index);
-      current = current[index];
-      continue;
+      validPath.push(index)
+      current = current[index]
+      continue
     }
 
     // Handle object access
     if (typeof current === 'object') {
-      const key = String(segment);
+      const key = String(segment)
 
       if (!(key in current)) {
         return {
@@ -112,12 +112,12 @@ export function getValueFromPath(
           found: false,
           error: `Property '${key}' does not exist`,
           validPath,
-        };
+        }
       }
 
-      validPath.push(key);
-      current = current[key];
-      continue;
+      validPath.push(key)
+      current = current[key]
+      continue
     }
 
     // Cannot navigate further
@@ -126,14 +126,14 @@ export function getValueFromPath(
       found: false,
       error: `Cannot access property '${segment}' of primitive type ${typeof current}`,
       validPath,
-    };
+    }
   }
 
   return {
     value: current,
     found: true,
     validPath,
-  };
+  }
 }
 
 /**
@@ -152,8 +152,8 @@ export function getValueFromPath(
  */
 // eslint-disable-next-line @typescript-eslint/no-explicit-any
 export function pathExists(object: any, path: PathElement[]): boolean {
-  const result = getValueFromPath(object, path);
-  return result.found && result.value !== undefined;
+  const result = getValueFromPath(object, path)
+  return result.found && result.value !== undefined
 }
 
 /**
@@ -177,6 +177,6 @@ export function getValueOr<T>(
   path: PathElement[],
   defaultValue: T
 ): T {
-  const result = getValueFromPath(object, path);
-  return result.found && result.value !== undefined ? result.value : defaultValue;
+  const result = getValueFromPath(object, path)
+  return result.found && result.value !== undefined ? result.value : defaultValue
 }

@@ -1,0 +1,7 @@
+{
+  "ignores": [
+    "xml2js",
+    "@types/xml2js",
+    "@vitest/coverage-v8"
+  ]
+}

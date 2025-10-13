@@ -12,15 +12,15 @@
     "access": "public"
   },
   "scripts": {
-    "build": "npm run format && npm run lint && tsc && vite build",
-    "format": "prettier --write \"src/**/*.{js,ts,json}\" \"tests/**/*.{js,ts,json}\"",
-    "lint": "eslint \"src/**/*.{js,ts}\" \"tests/**/*.{js,ts}\"",
-    "lint:fix": "eslint --fix \"src/**/*.{js,ts}\" \"tests/**/*.{js,ts}\"",
-    "test": "npm run build && vitest run",
+    "dev": "vite",
+    "format": "prettier --write \"src/**/*.{js,ts,json}\"",
+    "lint": "eslint \"src/**/*.{js,ts}\"",
+    "depcheck": "depcheck",
+    "build": "npm run format && npm run lint && npm run depcheck && tsc && vite build",
+    "test": "npm run build && vitest run --coverage",
+    "test:run": "vitest run",
     "test:watch": "vitest",
-    "test:coverage": "vitest run --coverage",
-    "test:unit": "vitest run tests/unit",
-    "test:integration": "vitest run tests/integration"
+    "docs:build": "bash scripts/build-readme.sh"
   },
   "keywords": [
     "filter",
@@ -33,6 +33,7 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
+    "depcheck": "^1.4.7",
     "luxon": "^3.7.2"
   },
   "devDependencies": {
@@ -40,6 +41,7 @@
     "@types/node": "^20.0.0",
     "@typescript-eslint/eslint-plugin": "^7.0.0",
     "@typescript-eslint/parser": "^7.0.0",
+    "@vitest/coverage-v8": "^1.6.0",
     "eslint": "^8.57.0",
     "prettier": "^3.0.0",
     "typescript": "^5.4.0",
