@@ -1,0 +1,164 @@
+{
+  "_id": "68e8a2c9943ccd0528db5ff1",
+  "eventMetaData": {
+    "topicKeyName": "RiFahrt.v1",
+    "topic": "au.RiFahrt.v1",
+    "timestampMilli": 1760076488721,
+    "timestampIso": "2025-10-10T08:08:08.721+02:00",
+    "key": "20251010-3623595b-e8d9-3176-a72f-a70d8cf5d6f9",
+    "fileName": "4483_lang_AusfallErsatzInEinerAktion/events/au.RiFahrt.v1/2025-10-10_08:08:08.721_+0200_68e8a2c9943ccd0528db5ff1.json"
+  },
+  "eventData": {
+    "meta": {
+      "correlation": ["eb0534ec-4fa2-4eb8-a66e-5f74c1706e38"],
+      "id": "896933ec-c6be-470f-b3ec-48b923a7bfdb",
+      "owner": "RIS::JOURNEYS",
+      "format": "RIPL",
+      "version": "v1",
+      "created": "2025-10-10T08:08:08.687536738+02:00"
+    },
+    "lastChangedTimestamp": "2025-10-10T08:08:08.382041293+02:00",
+    "riFahrtData": {
+      "allVerkehrsmittel": [
+        {
+          "produktklasse": 4,
+          "gattung": "RE",
+          "fahrtnummer": 16670,
+          "linie": "88888",
+          "marketingname": "",
+          "verwaltungId": "800001",
+          "fahrtbezeichnung": "RE 88888",
+          "gattungIntern": "RE"
+        }
+      ],
+      "allVerwaltung": [
+        {
+          "verwaltungId": "800001",
+          "betreiberCode": "RB",
+          "betreiberName": "DB Regio AG Zusatzzug"
+        }
+      ],
+      "allFahrtereignis": [
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 2,
+          "fahrtereignisId": "8000240_D_1",
+          "haltestelle": {
+            "evaNummer": "8000240",
+            "name": "Mainz Hbf",
+            "rl100": "FMZ"
+          },
+          "zeitPlan": "2025-10-10T08:11:00+02:00",
+          "zeitTyp": 1,
+          "zeit": "2025-10-10T08:11:00+02:00",
+          "plattformPlan": "5a",
+          "plattform": "5a"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 1,
+          "fahrtereignisId": "8000257_A_1",
+          "haltestelle": {
+            "evaNummer": "8000257",
+            "name": "Worms Hbf",
+            "rl100": "FWOR"
+          },
+          "zeitPlan": "2025-10-10T08:38:00+02:00",
+          "zeitTyp": 1,
+          "zeit": "2025-10-10T08:38:00+02:00",
+          "plattformPlan": "2",
+          "plattform": "2"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 2,
+          "fahrtereignisId": "8000257_D_1",
+          "haltestelle": {
+            "evaNummer": "8000257",
+            "name": "Worms Hbf",
+            "rl100": "FWOR"
+          },
+          "zeitPlan": "2025-10-10T08:44:00+02:00",
+          "zeitTyp": 1,
+          "zeit": "2025-10-10T08:44:00+02:00",
+          "plattformPlan": "2",
+          "plattform": "2"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 1,
+          "fahrtereignisId": "8000332_A_1",
+          "haltestelle": {
+            "evaNummer": "8000332",
+            "name": "Frankenthal Hbf",
+            "rl100": "RFT"
+          },
+          "zeitPlan": "2025-10-10T08:45:00+02:00",
+          "zeitTyp": 1,
+          "zeit": "2025-10-10T08:45:00+02:00",
+          "plattformPlan": "2",
+          "plattform": "2"
+        }
+      ],
+      "allDurchbindungAuf": [],
+      "allDurchbindungVon": [],
+      "fahrtId": "20251010-3623595b-e8d9-3176-a72f-a70d8cf5d6f9",
+      "fahrtRelation": {
+        "startZeit": "2025-10-10T08:11:00+02:00",
+        "startEvaNummer": "8000240",
+        "startVerwaltungId": "800001",
+        "kopfVerwaltungId": "800001",
+        "startGattung": "RE",
+        "startFahrtnummer": 16670,
+        "kopfFahrtnummer": 16670,
+        "zielZeit": "2025-10-10T08:45:00+02:00",
+        "zielEvaNummer": "8000332"
+      },
+      "fahrtInfo": {
+        "typ": 4,
+        "kopfVerwaltungId": "800001",
+        "kopfFahrtnummer": 16670
+      },
+      "allNachricht": {
+        "allAttribut": {},
+        "allStoerungsKommunikation": {},
+        "allHinweis": {},
+        "allRisKundenGrund": {
+          "1": {
+            "nachrichtId": 1,
+            "code": "31",
+            "text": "Bauarbeiten"
+          }
+        },
+        "allRisQualitaetsabweichung": {}
+      }
+    }
+  },
+  "extractedData": {
+    "fahrtNummer": "16670"
+  }
+}

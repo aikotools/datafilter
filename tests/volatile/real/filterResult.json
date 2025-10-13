@@ -1,0 +1,204 @@
+{
+  "stats": {
+    "totalFiles": 22,
+    "mappedFiles": 3,
+    "wildcardMatchedFiles": 0,
+    "unmappedFiles": 4,
+    "totalRules": 4,
+    "mandatoryRules": 4,
+    "optionalRules": 0
+  },
+  "mapped": [
+    {
+      "fileName": "2025-10-10_08:08:08.721_+0200_68e8a2c9943ccd0528db5ff1.json",
+      "expected": "RiFahrtV1/01_riFahrtV1_plan.json",
+      "optional": false,
+      "info": {
+        "channelName": "RiFahrtV1",
+        "subCategory": "Plan",
+        "trainNumbers": [
+          "16670"
+        ]
+      },
+      "matchResult": {
+        "matched": true,
+        "checksCount": 1,
+        "checks": [
+          {
+            "status": true,
+            "checkType": "checkNumericRange"
+          }
+        ]
+      }
+    },
+    {
+      "fileName": "2025-10-10_08:09:05.527_+0200_68e8a302943ccd0528db604a.json",
+      "expected": "RiFahrtV1/02_riFahrtV1_ersatz.json",
+      "optional": false,
+      "info": {
+        "channelName": "RiFahrtV1",
+        "subCategory": "Ersatz",
+        "trainNumbers": [
+          "16671"
+        ]
+      },
+      "matchResult": {
+        "matched": true,
+        "checksCount": 1,
+        "checks": [
+          {
+            "status": true,
+            "checkType": "checkValue"
+          }
+        ]
+      }
+    },
+    {
+      "fileName": "2025-10-10_08:09:07.520_+0200_68e8a303943ccd0528db6052.json",
+      "expected": "RiFahrtV1/03_riFahrtV1_ausfall.json",
+      "optional": false,
+      "info": {
+        "channelName": "RiFahrtV1",
+        "subCategory": "Ausfall",
+        "trainNumbers": [
+          "16670"
+        ]
+      },
+      "matchResult": {
+        "matched": true,
+        "checksCount": 2,
+        "checks": [
+          {
+            "status": true,
+            "checkType": "checkValue"
+          },
+          {
+            "status": true,
+            "checkType": "checkValue"
+          }
+        ]
+      }
+    }
+  ],
+  "wildcardMatched": [],
+  "unmapped": [
+    {
+      "fileName": "2025-10-10_08:08:09.845_+0200_68e8a2ca943ccd0528db5ff6.json",
+      "attemptedRulesCount": 1,
+      "attemptedRules": [
+        {
+          "matched": false,
+          "checksCount": 1,
+          "checks": [
+            {
+              "status": false,
+              "checkType": "checkValue",
+              "reason": {
+                "message": "Value mismatch",
+                "path": [
+                  "eventData",
+                  "riFahrtData",
+                  "allVerkehrsmittel",
+                  0,
+                  "fahrtnummer"
+                ],
+                "expected": 16671,
+                "actual": 16670
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "fileName": "2025-10-10_08:09:05.415_+0200_68e8a302943ccd0528db6049.json",
+      "attemptedRulesCount": 1,
+      "attemptedRules": [
+        {
+          "matched": false,
+          "checksCount": 1,
+          "checks": [
+            {
+              "status": false,
+              "checkType": "checkValue",
+              "reason": {
+                "message": "Value mismatch",
+                "path": [
+                  "eventData",
+                  "riFahrtData",
+                  "allVerkehrsmittel",
+                  0,
+                  "fahrtnummer"
+                ],
+                "expected": 16671,
+                "actual": 16670
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "fileName": "2025-10-10_08:09:06.395_+0200_68e8a303943ccd0528db6051.json",
+      "attemptedRulesCount": 1,
+      "attemptedRules": [
+        {
+          "matched": false,
+          "checksCount": 2,
+          "checks": [
+            {
+              "status": true,
+              "checkType": "checkValue"
+            },
+            {
+              "status": false,
+              "checkType": "checkValue",
+              "reason": {
+                "message": "Property 'ausgefallen' does not exist",
+                "path": [
+                  "eventData",
+                  "riFahrtData",
+                  "allFahrtereignis",
+                  0,
+                  "ausgefallen"
+                ]
+              }
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "fileName": "2025-10-10_08:11:01.044_+0200_68e8a375943ccd0528db6093.json",
+      "attemptedRulesCount": 1,
+      "attemptedRules": [
+        {
+          "matched": false,
+          "checksCount": 2,
+          "checks": [
+            {
+              "status": true,
+              "checkType": "checkValue"
+            },
+            {
+              "status": false,
+              "checkType": "checkValue",
+              "reason": {
+                "message": "Value mismatch",
+                "path": [
+                  "eventData",
+                  "riFahrtData",
+                  "allFahrtereignis",
+                  1,
+                  "zeitTyp"
+                ],
+                "expected": 1,
+                "actual": 2
+              }
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}

@@ -1,0 +1,123 @@
+{
+  "channelName": "RiFahrtV1",
+  "messageMapFile": "RiFahrtV1/messageMap.json",
+  "mappingCriteria": [
+    {
+      "info": {
+        "channelName": "RiFahrtV1",
+        "subCategory": "Plan",
+        "trainNumbers": ["16670"]
+      },
+      "optional": false,
+      "expected": "RiFahrtV1/01_riFahrtV1_plan.json",
+      "filter": {
+        "name": "planfahrt",
+        "filterElement": [
+          {
+            "path": ["eventData", "riFahrtData", "allVerkehrsmittel", 0, "linie"],
+            "check": {
+              "value": "88888"
+            }
+          },
+          {
+            "path": ["eventData", "riFahrtData", "allFahrtereignis", 0, "zeitTyp"],
+            "check": {
+              "min": "1",
+              "max": "2"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "channelName": "RiFahrtV1",
+        "subCategory": "Ersatz",
+        "trainNumbers": ["16671"]
+      },
+      "optional": false,
+      "expected": "RiFahrtV1/02_riFahrtV1_ersatz.json",
+      "filter": {
+        "name": "ersatz",
+        "filterElement": [
+          {
+            "path": ["eventData", "riFahrtData", "allVerkehrsmittel", 0, "linie"],
+            "check": {
+              "value": "88888"
+            }
+          },
+          {
+            "path": ["eventData", "riFahrtData", "allVerkehrsmittel", 0, "fahrtnummer"],
+            "check": {
+              "value": "16671"
+            }
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "channelName": "RiFahrtV1",
+        "subCategory": "Ausfall",
+        "trainNumbers": ["16670"]
+      },
+      "optional": false,
+      "expected": "RiFahrtV1/03_riFahrtV1_ausfall.json",
+      "filter": {
+        "name": "ausfall",
+        "filterElement": [
+          {
+            "path": ["eventData", "riFahrtData", "allVerkehrsmittel", 0, "linie"],
+            "check": {
+              "value": "88888"
+            }
+          },
+          {
+            "path": ["eventData", "riFahrtData", "allVerkehrsmittel", 0, "fahrtnummer"],
+            "check": {
+              "value": "16670"
+            }
+          },
+          {
+            "path": ["eventData", "riFahrtData", "allFahrtereignis", 0, "ausgefallen"],
+            "check": {
+              "value": true
+            }
+          }
+        ]
+      }
+    },
+    {
+      "info": {
+        "channelName": "RiFahrtV1",
+        "subCategory": "Ersatz Abfahrt",
+        "trainNumbers": ["16671"]
+      },
+      "optional": false,
+      "expected": "RiFahrtV1/04_riFahrtV1_ersatz_abfahrtStartHalt.json",
+      "filter": {
+        "name": "ersatzAbfahrtStarthalt",
+        "filterElement": [
+          {
+            "path": ["eventData", "riFahrtData", "allVerkehrsmittel", 0, "linie"],
+            "check": {
+              "value": "88888"
+            }
+          },
+          {
+            "path": ["eventData", "riFahrtData", "allFahrtereignis", 0, "zeitTyp"],
+            "check": {
+              "value": 3
+            }
+          },
+          {
+            "path": ["eventData", "riFahrtData", "allFahrtereignis", 1, "zeitTyp"],
+            "check": {
+              "value": 1
+            }
+          }
+        ]
+      }
+    }
+  ]
+}

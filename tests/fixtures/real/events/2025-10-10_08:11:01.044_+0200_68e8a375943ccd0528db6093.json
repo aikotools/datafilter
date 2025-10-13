@@ -1,0 +1,458 @@
+{
+  "_id": "68e8a375943ccd0528db6093",
+  "eventMetaData": {
+    "topicKeyName": "RiFahrt.v1",
+    "topic": "au.RiFahrt.v1",
+    "timestampMilli": 1760076661044,
+    "timestampIso": "2025-10-10T08:11:01.044+02:00",
+    "key": "20251010-fccf8029-2f70-3af3-882d-788ce4dddc36",
+    "fileName": "4483_lang_AusfallErsatzInEinerAktion/events/au.RiFahrt.v1/2025-10-10_08:11:01.044_+0200_68e8a375943ccd0528db6093.json"
+  },
+  "eventData": {
+    "meta": {
+      "correlation": [],
+      "id": "0f2bf13a-a0ce-4ee0-84f3-5f70f3e35fcd",
+      "owner": "RIS::JOURNEYS::e2e",
+      "format": "RIPL",
+      "version": "v1",
+      "created": "2025-10-10T08:08:00.000+02:00"
+    },
+    "lastChangedTimestamp": "2025-10-10T08:11:00.000+02:00",
+    "riFahrtData": {
+      "allVerkehrsmittel": [
+        {
+          "produktklasse": 4,
+          "gattung": "RE",
+          "fahrtnummer": 16671,
+          "linie": "88888",
+          "marketingname": "",
+          "verwaltungId": "800001",
+          "fahrtbezeichnung": "RE 88888",
+          "gattungIntern": "RE"
+        }
+      ],
+      "allVerwaltung": [
+        {
+          "verwaltungId": "800001",
+          "betreiberCode": "RB",
+          "betreiberName": "DB Regio AG Zusatzzug"
+        }
+      ],
+      "allFahrtereignis": [
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 2,
+          "fahrtereignisId": "8000240_D_1",
+          "haltestelle": {
+            "evaNummer": "8000240",
+            "name": "Mainz Hbf",
+            "rl100": "FMZ"
+          },
+          "zeitPlan": "2025-10-10T08:11:00.000+02:00",
+          "zeitTyp": 3,
+          "zeit": "2025-10-10T08:11:00.000+02:00",
+          "plattformPlan": "5a",
+          "plattform": "5a"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 1,
+          "fahrtereignisId": "8000257_A_1",
+          "haltestelle": {
+            "evaNummer": "8000257",
+            "name": "Worms Hbf",
+            "rl100": "FWOR"
+          },
+          "zeitPlan": "2025-10-10T08:38:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T08:38:00.000+02:00",
+          "plattformPlan": "2",
+          "plattform": "2"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 2,
+          "fahrtereignisId": "8000257_D_1",
+          "haltestelle": {
+            "evaNummer": "8000257",
+            "name": "Worms Hbf",
+            "rl100": "FWOR"
+          },
+          "zeitPlan": "2025-10-10T08:44:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T08:44:00.000+02:00",
+          "plattformPlan": "2",
+          "plattform": "2"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 1,
+          "fahrtereignisId": "8000332_A_1",
+          "haltestelle": {
+            "evaNummer": "8000332",
+            "name": "Frankenthal Hbf",
+            "rl100": "RFT"
+          },
+          "zeitPlan": "2025-10-10T08:45:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T08:45:00.000+02:00",
+          "plattformPlan": "2",
+          "plattform": "2"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 2,
+          "fahrtereignisId": "8000332_D_1",
+          "haltestelle": {
+            "evaNummer": "8000332",
+            "name": "Frankenthal Hbf",
+            "rl100": "RFT"
+          },
+          "zeitPlan": "2025-10-10T08:45:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T08:45:00.000+02:00",
+          "plattformPlan": "2",
+          "plattform": "2"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 1,
+          "fahrtereignisId": "8000236_A_1",
+          "haltestelle": {
+            "evaNummer": "8000236",
+            "name": "Ludwigshafen(Rh)Hbf",
+            "rl100": "RL"
+          },
+          "zeitPlan": "2025-10-10T08:55:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T08:55:00.000+02:00",
+          "plattformPlan": "8",
+          "plattform": "8"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 2,
+          "fahrtereignisId": "8000236_D_1",
+          "haltestelle": {
+            "evaNummer": "8000236",
+            "name": "Ludwigshafen(Rh)Hbf",
+            "rl100": "RL"
+          },
+          "zeitPlan": "2025-10-10T08:56:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T08:56:00.000+02:00",
+          "plattformPlan": "8",
+          "plattform": "8"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 1,
+          "fahrtereignisId": "8000326_A_1",
+          "haltestelle": {
+            "evaNummer": "8000326",
+            "name": "Schifferstadt",
+            "rl100": "RSD"
+          },
+          "zeitPlan": "2025-10-10T09:13:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T09:13:00.000+02:00",
+          "plattformPlan": "3",
+          "plattform": "3"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 2,
+          "fahrtereignisId": "8000326_D_1",
+          "haltestelle": {
+            "evaNummer": "8000326",
+            "name": "Schifferstadt",
+            "rl100": "RSD"
+          },
+          "zeitPlan": "2025-10-10T09:14:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T09:14:00.000+02:00",
+          "plattformPlan": "3",
+          "plattform": "3"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 1,
+          "fahrtereignisId": "8005628_A_1",
+          "haltestelle": {
+            "evaNummer": "8005628",
+            "name": "Speyer Hbf",
+            "rl100": "RSP"
+          },
+          "zeitPlan": "2025-10-10T09:21:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T09:21:00.000+02:00",
+          "plattformPlan": "3",
+          "plattform": "3"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 2,
+          "fahrtereignisId": "8005628_D_1",
+          "haltestelle": {
+            "evaNummer": "8005628",
+            "name": "Speyer Hbf",
+            "rl100": "RSP"
+          },
+          "zeitPlan": "2025-10-10T09:22:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T09:22:00.000+02:00",
+          "plattformPlan": "3",
+          "plattform": "3"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 1,
+          "fahrtereignisId": "8000376_A_1",
+          "haltestelle": {
+            "evaNummer": "8000376",
+            "name": "Germersheim",
+            "rl100": "RGE"
+          },
+          "zeitPlan": "2025-10-10T09:31:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T09:31:00.000+02:00",
+          "plattformPlan": "4",
+          "plattform": "4"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 2,
+          "fahrtereignisId": "8000376_D_1",
+          "haltestelle": {
+            "evaNummer": "8000376",
+            "name": "Germersheim",
+            "rl100": "RGE"
+          },
+          "zeitPlan": "2025-10-10T09:32:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T09:32:00.000+02:00",
+          "plattformPlan": "4",
+          "plattform": "4"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 1,
+          "fahrtereignisId": "8004813_A_1",
+          "haltestelle": {
+            "evaNummer": "8004813",
+            "name": "Philippsburg(Baden)",
+            "rl100": "RPB"
+          },
+          "zeitPlan": "2025-10-10T09:39:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T09:39:00.000+02:00",
+          "plattformPlan": "2",
+          "plattform": "2"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 2,
+          "fahrtereignisId": "8004813_D_1",
+          "haltestelle": {
+            "evaNummer": "8004813",
+            "name": "Philippsburg(Baden)",
+            "rl100": "RPB"
+          },
+          "zeitPlan": "2025-10-10T09:40:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T09:40:00.000+02:00",
+          "plattformPlan": "2",
+          "plattform": "2"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 1,
+          "fahrtereignisId": "8000131_A_1",
+          "haltestelle": {
+            "evaNummer": "8000131",
+            "name": "Graben-Neudorf",
+            "rl100": "RGN"
+          },
+          "zeitPlan": "2025-10-10T09:48:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T09:48:00.000+02:00",
+          "plattformPlan": "4",
+          "plattform": "4"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 2,
+          "fahrtereignisId": "8000131_D_1",
+          "haltestelle": {
+            "evaNummer": "8000131",
+            "name": "Graben-Neudorf",
+            "rl100": "RGN"
+          },
+          "zeitPlan": "2025-10-10T09:49:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T09:49:00.000+02:00",
+          "plattformPlan": "4",
+          "plattform": "4"
+        },
+        {
+          "allNachrichtId": [1],
+          "allEntlastungFuer": [],
+          "allEntlastungDurch": [],
+          "allErsatzFuer": [],
+          "allErsatzDurch": [],
+          "allVereinigungMit": [],
+          "allCodeshare": [],
+          "typ": 1,
+          "fahrtereignisId": "8000191_A_1",
+          "haltestelle": {
+            "evaNummer": "8000191",
+            "name": "Karlsruhe Hbf",
+            "rl100": "RK"
+          },
+          "zeitPlan": "2025-10-10T10:02:00.000+02:00",
+          "zeitTyp": 2,
+          "zeit": "2025-10-10T10:02:00.000+02:00",
+          "plattformPlan": "1",
+          "plattform": "1"
+        }
+      ],
+      "allDurchbindungAuf": [],
+      "allDurchbindungVon": [],
+      "fahrtId": "20251010-fccf8029-2f70-3af3-882d-788ce4dddc36",
+      "fahrtRelation": {
+        "startZeit": "2025-10-10T08:11:00.000+02:00",
+        "startEvaNummer": "8000240",
+        "startVerwaltungId": "800001",
+        "kopfVerwaltungId": "800001",
+        "startGattung": "RE",
+        "startFahrtnummer": 16671,
+        "kopfFahrtnummer": 16671,
+        "zielZeit": "2025-10-10T10:02:00.000+02:00",
+        "zielEvaNummer": "8000191"
+      },
+      "fahrtInfo": {
+        "typ": 4,
+        "kopfVerwaltungId": "800001",
+        "kopfFahrtnummer": 16671
+      },
+      "allNachricht": {
+        "allAttribut": {},
+        "allStoerungsKommunikation": {},
+        "allHinweis": {},
+        "allRisKundenGrund": {
+          "1": {
+            "nachrichtId": 1,
+            "code": "31",
+            "text": "Bauarbeiten"
+          }
+        },
+        "allRisQualitaetsabweichung": {}
+      }
+    }
+  },
+  "extractedData": {
+    "fahrtNummer": "16671"
+  }
+}
