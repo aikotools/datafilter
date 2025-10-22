@@ -19,7 +19,6 @@ export class FilterEngine {
   /**
    * Context for time-based filtering
    */
-  // eslint-disable-next-line @typescript-eslint/no-unused-vars
   private context?: {
     startTimeScript?: string
     startTimeTest?: string
