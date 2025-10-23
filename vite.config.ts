@@ -7,8 +7,8 @@ export default defineConfig({
     lib: {
       entry: resolve(__dirname, 'src/index.ts'),
       name: 'AikotoolsDatafilter',
-      fileName: 'aikotools-datafilter',
-      formats: ['es'],
+      fileName: (format) => `aikotools-datafilter.${format === 'es' ? 'mjs' : 'cjs'}`,
+      formats: ['es', 'cjs'],
     },
     rollupOptions: {
       external: ['luxon'],

@@ -2,9 +2,22 @@
   "name": "@aikotools/datafilter",
   "version": "0.0.0-semantic-release",
   "description": "Advanced data filtering engine for JSON file matching in E2E testing",
-  "main": "dist/aikotools-datafilter.js",
-  "module": "dist/aikotools-datafilter.js",
+  "type": "module",
+  "main": "dist/aikotools-datafilter.cjs",
+  "module": "dist/aikotools-datafilter.mjs",
   "types": "dist/src/index.d.ts",
+  "exports": {
+    ".": {
+      "import": {
+        "types": "./dist/src/index.d.ts",
+        "default": "./dist/aikotools-datafilter.mjs"
+      },
+      "require": {
+        "types": "./dist/src/index.d.ts",
+        "default": "./dist/aikotools-datafilter.cjs"
+      }
+    }
+  },
   "files": [
     "dist/**/*"
   ],
