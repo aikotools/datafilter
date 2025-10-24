@@ -1,13 +1,4 @@
 {
-  "_id": "68e8a4b4943ccd0528db610a",
-  "eventMetaData": {
-    "topicKeyName": "RiFahrt.v1",
-    "topic": "au.RiFahrt.v1",
-    "timestampMilli": 1760076980226,
-    "timestampIso": "2025-10-10T08:16:20.226+02:00",
-    "key": "20251010-a2b4bc3c-cfd4-3cb2-934d-016f10041d49",
-    "fileName": "4483_lang_AusfallErsatzInEinerAktion/events/au.RiFahrt.v1/2025-10-10_08:16:20.226_+0200_68e8a4b4943ccd0528db610a.json"
-  },
   "eventData": {
     "meta": {
       "correlation": ["59dea517-54f9-456d-accc-4fee25654942"],
@@ -17,707 +8,178 @@
       "version": "v1",
       "created": "2025-10-10T08:16:20.153136962+02:00"
     },
-    "lastChangedTimestamp": "2025-10-10T08:16:20.067732789+02:00",
-    "riFahrtData": {
-      "allVerkehrsmittel": [
+    "data": {
+      "linie": "113",
+      "travel": [
         {
-          "produktklasse": 4,
-          "gattung": "RB",
-          "fahrtnummer": 16670,
-          "linie": "113",
-          "marketingname": "",
-          "richtung": {
-            "allHaltestelle": [
-              {
-                "evaNummer": "8010205",
-                "name": "Leipzig Hbf",
-                "ifopt": ""
-              }
-            ]
-          },
-          "verwaltungId": "800413",
-          "fahrtbezeichnung": "RB 113",
-          "gattungIntern": "RB"
-        }
-      ],
-      "allVerwaltung": [
-        {
-          "verwaltungId": "800413",
-          "betreiberCode": "DB",
-          "betreiberName": "DB Regio SO, V2 (RB 113)"
-        }
-      ],
-      "allFahrtereignis": [
-        {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8010122_D_1",
-          "haltestelle": {
-            "evaNummer": "8010122",
-            "name": "Geithain",
-            "rl100": "LGH",
-            "ifopt": "de:14729:8010122"
-          },
-          "zeitPlan": "2025-10-10T07:33:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T07:37:34+02:00",
-          "plattformPlan": "2",
-          "plattform": "2"
+          "zeit": "2025-10-10T07:37:34+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8013095_A_1",
-          "haltestelle": {
-            "evaNummer": "8013095",
-            "name": "Tautenhain",
-            "rl100": "LTNH",
-            "ifopt": "de:14729:8013095"
-          },
-          "zeitPlan": "2025-10-10T07:36:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T07:40:57+02:00",
-          "plattformPlan": "1",
-          "plattform": "1",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T07:40:57+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8013095_D_1",
-          "haltestelle": {
-            "evaNummer": "8013095",
-            "name": "Tautenhain",
-            "rl100": "LTNH",
-            "ifopt": "de:14729:8013095"
-          },
-          "zeitPlan": "2025-10-10T07:36:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T07:41:20+02:00",
-          "plattformPlan": "1",
-          "plattform": "1",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T07:41:20+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8011914_A_1",
-          "haltestelle": {
-            "evaNummer": "8011914",
-            "name": "Hopfgarten(Sachs)",
-            "rl100": "LHGT",
-            "ifopt": "de:14729:8011914"
-          },
-          "zeitPlan": "2025-10-10T07:39:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T07:43:53+02:00",
-          "plattformPlan": "1",
-          "plattform": "1",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T07:43:53+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8011914_D_1",
-          "haltestelle": {
-            "evaNummer": "8011914",
-            "name": "Hopfgarten(Sachs)",
-            "rl100": "LHGT",
-            "ifopt": "de:14729:8011914"
-          },
-          "zeitPlan": "2025-10-10T07:39:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T07:44:20+02:00",
-          "plattformPlan": "1",
-          "plattform": "1",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T07:44:20+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8011077_A_1",
-          "haltestelle": {
-            "evaNummer": "8011077",
-            "name": "Bad Lausick",
-            "rl100": "LBLS",
-            "ifopt": "de:14729:8011077"
-          },
-          "zeitPlan": "2025-10-10T07:43:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T07:48:22+02:00",
-          "plattformPlan": "2",
-          "plattform": "2"
+          "zeit": "2025-10-10T07:48:22+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8011077_D_1",
-          "haltestelle": {
-            "evaNummer": "8011077",
-            "name": "Bad Lausick",
-            "rl100": "LBLS",
-            "ifopt": "de:14729:8011077"
-          },
-          "zeitPlan": "2025-10-10T07:46:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T07:49:24+02:00",
-          "plattformPlan": "2",
-          "plattform": "2"
+          "zeit": "2025-10-10T07:49:24+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8012178_A_1",
-          "haltestelle": {
-            "evaNummer": "8012178",
-            "name": "Lauterbach-Steinbach",
-            "rl100": "LLSB",
-            "ifopt": "de:14729:8012178"
-          },
-          "zeitPlan": "2025-10-10T07:50:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T07:52:39+02:00",
-          "plattformPlan": "1",
-          "plattform": "1",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T07:52:39+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8012178_D_1",
-          "haltestelle": {
-            "evaNummer": "8012178",
-            "name": "Lauterbach-Steinbach",
-            "rl100": "LLSB",
-            "ifopt": "de:14729:8012178"
-          },
-          "zeitPlan": "2025-10-10T07:50:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T07:53:22+02:00",
-          "plattformPlan": "1",
-          "plattform": "1",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T07:53:22+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8012597_A_1",
-          "haltestelle": {
-            "evaNummer": "8012597",
-            "name": "Otterwisch",
-            "rl100": "LOTW",
-            "ifopt": "de:14729:8012597"
-          },
-          "zeitPlan": "2025-10-10T07:52:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T07:55:52+02:00",
-          "plattformPlan": "1",
-          "plattform": "1",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T07:55:52+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8012597_D_1",
-          "haltestelle": {
-            "evaNummer": "8012597",
-            "name": "Otterwisch",
-            "rl100": "LOTW",
-            "ifopt": "de:14729:8012597"
-          },
-          "zeitPlan": "2025-10-10T07:52:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T07:56:27+02:00",
-          "plattformPlan": "1",
-          "plattform": "1",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T07:56:27+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8011132_A_1",
-          "haltestelle": {
-            "evaNummer": "8011132",
-            "name": "Belgershain",
-            "rl100": "LBGH",
-            "ifopt": "de:14729:8011132"
-          },
-          "zeitPlan": "2025-10-10T07:57:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:00:50+02:00",
-          "plattformPlan": "2",
-          "plattform": "2"
+          "zeit": "2025-10-10T08:00:50+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8011132_D_1",
-          "haltestelle": {
-            "evaNummer": "8011132",
-            "name": "Belgershain",
-            "rl100": "LBGH",
-            "ifopt": "de:14729:8011132"
-          },
-          "zeitPlan": "2025-10-10T07:58:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:01:29+02:00",
-          "plattformPlan": "2",
-          "plattform": "2"
+          "zeit": "2025-10-10T08:01:29+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8012526_A_1",
-          "haltestelle": {
-            "evaNummer": "8012526",
-            "name": "Oberholz",
-            "rl100": "LOH",
-            "ifopt": "de:14729:8012526"
-          },
-          "zeitPlan": "2025-10-10T08:01:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:04:19+02:00",
-          "plattformPlan": "1",
-          "plattform": "1",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T08:04:19+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8012526_D_1",
-          "haltestelle": {
-            "evaNummer": "8012526",
-            "name": "Oberholz",
-            "rl100": "LOH",
-            "ifopt": "de:14729:8012526"
-          },
-          "zeitPlan": "2025-10-10T08:01:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:04:55+02:00",
-          "plattformPlan": "1",
-          "plattform": "1",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T08:04:55+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8011755_A_1",
-          "haltestelle": {
-            "evaNummer": "8011755",
-            "name": "Großpösna",
-            "rl100": "LGP",
-            "ifopt": "de:14729:8011755"
-          },
-          "zeitPlan": "2025-10-10T08:03:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:06:55+02:00",
-          "plattformPlan": "1",
-          "plattform": "1",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T08:06:55+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8011755_D_1",
-          "haltestelle": {
-            "evaNummer": "8011755",
-            "name": "Großpösna",
-            "rl100": "LGP",
-            "ifopt": "de:14729:8011755"
-          },
-          "zeitPlan": "2025-10-10T08:03:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:07:21+02:00",
-          "plattformPlan": "1",
-          "plattform": "1",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T08:07:21+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8012228_A_1",
-          "haltestelle": {
-            "evaNummer": "8012228",
-            "name": "Leipzig-Liebertwolkwitz",
-            "rl100": "LLWZ",
-            "ifopt": "de:14713:8012228"
-          },
-          "zeitPlan": "2025-10-10T08:06:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:09:49+02:00",
-          "plattformPlan": "2",
-          "plattform": "2"
+          "zeit": "2025-10-10T08:09:49+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8012228_D_1",
-          "haltestelle": {
-            "evaNummer": "8012228",
-            "name": "Leipzig-Liebertwolkwitz",
-            "rl100": "LLWZ",
-            "ifopt": "de:14713:8012228"
-          },
-          "zeitPlan": "2025-10-10T08:06:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:09:51+02:00",
-          "plattformPlan": "2",
-          "plattform": "2"
+          "zeit": "2025-10-10T08:09:51+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8011913_A_1",
-          "haltestelle": {
-            "evaNummer": "8011913",
-            "name": "Leipzig-Holzhausen",
-            "rl100": "LHSN",
-            "ifopt": "de:14713:8011913"
-          },
-          "zeitPlan": "2025-10-10T08:09:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:12:04+02:00",
-          "plattformPlan": "1",
-          "plattform": "1"
+          "zeit": "2025-10-10T08:12:04+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8011913_D_1",
-          "haltestelle": {
-            "evaNummer": "8011913",
-            "name": "Leipzig-Holzhausen",
-            "rl100": "LHSN",
-            "ifopt": "de:14713:8011913"
-          },
-          "zeitPlan": "2025-10-10T08:09:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:12:24+02:00",
-          "plattformPlan": "1",
-          "plattform": "1"
+          "zeit": "2025-10-10T08:12:24+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8012375_A_1",
-          "haltestelle": {
-            "evaNummer": "8012375",
-            "name": "Leipzig-Mölkau",
-            "rl100": "LMLK",
-            "ifopt": "de:14713:8012375"
-          },
-          "zeitPlan": "2025-10-10T08:12:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:14:54+02:00",
-          "plattformPlan": "1",
-          "plattform": "1"
+          "zeit": "2025-10-10T08:14:54+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8012375_D_1",
-          "haltestelle": {
-            "evaNummer": "8012375",
-            "name": "Leipzig-Mölkau",
-            "rl100": "LMLK",
-            "ifopt": "de:14713:8012375"
-          },
-          "zeitPlan": "2025-10-10T08:12:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:15:10+02:00",
-          "plattformPlan": "1",
-          "plattform": "1"
+          "zeit": "2025-10-10T08:15:10+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8011495_A_1",
-          "haltestelle": {
-            "evaNummer": "8011495",
-            "name": "Leipzig Werkstättenstraße",
-            "rl100": "LEW",
-            "ifopt": "de:14713:8011495"
-          },
-          "zeitPlan": "2025-10-10T08:14:00+02:00",
           "zeitTyp": 3,
-          "zeit": "2025-10-10T08:17:06+02:00",
-          "plattformPlan": "2",
-          "plattform": "2",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T08:17:06+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8011495_D_1",
-          "haltestelle": {
-            "evaNummer": "8011495",
-            "name": "Leipzig Werkstättenstraße",
-            "rl100": "LEW",
-            "ifopt": "de:14713:8011495"
-          },
-          "zeitPlan": "2025-10-10T08:14:00+02:00",
           "zeitTyp": 2,
-          "zeit": "2025-10-10T08:17:00+02:00",
-          "plattformPlan": "2",
-          "plattform": "2",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T08:17:00+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8010208_A_1",
-          "haltestelle": {
-            "evaNummer": "8010208",
-            "name": "Leipzig-Paunsdorf",
-            "rl100": "LLPD",
-            "ifopt": "de:14713:8010208"
-          },
-          "zeitPlan": "2025-10-10T08:15:00+02:00",
           "zeitTyp": 2,
-          "zeit": "2025-10-10T08:18:00+02:00",
-          "plattformPlan": "3",
-          "plattform": "3",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T08:18:00+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 2,
           "fahrtereignisId": "8010208_D_1",
-          "haltestelle": {
-            "evaNummer": "8010208",
-            "name": "Leipzig-Paunsdorf",
-            "rl100": "LLPD",
-            "ifopt": "de:14713:8010208"
-          },
-          "zeitPlan": "2025-10-10T08:15:00+02:00",
           "zeitTyp": 2,
-          "zeit": "2025-10-10T08:19:00+02:00",
-          "plattformPlan": "3",
-          "plattform": "3",
-          "bedarfshalt": true
+          "zeit": "2025-10-10T08:19:00+02:00"
         },
         {
-          "allNachrichtId": [1, 2],
-          "allEntlastungFuer": [],
-          "allEntlastungDurch": [],
-          "allErsatzFuer": [],
-          "allErsatzDurch": [],
-          "allVereinigungMit": [],
-          "allCodeshare": [],
           "typ": 1,
           "fahrtereignisId": "8010205_A_1",
-          "haltestelle": {
-            "evaNummer": "8010205",
-            "name": "Leipzig Hbf",
-            "rl100": "LL",
-            "ifopt": "de:14713:8010205"
-          },
-          "zeitPlan": "2025-10-10T08:22:00+02:00",
           "zeitTyp": 2,
-          "zeit": "2025-10-10T08:24:00+02:00",
-          "plattformPlan": "21",
-          "plattform": "21"
+          "zeit": "2025-10-10T08:24:00+02:00"
         }
-      ],
-      "allDurchbindungAuf": [],
-      "allDurchbindungVon": [],
-      "fahrtId": "20251010-a2b4bc3c-cfd4-3cb2-934d-016f10041d49",
-      "fahrtRelation": {
-        "startZeit": "2025-10-10T07:33:00+02:00",
-        "startEvaNummer": "8010122",
-        "startVerwaltungId": "800413",
-        "kopfVerwaltungId": "800413",
-        "startGattung": "RB",
-        "startFahrtnummer": 16670,
-        "kopfFahrtnummer": 16670,
-        "zielZeit": "2025-10-10T08:22:00+02:00",
-        "zielEvaNummer": "8010205"
-      },
-      "fahrtInfo": {
-        "typ": 1,
-        "kopfVerwaltungId": "800413",
-        "kopfFahrtnummer": 16670
-      },
-      "allNachricht": {
-        "allAttribut": {
-          "1": {
-            "nachrichtId": 1,
-            "code": "EH",
-            "text": "Fahrzeuggebundene Einstiegshilfe vorhanden"
-          },
-          "2": {
-            "nachrichtId": 2,
-            "code": "FB",
-            "text": "Fahrradmitnahme begrenzt möglich"
-          }
-        },
-        "allStoerungsKommunikation": {},
-        "allHinweis": {},
-        "allRisKundenGrund": {},
-        "allRisQualitaetsabweichung": {}
-      }
+      ]
     }
   },
   "extractedData": {

@@ -26,8 +26,8 @@
   },
   "scripts": {
     "dev": "vite",
-    "format": "prettier --write \"src/**/*.{js,ts,json}\"",
-    "lint": "eslint \"src/**/*.{js,ts}\"",
+    "format": "prettier --write \"{src,tests}/**/*.{js,ts,json}\"",
+    "lint": "eslint \"{src,tests}/**/*.{js,ts}\"",
     "depcheck": "depcheck",
     "build": "npm run format && npm run lint && npm run depcheck && tsc && vite build",
     "test": "npm run build && vitest run --coverage",

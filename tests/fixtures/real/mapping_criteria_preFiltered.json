@@ -1,5 +1,13 @@
 [
   {
+    "preFiltered": [
+      {
+        "path": ["eventData", "data", "linie"],
+        "check": {
+          "value": "88888"
+        }
+      }
+    ],
     "groupFilter": [
       {
         "path": ["eventData", "data", "linie"],
