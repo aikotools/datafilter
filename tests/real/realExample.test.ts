@@ -145,7 +145,7 @@ describe('Real World Example - RiFahrtV1', () => {
     const rawData = JSON.parse(fs.readFileSync(criteriaPath, 'utf-8'))
 
     // Extract preFilter from first group (custom structure)
-    const preFilter = rawData[0].preFiltered || []
+    const preFilter = rawData[0].preFilter || []
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const groups: FilterGroup[] = rawData.map((g: any) => ({
       groupFilter: g.groupFilter,

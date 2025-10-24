@@ -1,6 +1,6 @@
 [
   {
-    "preFiltered": [
+    "preFilter": [
       {
         "path": ["eventData", "data", "linie"],
         "check": {
