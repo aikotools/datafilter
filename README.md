@@ -15,6 +15,8 @@ Advanced data filtering engine for JSON file matching in E2E testing.
 - **Order Handling**: Support for both strict and flexible ordering of expected files
 - **🆕 Wildcard Optionals**: Match arbitrary number of optional files without explicit specification
 - **Greedy vs. Non-Greedy**: Control whether wildcards match once or multiple times
+- **PreFilter Support**: Global file filtering before rule matching
+- **Group Filtering**: Organize files into groups with shared filter criteria
 - **Deep Object Access**: Path-based navigation through nested JSON structures
 - **Sort Integration**: Custom sort functions for file ordering before matching
 
@@ -176,6 +178,130 @@ Validate timestamps (ISO strings or numeric):
 }
 ```
 
+## Advanced Features
+
+### PreFilter - Global File Exclusion
+
+PreFilter allows you to exclude files globally **before** any rule matching occurs. Files not matching the preFilter criteria are completely excluded from the result.
+
+**Use Case:** Filter out irrelevant files (e.g., debug files, temporary files) before processing.
+
+```typescript
+const result = filterFiles({
+  files: [
+    { fileName: 'event1.json', data: { type: 'event', status: 'active', value: 42 } },
+    { fileName: 'event2.json', data: { type: 'event', status: 'active', value: 100 } },
+    { fileName: 'debug.json', data: { type: 'debug', status: 'inactive', value: 0 } },
+    { fileName: 'temp.json', data: { type: 'temp', status: 'inactive', value: -1 } },
+  ],
+  preFilter: [
+    // Only process files with status 'active'
+    { path: ['status'], check: { value: 'active' } }
+  ],
+  rules: [
+    { match: [{ path: ['type'], check: { value: 'event' } }], expected: 'event1' },
+    { match: [{ path: ['type'], check: { value: 'event' } }], expected: 'event2' },
+  ],
+});
+
+// Result:
+// - mapped: event1.json, event2.json
+// - unmapped: [] (debug.json and temp.json were excluded by preFilter)
+```
+
+### Group Filtering - Organize by Categories
+
+Group filtering allows you to organize files into categories with shared filter criteria, then apply category-specific rules.
+
+**Use Case:** Different file types (e.g., orders, invoices, reports) need different validation rules.
+
+```typescript
+import { filterFilesWithGroups } from '@aikotools/datafilter';
+
+const result = filterFilesWithGroups({
+  files: [
+    { fileName: 'order1.json', data: { category: 'order', orderId: 'A123', amount: 100 } },
+    { fileName: 'order2.json', data: { category: 'order', orderId: 'A124', amount: 200 } },
+    { fileName: 'invoice1.json', data: { category: 'invoice', invoiceId: 'INV-001', total: 100 } },
+    { fileName: 'invoice2.json', data: { category: 'invoice', invoiceId: 'INV-002', total: 200 } },
+    { fileName: 'report.json', data: { category: 'report', month: 'January' } },
+  ],
+  groups: [
+    {
+      // Group 1: Orders
+      groupFilter: [
+        { path: ['category'], check: { value: 'order' } }
+      ],
+      rules: [
+        { match: [{ path: ['orderId'], check: { value: 'A123' } }], expected: 'order_A123' },
+        { match: [{ path: ['orderId'], check: { value: 'A124' } }], expected: 'order_A124' },
+      ]
+    },
+    {
+      // Group 2: Invoices
+      groupFilter: [
+        { path: ['category'], check: { value: 'invoice' } }
+      ],
+      rules: [
+        { match: [{ path: ['invoiceId'], check: { value: 'INV-001' } }], expected: 'invoice_001' },
+        { match: [{ path: ['invoiceId'], check: { value: 'INV-002' } }], expected: 'invoice_002' },
+      ]
+    },
+    {
+      // Group 3: Reports (with wildcard)
+      groupFilter: [
+        { path: ['category'], check: { value: 'report' } }
+      ],
+      rules: [
+        { matchAny: [{ path: ['category'], check: { value: 'report' } }], optional: true, greedy: true }
+      ]
+    }
+  ],
+  preFilter: [
+    // Optional: Only process files with specific structure
+    { path: ['category'], check: { exists: true } }
+  ]
+});
+
+// Result:
+// - mapped: order_A123, order_A124, invoice_001, invoice_002
+// - wildcardMatched: report.json
+// - unmapped: []
+```
+
+### Combining PreFilter, Groups, and Wildcards
+
+```typescript
+const result = filterFilesWithGroups({
+  files: allFiles,
+
+  // Step 1: Global exclusion
+  preFilter: [
+    { path: ['status'], check: { value: 'active' } },
+    { path: ['deleted'], check: { exists: false } }
+  ],
+
+  // Step 2: Group by type and apply rules
+  groups: [
+    {
+      groupFilter: [{ path: ['type'], check: { value: 'critical' } }],
+      rules: [
+        { match: [{ path: ['priority'], check: { value: 1 } }], expected: 'critical_1' },
+        { match: [{ path: ['priority'], check: { value: 2 } }], expected: 'critical_2' },
+      ]
+    },
+    {
+      groupFilter: [{ path: ['type'], check: { value: 'normal' } }],
+      rules: [
+        { matchAny: [{ path: ['type'], check: { value: 'normal' } }], optional: true, greedy: true }
+      ]
+    }
+  ],
+
+  sortFn: (a, b) => a.data.timestamp - b.data.timestamp
+});
+```
+
 ## Complete Example
 
 ### Scenario from Requirements
@@ -250,6 +376,7 @@ Main filtering function.
 - `files: JsonFile[]` - Files to filter
 - `rules: (MatchRule | MatchRule[])[]` - Matching rules
 - `sortFn?: (a, b) => number` - Optional sort function
+- `preFilter?: FilterCriterion[]` - Optional pre-filter criteria (files not matching are excluded)
 - `context?: { startTimeScript?, startTimeTest?, pathTime? }` - Optional context
 
 **FilterResult:**
@@ -257,6 +384,23 @@ Main filtering function.
 - `wildcardMatched: WildcardMappedFile[]` - Files matched by wildcards
 - `unmapped: UnmappedFile[]` - Files that couldn't be matched
 - `stats: { totalFiles, mappedFiles, wildcardMatchedFiles, unmappedFiles, ... }`
+
+### filterFilesWithGroups(request: FilterGroupRequest): FilterResult
+
+Filtering with grouped rules for categorized file processing.
+
+**FilterGroupRequest:**
+- `files: JsonFile[]` - Files to filter
+- `groups: FilterGroup[]` - Filter groups with common criteria and rules
+- `sortFn?: (a, b) => number` - Optional sort function
+- `preFilter?: FilterCriterion[]` - Optional pre-filter criteria (applied before group filtering)
+- `context?: { startTimeScript?, startTimeTest?, pathTime? }` - Optional context
+
+**FilterGroup:**
+- `groupFilter: FilterCriterion[]` - Criteria to identify files belonging to this group
+- `rules: (MatchRule | MatchRule[])[]` - Rules to apply to files in this group
+
+**FilterResult:** Same as `filterFiles()`
 
 ### Matcher Class
 
@@ -266,7 +410,12 @@ For advanced usage with multiple filter operations:
 import { Matcher } from '@aikotools/datafilter';
 
 const matcher = new Matcher({ startTimeScript, startTimeTest });
-const result = matcher.filterFiles(files, rules, sortFn);
+
+// With preFilter
+const result = matcher.filterFiles(files, rules, sortFn, preFilter);
+
+// With groups
+const groupResult = matcher.filterFilesWithGroups(files, groups, sortFn, preFilter);
 ```
 
 ### FilterEngine Class
