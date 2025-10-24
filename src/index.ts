@@ -25,6 +25,7 @@ export type {
   MappedFile,
   WildcardMappedFile,
   UnmappedFile,
+  PreFilteredFile,
   FilterResult,
   FilterRequest,
 } from './core/types'

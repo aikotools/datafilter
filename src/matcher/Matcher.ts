@@ -5,6 +5,7 @@ import type {
   MappedFile,
   WildcardMappedFile,
   UnmappedFile,
+  PreFilteredFile,
   MatchResult,
   FilterCriterion,
   FilterGroup,
@@ -47,19 +48,38 @@ export class Matcher {
   }
 
   /**
-   * Applies pre-filter criteria to files, returning only files that match all criteria.
+   * Applies pre-filter criteria to files, separating files that match from those that don't.
    *
    * @param files - Files to filter
    * @param preFilter - Filter criteria that all files must match
-   * @returns Filtered files that match all preFilter criteria
+   * @returns Object with matched files and excluded files (with failed checks)
    */
-  private applyPreFilter(files: JsonFile[], preFilter: FilterCriterion[]): JsonFile[] {
-    return files.filter(file => {
+  private applyPreFilter(
+    files: JsonFile[],
+    preFilter: FilterCriterion[]
+  ): {
+    matched: JsonFile[]
+    excluded: PreFilteredFile[]
+  } {
+    const matched: JsonFile[] = []
+    const excluded: PreFilteredFile[] = []
+
+    for (const file of files) {
       const checks = preFilter.map(criterion => {
         return this.engine.evaluateCriterion(file.data, criterion)
       })
-      return checks.every(check => check.status)
-    })
+
+      if (checks.every(check => check.status)) {
+        matched.push(file)
+      } else {
+        excluded.push({
+          file,
+          failedChecks: checks.filter(check => !check.status),
+        })
+      }
+    }
+
+    return { matched, excluded }
   }
 
   /**
@@ -78,7 +98,16 @@ export class Matcher {
     preFilter?: FilterCriterion[]
   ): FilterResult {
     // Apply pre-filter if provided
-    const filteredFiles = preFilter ? this.applyPreFilter(files, preFilter) : files
+    let filteredFiles: JsonFile[]
+    let preFiltered: PreFilteredFile[] = []
+
+    if (preFilter) {
+      const preFilterResult = this.applyPreFilter(files, preFilter)
+      filteredFiles = preFilterResult.matched
+      preFiltered = preFilterResult.excluded
+    } else {
+      filteredFiles = files
+    }
 
     // Sort files if sort function provided
     const sortedFiles = sortFn ? [...filteredFiles].sort(sortFn) : [...filteredFiles]
@@ -230,6 +259,7 @@ export class Matcher {
       mappedFiles: mapped.length,
       wildcardMatchedFiles: wildcardMatched.length,
       unmappedFiles: unmapped.length,
+      preFilteredFiles: preFiltered.length,
       totalRules: this.countRules(rules),
       mandatoryRules: this.countMandatoryRules(rules),
       optionalRules: this.countOptionalRules(rules),
@@ -239,6 +269,7 @@ export class Matcher {
       mapped,
       wildcardMatched,
       unmapped,
+      preFiltered,
       stats,
     }
   }
@@ -297,10 +328,19 @@ export class Matcher {
     preFilter?: FilterCriterion[]
   ): FilterResult {
     // Apply pre-filter if provided
-    const preFilteredFiles = preFilter ? this.applyPreFilter(files, preFilter) : files
+    let filteredFiles: JsonFile[]
+    let preFiltered: PreFilteredFile[] = []
+
+    if (preFilter) {
+      const preFilterResult = this.applyPreFilter(files, preFilter)
+      filteredFiles = preFilterResult.matched
+      preFiltered = preFilterResult.excluded
+    } else {
+      filteredFiles = files
+    }
 
     // Sort files if sort function provided
-    const sortedFiles = sortFn ? [...preFilteredFiles].sort(sortFn) : [...preFilteredFiles]
+    const sortedFiles = sortFn ? [...filteredFiles].sort(sortFn) : [...filteredFiles]
 
     const mapped: MappedFile[] = []
     const wildcardMatched: WildcardMappedFile[] = []
@@ -346,6 +386,7 @@ export class Matcher {
       mappedFiles: mapped.length,
       wildcardMatchedFiles: wildcardMatched.length,
       unmappedFiles: unmapped.length,
+      preFilteredFiles: preFiltered.length,
       totalRules: this.countRules(allRules),
       mandatoryRules: this.countMandatoryRules(allRules),
       optionalRules: this.countOptionalRules(allRules),
@@ -355,6 +396,7 @@ export class Matcher {
       mapped,
       wildcardMatched,
       unmapped,
+      preFiltered,
       stats,
     }
   }

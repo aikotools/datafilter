@@ -182,9 +182,9 @@ Validate timestamps (ISO strings or numeric):
 
 ### PreFilter - Global File Exclusion
 
-PreFilter allows you to exclude files globally **before** any rule matching occurs. Files not matching the preFilter criteria are completely excluded from the result.
+PreFilter allows you to exclude files globally **before** any rule matching occurs. Files not matching the preFilter criteria are collected in the `preFiltered` property of the result, separate from `unmapped` files.
 
-**Use Case:** Filter out irrelevant files (e.g., debug files, temporary files) before processing.
+**Use Case:** Filter out irrelevant files (e.g., debug files, temporary files) before processing, while keeping track of what was excluded.
 
 ```typescript
 const result = filterFiles({
@@ -206,7 +206,8 @@ const result = filterFiles({
 
 // Result:
 // - mapped: event1.json, event2.json
-// - unmapped: [] (debug.json and temp.json were excluded by preFilter)
+// - preFiltered: debug.json, temp.json (with failed check details)
+// - unmapped: []
 ```
 
 ### Group Filtering - Organize by Categories
@@ -376,14 +377,15 @@ Main filtering function.
 - `files: JsonFile[]` - Files to filter
 - `rules: (MatchRule | MatchRule[])[]` - Matching rules
 - `sortFn?: (a, b) => number` - Optional sort function
-- `preFilter?: FilterCriterion[]` - Optional pre-filter criteria (files not matching are excluded)
+- `preFilter?: FilterCriterion[]` - Optional pre-filter criteria (files not matching are collected in `preFiltered`)
 - `context?: { startTimeScript?, startTimeTest?, pathTime? }` - Optional context
 
 **FilterResult:**
 - `mapped: MappedFile[]` - Successfully mapped files
 - `wildcardMatched: WildcardMappedFile[]` - Files matched by wildcards
-- `unmapped: UnmappedFile[]` - Files that couldn't be matched
-- `stats: { totalFiles, mappedFiles, wildcardMatchedFiles, unmappedFiles, ... }`
+- `unmapped: UnmappedFile[]` - Files that passed preFilter but couldn't be matched to any rule
+- `preFiltered: PreFilteredFile[]` - Files excluded by preFilter criteria (with failed check details)
+- `stats: { totalFiles, mappedFiles, wildcardMatchedFiles, unmappedFiles, preFilteredFiles, ... }`
 
 ### filterFilesWithGroups(request: FilterGroupRequest): FilterResult
 

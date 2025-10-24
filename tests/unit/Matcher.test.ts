@@ -379,4 +379,156 @@ describe('Matcher', () => {
       expect(result.stats.optionalRules).toBe(2); // event3, wildcard
     });
   });
+
+  describe('filterFiles - PreFilter', () => {
+    it('should exclude files that do not match preFilter criteria', () => {
+      const files: JsonFile[] = [
+        { fileName: 'active1.json', data: { type: 'event', status: 'active' } },
+        { fileName: 'inactive1.json', data: { type: 'event', status: 'inactive' } },
+        { fileName: 'active2.json', data: { type: 'event', status: 'active' } },
+      ];
+
+      const rules: MatchRule[] = [
+        { match: [{ path: ['type'], check: { value: 'event' } }], expected: 'event' },
+      ];
+
+      const result = matcher.filterFiles(files, rules, undefined, [
+        { path: ['status'], check: { value: 'active' } },
+      ]);
+
+      expect(result.mapped).toHaveLength(1); // Only first active file is mapped
+      expect(result.preFiltered).toHaveLength(1); // inactive1.json is preFiltered
+      expect(result.preFiltered[0].file.fileName).toBe('inactive1.json');
+      expect(result.preFiltered[0].failedChecks).toHaveLength(1);
+      expect(result.preFiltered[0].failedChecks[0].checkType).toBe('checkValue');
+      expect(result.stats.preFilteredFiles).toBe(1);
+    });
+
+    it('should include all files in preFiltered when they all fail preFilter', () => {
+      const files: JsonFile[] = [
+        { fileName: 'file1.json', data: { type: 'event', status: 'inactive' } },
+        { fileName: 'file2.json', data: { type: 'event', status: 'inactive' } },
+      ];
+
+      const rules: MatchRule[] = [
+        { match: [{ path: ['type'], check: { value: 'event' } }], expected: 'event' },
+      ];
+
+      const result = matcher.filterFiles(files, rules, undefined, [
+        { path: ['status'], check: { value: 'active' } },
+      ]);
+
+      expect(result.mapped).toHaveLength(0);
+      expect(result.unmapped).toHaveLength(0);
+      expect(result.preFiltered).toHaveLength(2);
+      expect(result.stats.preFilteredFiles).toBe(2);
+    });
+
+    it('should have empty preFiltered when all files pass preFilter', () => {
+      const files: JsonFile[] = [
+        { fileName: 'file1.json', data: { type: 'event1', status: 'active' } },
+        { fileName: 'file2.json', data: { type: 'event2', status: 'active' } },
+      ];
+
+      const rules: MatchRule[] = [
+        { match: [{ path: ['type'], check: { value: 'event1' } }], expected: 'event1' },
+        { match: [{ path: ['type'], check: { value: 'event2' } }], expected: 'event2' },
+      ];
+
+      const result = matcher.filterFiles(files, rules, undefined, [
+        { path: ['status'], check: { value: 'active' } },
+      ]);
+
+      expect(result.mapped).toHaveLength(2);
+      expect(result.preFiltered).toHaveLength(0);
+      expect(result.stats.preFilteredFiles).toBe(0);
+    });
+
+    it('should track multiple failed checks in preFiltered files', () => {
+      const files: JsonFile[] = [
+        { fileName: 'file1.json', data: { type: 'event', status: 'inactive', valid: false } },
+      ];
+
+      const rules: MatchRule[] = [
+        { match: [{ path: ['type'], check: { value: 'event' } }], expected: 'event' },
+      ];
+
+      const result = matcher.filterFiles(files, rules, undefined, [
+        { path: ['status'], check: { value: 'active' } },
+        { path: ['valid'], check: { value: true } },
+      ]);
+
+      expect(result.preFiltered).toHaveLength(1);
+      expect(result.preFiltered[0].failedChecks).toHaveLength(2);
+      expect(result.stats.preFilteredFiles).toBe(1);
+    });
+
+    it('should work with empty preFilter', () => {
+      const files: JsonFile[] = [
+        { fileName: 'file1.json', data: { type: 'event1' } },
+      ];
+
+      const rules: MatchRule[] = [
+        { match: [{ path: ['type'], check: { value: 'event1' } }], expected: 'event1' },
+      ];
+
+      const result = matcher.filterFiles(files, rules, undefined, []);
+
+      expect(result.mapped).toHaveLength(1);
+      expect(result.preFiltered).toHaveLength(0);
+      expect(result.stats.preFilteredFiles).toBe(0);
+    });
+  });
+
+  describe('filterFilesWithGroups - PreFilter', () => {
+    it('should exclude files that do not match preFilter criteria', () => {
+      const files: JsonFile[] = [
+        { fileName: 'active1.json', data: { type: 'event', status: 'active', group: 'A' } },
+        { fileName: 'inactive1.json', data: { type: 'event', status: 'inactive', group: 'A' } },
+        { fileName: 'active2.json', data: { type: 'event', status: 'active', group: 'B' } },
+      ];
+
+      const groups = [
+        {
+          groupFilter: [{ path: ['group'], check: { value: 'A' } }],
+          rules: [
+            { match: [{ path: ['type'], check: { value: 'event' } }], expected: 'eventA' },
+          ],
+        },
+      ];
+
+      const result = matcher.filterFilesWithGroups(files, groups, undefined, [
+        { path: ['status'], check: { value: 'active' } },
+      ]);
+
+      expect(result.mapped).toHaveLength(1); // Only active1.json
+      expect(result.preFiltered).toHaveLength(1); // inactive1.json
+      expect(result.preFiltered[0].file.fileName).toBe('inactive1.json');
+      expect(result.stats.preFilteredFiles).toBe(1);
+    });
+
+    it('should have empty preFiltered when all files pass preFilter', () => {
+      const files: JsonFile[] = [
+        { fileName: 'file1.json', data: { type: 'event', status: 'active', group: 'A' } },
+        { fileName: 'file2.json', data: { type: 'event', status: 'active', group: 'A' } },
+      ];
+
+      const groups = [
+        {
+          groupFilter: [{ path: ['group'], check: { value: 'A' } }],
+          rules: [
+            { match: [{ path: ['type'], check: { value: 'event' } }], expected: 'event' },
+          ],
+        },
+      ];
+
+      const result = matcher.filterFilesWithGroups(files, groups, undefined, [
+        { path: ['status'], check: { value: 'active' } },
+      ]);
+
+      expect(result.mapped).toHaveLength(1);
+      expect(result.preFiltered).toHaveLength(0);
+      expect(result.stats.preFilteredFiles).toBe(0);
+    });
+  });
 });

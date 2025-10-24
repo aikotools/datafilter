@@ -313,6 +313,21 @@ export interface UnmappedFile {
 }
 
 /**
+ * A pre-filtered file that was excluded by preFilter criteria
+ */
+export interface PreFilteredFile {
+  /**
+   * The file that was excluded
+   */
+  file: JsonFile
+
+  /**
+   * The preFilter checks that failed
+   */
+  failedChecks: FilterCheckResult[]
+}
+
+/**
  * Result of the entire filtering operation
  */
 export interface FilterResult {
@@ -332,6 +347,11 @@ export interface FilterResult {
   unmapped: UnmappedFile[]
 
   /**
+   * Files that were excluded by preFilter criteria
+   */
+  preFiltered: PreFilteredFile[]
+
+  /**
    * Statistics
    */
   stats: {
@@ -339,6 +359,7 @@ export interface FilterResult {
     mappedFiles: number
     wildcardMatchedFiles: number
     unmappedFiles: number
+    preFilteredFiles: number
     totalRules: number
     mandatoryRules: number
     optionalRules: number

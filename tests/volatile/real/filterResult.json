@@ -4,6 +4,7 @@
     "mappedFiles": 3,
     "wildcardMatchedFiles": 0,
     "unmappedFiles": 4,
+    "preFilteredFiles": 0,
     "totalRules": 4,
     "mandatoryRules": 4,
     "optionalRules": 0
