@@ -25,6 +25,7 @@ export type {
   MappedFile,
   WildcardMappedFile,
   UnmappedFile,
+  OptionalFile,
   PreFilteredFile,
   FilterResult,
   FilterRequest,
@@ -98,7 +99,8 @@ export function filterFiles(request: FilterRequest): FilterResult {
       request.files,
       request.groups,
       request.sortFn,
-      request.preFilter
+      request.preFilter,
+      request.mode
     )
   }
 
@@ -107,5 +109,11 @@ export function filterFiles(request: FilterRequest): FilterResult {
   if (!request.rules) {
     throw new Error('FilterRequest: Rules are required')
   }
-  return matcher.filterFiles(request.files, request.rules, request.sortFn, request.preFilter)
+  return matcher.filterFiles(
+    request.files,
+    request.rules,
+    request.sortFn,
+    request.preFilter,
+    request.mode
+  )
 }

@@ -10,6 +10,10 @@ export default defineConfig({
       fileName: (format) => `aikotools-datafilter.${format === 'es' ? 'mjs' : 'cjs'}`,
       formats: ['es', 'cjs'],
     },
+    // Enable source maps for better debugging
+    sourcemap: true,
+    // Disable minification to keep code readable
+    minify: false,
     rollupOptions: {
       external: ['luxon'],
       output: {

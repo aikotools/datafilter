@@ -13,6 +13,7 @@ Advanced data filtering engine for JSON file matching in E2E testing.
 
 - **Flexible Matching**: Match files using various filter criteria (value, exists, array checks, time ranges)
 - **Order Handling**: Support for both strict and flexible ordering of expected files
+- **🆕 Optional Mode**: Automatically treat unmatched files as optional without explicit rules
 - **🆕 Wildcard Optionals**: Match arbitrary number of optional files without explicit specification
 - **Greedy vs. Non-Greedy**: Control whether wildcards match once or multiple times
 - **PreFilter Support**: Global file filtering before rule matching
@@ -179,6 +180,81 @@ Validate timestamps (ISO strings or numeric):
 ```
 
 ## Advanced Features
+
+### 🆕 Optional Mode - Automatic Optional File Handling (NEW)
+
+Optional mode allows you to focus on matching critical files while automatically treating unmatched files as optional. This eliminates the need to create explicit wildcard rules for every gap between expected files.
+
+**Use Case:** Event streams, log files, or test executions where you want to validate specific checkpoints but allow arbitrary intermediate files.
+
+#### Three Matching Modes
+
+```typescript
+// Mode 1: 'strict' (default) - Current behavior
+// Every file must match a rule, non-matching files → unmapped (error)
+const result = filterFiles({
+  files,
+  rules,
+  mode: 'strict' // or omit for default
+});
+
+// Mode 2: 'optional' - Permissive mode
+// Files between matches are automatically treated as optional
+// Non-matched files → optionalFiles (not an error)
+const result = filterFiles({
+  files: [
+    { fileName: 'critical_A.json', data: { type: 'critical' } },
+    { fileName: 'info_1.json', data: { type: 'info' } },      // ← automatically optional
+    { fileName: 'debug_1.json', data: { type: 'debug' } },    // ← automatically optional
+    { fileName: 'critical_B.json', data: { type: 'critical' } },
+  ],
+  rules: [
+    { match: [{ path: ['type'], check: { value: 'critical' } }], expected: 'A' },
+    { match: [{ path: ['type'], check: { value: 'critical' } }], expected: 'B' },
+  ],
+  mode: 'optional' // Enable permissive mode
+});
+
+// Result:
+// - mapped: critical_A.json, critical_B.json
+// - optionalFiles: info_1.json, debug_1.json (with position and context)
+// - unmapped: [] (always empty in optional mode)
+
+// Mode 3: 'strict-optional' - Balanced approach
+// Similar to optional mode but respects optional flags on rules
+const result = filterFiles({
+  files,
+  rules,
+  mode: 'strict-optional'
+});
+```
+
+#### Optional File Information
+
+When files are treated as optional, they include detailed context:
+
+```typescript
+result.optionalFiles = [
+  {
+    fileName: 'info_1.json',
+    position: 1,
+    between: {
+      afterRule: 'A',      // After which matched rule
+      beforeRule: 'B'      // Before which matched rule
+    },
+    failedMatches: [...]   // Why this file didn't match any rule
+  },
+  // ...
+]
+```
+
+#### Benefits
+
+✅ **Simplicity**: No need for explicit wildcard matchers at every position
+✅ **Flexibility**: Handle variable numbers of files between rules
+✅ **Transparency**: Track which files were optional and why
+✅ **Debugging**: `failedMatches` helps understand filter behavior
+✅ **Clarity**: `unmapped` empty when optional mode active - clear intent
 
 ### PreFilter - Global File Exclusion
 
@@ -378,14 +454,19 @@ Main filtering function.
 - `rules: (MatchRule | MatchRule[])[]` - Matching rules
 - `sortFn?: (a, b) => number` - Optional sort function
 - `preFilter?: FilterCriterion[]` - Optional pre-filter criteria (files not matching are collected in `preFiltered`)
+- `mode?: 'strict' | 'strict-optional' | 'optional'` - 🆕 Matching mode (default: 'strict')
+  - `'strict'`: All files must match a rule (unmapped = errors)
+  - `'optional'`: Unmatched files → optionalFiles (unmapped always empty)
+  - `'strict-optional'`: Similar to optional but respects optional flags
 - `context?: { startTimeScript?, startTimeTest?, pathTime? }` - Optional context
 
 **FilterResult:**
 - `mapped: MappedFile[]` - Successfully mapped files
 - `wildcardMatched: WildcardMappedFile[]` - Files matched by wildcards
-- `unmapped: UnmappedFile[]` - Files that passed preFilter but couldn't be matched to any rule
+- `optionalFiles: OptionalFile[]` - 🆕 Files treated as optional (with position and context)
+- `unmapped: UnmappedFile[]` - Files that passed preFilter but couldn't be matched to any rule (empty when mode is 'optional' or 'strict-optional')
 - `preFiltered: PreFilteredFile[]` - Files excluded by preFilter criteria (with failed check details)
-- `stats: { totalFiles, mappedFiles, wildcardMatchedFiles, unmappedFiles, preFilteredFiles, ... }`
+- `stats: { totalFiles, mappedFiles, wildcardMatchedFiles, optionalFiles, unmappedFiles, preFilteredFiles, ... }`
 
 ### filterFilesWithGroups(request: FilterGroupRequest): FilterResult
 
@@ -396,6 +477,7 @@ Filtering with grouped rules for categorized file processing.
 - `groups: FilterGroup[]` - Filter groups with common criteria and rules
 - `sortFn?: (a, b) => number` - Optional sort function
 - `preFilter?: FilterCriterion[]` - Optional pre-filter criteria (applied before group filtering)
+- `mode?: 'strict' | 'strict-optional' | 'optional'` - 🆕 Matching mode (default: 'strict')
 - `context?: { startTimeScript?, startTimeTest?, pathTime? }` - Optional context
 
 **FilterGroup:**
@@ -413,11 +495,11 @@ import { Matcher } from '@aikotools/datafilter';
 
 const matcher = new Matcher({ startTimeScript, startTimeTest });
 
-// With preFilter
-const result = matcher.filterFiles(files, rules, sortFn, preFilter);
+// With preFilter and mode
+const result = matcher.filterFiles(files, rules, sortFn, preFilter, mode);
 
-// With groups
-const groupResult = matcher.filterFilesWithGroups(files, groups, sortFn, preFilter);
+// With groups and mode
+const groupResult = matcher.filterFilesWithGroups(files, groups, sortFn, preFilter, mode);
 ```
 
 ### FilterEngine Class
@@ -488,12 +570,16 @@ const value = getValueOr(obj, ['data', 'missing'], 'default');
 
 ## Test Results
 
-✅ **21/21 tests passing**
+✅ **194/194 tests passing** (97.93% coverage for Matcher module)
 - ✅ Basic filtering with single matches
 - ✅ Flexible ordering (array of rules)
 - ✅ Optional rules
+- ✅ 🆕 Optional mode (automatic optional file handling)
+- ✅ 🆕 Strict-optional mode
 - ✅ 🆕 Wildcard matches (greedy & non-greedy)
 - ✅ All filter check types (value, exists, array, time)
+- ✅ PreFilter support
+- ✅ Group filtering
 - ✅ Complex real-world scenarios
 - ✅ Sort function integration
 

@@ -328,6 +328,36 @@ export interface PreFilteredFile {
 }
 
 /**
+ * A file that was treated as optional (not matched to any mandatory rule)
+ * Contains information about why it failed to match
+ */
+export interface OptionalFile {
+  /**
+   * File name of the optional file
+   */
+  fileName: string
+
+  /**
+   * Position in the original file sequence
+   */
+  position: number
+
+  /**
+   * Between which matched rules this file appeared
+   */
+  between?: {
+    afterRule: string // Name of the rule before this file
+    beforeRule: string // Name of the rule after this file
+  }
+
+  /**
+   * All rules that were attempted and failed
+   * Shows why this file didn't match any rule
+   */
+  failedMatches: MatchResult[]
+}
+
+/**
  * Result of the entire filtering operation
  */
 export interface FilterResult {
@@ -342,7 +372,17 @@ export interface FilterResult {
   wildcardMatched: WildcardMappedFile[]
 
   /**
+   * Files that were treated as optional (not matched to any rule)
+   * Contains match attempt information
+   *
+   * Note: When optional mode is enabled, unmapped will always be empty
+   * All non-matched files will appear here instead
+   */
+  optionalFiles: OptionalFile[]
+
+  /**
    * Files that couldn't be matched to any rule
+   * Will be EMPTY when optional mode is enabled
    */
   unmapped: UnmappedFile[]
 
@@ -358,7 +398,8 @@ export interface FilterResult {
     totalFiles: number
     mappedFiles: number
     wildcardMatchedFiles: number
-    unmappedFiles: number
+    unmappedFiles: number // Always 0 when mode='optional' or mode='strict-optional'
+    optionalFiles: number // NEW
     preFilteredFiles: number
     totalRules: number
     mandatoryRules: number
@@ -412,4 +453,15 @@ export interface FilterRequest {
     startTimeTest?: string
     pathTime?: PathElement[]
   }
+
+  /**
+   * Matching mode for handling files that don't match rules
+   *
+   * - 'strict' (default): Current behavior - all files must match a rule, non-matching → unmapped
+   * - 'optional': Files that don't match any rule → optionalFiles (permissive mode)
+   * - 'strict-optional': Only allow files as optional if they match an optional rule
+   *
+   * When 'optional' or 'strict-optional', unmapped will always be empty (all non-matched files go to optionalFiles)
+   */
+  mode?: 'strict' | 'strict-optional' | 'optional'
 }
