@@ -187,6 +187,7 @@ Optional mode allows you to focus on matching critical files while automatically
 
 **Use Case:** Event streams, log files, or test executions where you want to validate specific checkpoints but allow arbitrary intermediate files.
 
+
 #### Three Matching Modes
 
 ```typescript
