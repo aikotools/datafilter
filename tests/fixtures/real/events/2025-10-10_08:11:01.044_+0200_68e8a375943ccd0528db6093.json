@@ -1,128 +1,18 @@
 {
   "eventData": {
-    "meta": {
-      "correlation": [],
-      "id": "0f2bf13a-a0ce-4ee0-84f3-5f70f3e35fcd",
-      "owner": "RIS::JOURNEYS::e2e",
-      "format": "RIPL",
-      "version": "v1",
-      "created": "2025-10-10T08:08:00.000+02:00"
-    },
     "data": {
-      "linie": "88888",
-      "travel": [
+      "events": [
         {
-          "typ": 2,
-          "fahrtereignisId": "8000240_D_1",
-          "zeitTyp": 3,
-          "zeit": "2025-10-10T08:11:00.000+02:00"
+          "timeType": 3
         },
         {
-          "typ": 1,
-          "fahrtereignisId": "8000257_A_1",
-          "zeitTyp": 1,
-          "zeit": "2025-10-10T08:38:00.000+02:00"
-        },
-        {
-          "typ": 2,
-          "fahrtereignisId": "8000257_D_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T08:44:00.000+02:00"
-        },
-        {
-          "typ": 1,
-          "fahrtereignisId": "8000332_A_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T08:45:00.000+02:00"
-        },
-        {
-          "typ": 2,
-          "fahrtereignisId": "8000332_D_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T08:45:00.000+02:00"
-        },
-        {
-          "typ": 1,
-          "fahrtereignisId": "8000236_A_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T08:55:00.000+02:00"
-        },
-        {
-          "typ": 2,
-          "fahrtereignisId": "8000236_D_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T08:56:00.000+02:00"
-        },
-        {
-          "typ": 1,
-          "fahrtereignisId": "8000326_A_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T09:13:00.000+02:00"
-        },
-        {
-          "typ": 2,
-          "fahrtereignisId": "8000326_D_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T09:14:00.000+02:00"
-        },
-        {
-          "typ": 1,
-          "fahrtereignisId": "8005628_A_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T09:21:00.000+02:00"
-        },
-        {
-          "typ": 2,
-          "fahrtereignisId": "8005628_D_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T09:22:00.000+02:00"
-        },
-        {
-          "typ": 1,
-          "fahrtereignisId": "8000376_A_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T09:31:00.000+02:00"
-        },
-        {
-          "typ": 2,
-          "fahrtereignisId": "8000376_D_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T09:32:00.000+02:00"
-        },
-        {
-          "typ": 1,
-          "fahrtereignisId": "8004813_A_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T09:39:00.000+02:00"
-        },
-        {
-          "typ": 2,
-          "fahrtereignisId": "8004813_D_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T09:40:00.000+02:00"
-        },
-        {
-          "typ": 1,
-          "fahrtereignisId": "8000131_A_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T09:48:00.000+02:00"
-        },
-        {
-          "typ": 2,
-          "fahrtereignisId": "8000131_D_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T09:49:00.000+02:00"
-        },
-        {
-          "typ": 1,
-          "fahrtereignisId": "8000191_A_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T10:02:00.000+02:00"
+          "timeType": 1
         }
-      ]
+      ],
+      "line": "88888"
     }
   },
-  "extractedData": {
-    "fahrtNummer": "16671"
+  "metadata": {
+    "tripNumber": "16671"
   }
 }

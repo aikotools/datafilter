@@ -1,44 +1,18 @@
 {
   "eventData": {
-    "meta": {
-      "correlation": ["b1d181d6-d099-455c-9a09-36987f1acf65"],
-      "id": "0675e1c8-f74f-4c63-b594-acf3fd2f937c",
-      "owner": "RIS::JOURNEYS",
-      "format": "RIPL",
-      "version": "v1",
-      "created": "2025-10-10T08:09:05.314747968+02:00"
-    },
     "data": {
-      "linie": "88888",
-      "travel": [
+      "events": [
         {
-          "typ": 2,
-          "fahrtereignisId": "8000240_D_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T08:11:00+02:00"
+          "timeType": 2
         },
         {
-          "typ": 1,
-          "fahrtereignisId": "8000257_A_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T08:38:00+02:00"
-        },
-        {
-          "typ": 2,
-          "fahrtereignisId": "8000257_D_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T08:44:00+02:00"
-        },
-        {
-          "typ": 1,
-          "fahrtereignisId": "8000332_A_1",
-          "zeitTyp": 2,
-          "zeit": "2025-10-10T08:49:00+02:00"
+          "timeType": 2
         }
-      ]
+      ],
+      "line": "88888"
     }
   },
-  "extractedData": {
-    "fahrtNummer": "16670"
+  "metadata": {
+    "tripNumber": "16670"
   }
 }

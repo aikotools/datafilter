@@ -2,7 +2,7 @@
   {
     "groupFilter": [
       {
-        "path": ["eventData", "data", "linie"],
+        "path": ["eventData", "data", "line"],
         "check": {
           "value": "88888"
         }
@@ -12,7 +12,7 @@
       {
         "match": [
           {
-            "path": ["eventData", "data", "travel", 0, "zeitTyp"],
+            "path": ["eventData", "data", "events", 0, "timeType"],
             "check": {
               "min": 1,
               "max": 2
@@ -30,7 +30,7 @@
       {
         "match": [
           {
-            "path": ["extractedData", "fahrtNummer"],
+            "path": ["metadata", "tripNumber"],
             "check": {
               "value": "16671"
             }
@@ -47,13 +47,13 @@
       {
         "match": [
           {
-            "path": ["extractedData", "fahrtNummer"],
+            "path": ["metadata", "tripNumber"],
             "check": {
               "value": "16670"
             }
           },
           {
-            "path": ["eventData", "data", "travel", 0, "ausgefallen"],
+            "path": ["eventData", "data", "events", 0, "cancelled"],
             "check": {
               "value": true
             }
@@ -70,13 +70,13 @@
       {
         "match": [
           {
-            "path": ["eventData", "data", "travel", 0, "zeitTyp"],
+            "path": ["eventData", "data", "events", 0, "timeType"],
             "check": {
               "value": 3
             }
           },
           {
-            "path": ["eventData", "data", "travel", 1, "zeitTyp"],
+            "path": ["eventData", "data", "events", 1, "timeType"],
             "check": {
               "value": 1
             }

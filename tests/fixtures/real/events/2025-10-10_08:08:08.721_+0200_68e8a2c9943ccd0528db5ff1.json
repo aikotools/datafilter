@@ -1,39 +1,18 @@
 {
   "eventData": {
-    "meta": {
-      "created": "2025-10-10T08:08:08.687536738+02:00"
-    },
     "data": {
-      "linie": "88888",
-      "travel": [
+      "events": [
         {
-          "typ": 2,
-          "fahrtereignisId": "8000240_D_1",
-          "zeitTyp": 1,
-          "zeit": "2025-10-10T08:11:00+02:00"
+          "timeType": 1
         },
         {
-          "typ": 1,
-          "fahrtereignisId": "8000257_A_1",
-          "zeitTyp": 1,
-          "zeit": "2025-10-10T08:38:00+02:00"
-        },
-        {
-          "typ": 2,
-          "fahrtereignisId": "8000257_D_1",
-          "zeitTyp": 1,
-          "zeit": "2025-10-10T08:44:00+02:00"
-        },
-        {
-          "typ": 1,
-          "fahrtereignisId": "8000332_A_1",
-          "zeitTyp": 1,
-          "zeit": "2025-10-10T08:45:00+02:00"
+          "timeType": 1
         }
-      ]
+      ],
+      "line": "88888"
     }
   },
-  "extractedData": {
-    "fahrtNummer": "16670"
+  "metadata": {
+    "tripNumber": "16670"
   }
 }

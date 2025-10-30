@@ -200,6 +200,18 @@ export class Matcher {
         if (fileMatched) {
           fileIndex++
         } else {
+          // File didn't match any rule in the group
+          // Check if this is a mandatory group (at least one non-optional rule)
+          const hasMandatoryRule = ruleOrRules.some(r => isSingleMatchRule(r) && !r.optional)
+
+          if (hasMandatoryRule) {
+            // Add file to unmapped since it didn't match a mandatory group
+            unmapped.push({
+              file,
+              attemptedRules: attemptedMatches,
+            })
+          }
+
           // Try next file with same rule group
           fileIndex++
         }

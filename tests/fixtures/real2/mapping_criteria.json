@@ -1,0 +1,147 @@
+[
+  {
+    "match": [
+      {
+        "path": ["eventData", "tripData", "vehicles", 0, "line"],
+        "check": {
+          "value": "88888"
+        }
+      },
+      {
+        "path": ["eventData", "tripData", "events", 0, "timeType"],
+        "check": {
+          "min": 1,
+          "max": 2
+        }
+      }
+    ],
+    "expected": "01_riFahrtV1_plan_mapCheck.json",
+    "optional": false,
+    "info": {
+      "channelName": "RiFahrtV1",
+      "subCategory": "Plan",
+      "trainNumbers": ["17064"]
+    }
+  },
+  [
+    {
+      "match": [
+        {
+          "path": ["eventData", "tripData", "vehicles", 0, "line"],
+          "check": {
+            "value": "88888"
+          }
+        },
+        {
+          "path": ["eventData", "tripData", "vehicles", 0, "tripNumber"],
+          "check": {
+            "value": 17065
+          }
+        },
+        {
+          "path": [
+            "eventData",
+            "tripData",
+            "events",
+            0,
+            "relievingFor",
+            0,
+            "vehicle",
+            "tripNumber"
+          ],
+          "check": {
+            "value": 17064
+          }
+        }
+      ],
+      "expected": "02_riFahrtV1_plan_entlastung_mapCheck.json",
+      "optional": false,
+      "info": {
+        "channelName": "RiFahrtV1",
+        "subCategory": "Plan Entlastung",
+        "trainNumbers": ["17065"]
+      }
+    },
+    {
+      "match": [
+        {
+          "path": ["eventData", "tripData", "vehicles", 0, "line"],
+          "check": {
+            "value": "88888"
+          }
+        },
+        {
+          "path": ["eventData", "tripData", "events", 0, "relievedBy", 0, "vehicle", "tripNumber"],
+          "check": {
+            "value": 17065
+          }
+        }
+      ],
+      "expected": "03_riFahrtV1_entlastungDurch_mapCheck.json",
+      "optional": false,
+      "info": {
+        "channelName": "RiFahrtV1",
+        "subCategory": "Entlastet durch",
+        "trainNumbers": ["17064"]
+      }
+    }
+  ],
+  {
+    "match": [
+      {
+        "path": ["eventData", "tripData", "vehicles", 0, "line"],
+        "check": {
+          "value": "88888"
+        }
+      },
+      {
+        "path": ["eventData", "tripData", "events", 0, "timeType"],
+        "check": {
+          "value": 3
+        }
+      },
+      {
+        "path": ["eventData", "tripData", "events", 1, "timeType"],
+        "check": {
+          "value": 1
+        }
+      }
+    ],
+    "expected": "04_riFahrtV1_abfahrtStartHalt_mapCheck.json",
+    "optional": false,
+    "info": {
+      "channelName": "RiFahrtV1",
+      "subCategory": "Abfahrt StartHalt",
+      "trainNumbers": ["17064"]
+    }
+  },
+  {
+    "match": [
+      {
+        "path": ["eventData", "tripData", "vehicles", 0, "line"],
+        "check": {
+          "value": "88888"
+        }
+      },
+      {
+        "path": ["eventData", "tripData", "events", 0, "timeType"],
+        "check": {
+          "value": 3
+        }
+      },
+      {
+        "path": ["eventData", "tripData", "events", 1, "timeType"],
+        "check": {
+          "value": 1
+        }
+      }
+    ],
+    "expected": "05_riFahrtV1_abfahrtStarthalt_entlastung_mapCheck.json",
+    "optional": false,
+    "info": {
+      "channelName": "RiFahrtV1",
+      "subCategory": "Abfahrt StartHalt entöastung",
+      "trainNumbers": ["17065"]
+    }
+  }
+]
