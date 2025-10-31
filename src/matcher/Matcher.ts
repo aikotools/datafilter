@@ -131,6 +131,9 @@ export class Matcher {
     // Track which flexible rules have been used
     const usedFlexibleRules = new Map<number, Set<number>>()
 
+    // Track which standalone rules have been used (to ensure each rule matches only once)
+    const usedStandaloneRules = new Set<number>()
+
     let fileIndex = 0
     let ruleIndex = 0
 
@@ -218,6 +221,14 @@ export class Matcher {
       } else {
         // Single rule
         const rule = ruleOrRules
+
+        // Check if this standalone single match rule has already been used
+        if (isSingleMatchRule(rule) && usedStandaloneRules.has(ruleIndex)) {
+          // This rule was already matched - skip to next rule
+          ruleIndex++
+          continue
+        }
+
         const matchResult = this.matchFile(file, rule)
         attemptedMatches.push(matchResult)
 
@@ -233,6 +244,8 @@ export class Matcher {
             })
 
             matchedFileIndices.add(fileIndex)
+            // Mark this standalone rule as used
+            usedStandaloneRules.add(ruleIndex)
             ruleIndex++
             fileIndex++
           } else if (isWildcardRule(rule)) {
@@ -311,6 +324,9 @@ export class Matcher {
     const wildcardMatched: WildcardMappedFile[] = []
     const optionalFiles: OptionalFile[] = []
 
+    // Track which standalone single match rules have been used in flexible arrays
+    const usedFlexibleRules = new Map<number, Set<number>>()
+
     let currentFileIndex = 0
     let lastMatchedIndex = -1
     let lastMatchedRule: string | null = null
@@ -329,11 +345,31 @@ export class Matcher {
 
         if (Array.isArray(ruleOrRules)) {
           // Try each rule in the flexible array
-          for (const rule of ruleOrRules) {
+          for (let subRuleIndex = 0; subRuleIndex < ruleOrRules.length; subRuleIndex++) {
+            const rule = ruleOrRules[subRuleIndex]
+
+            // Check if this subrule was already used
+            if (isSingleMatchRule(rule)) {
+              const usedSubRules = usedFlexibleRules.get(ruleIndex)
+              if (usedSubRules && usedSubRules.has(subRuleIndex)) {
+                // This subrule was already used, skip it
+                continue
+              }
+            }
+
             const result = this.matchFile(file, rule)
             if (result.matched) {
               matchResult = result
               matchedRule = rule
+
+              // Mark this subrule as used if it's a single match rule
+              if (isSingleMatchRule(rule)) {
+                if (!usedFlexibleRules.has(ruleIndex)) {
+                  usedFlexibleRules.set(ruleIndex, new Set())
+                }
+                usedFlexibleRules.get(ruleIndex)!.add(subRuleIndex)
+              }
+
               break
             }
           }

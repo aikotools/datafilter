@@ -90,6 +90,33 @@ Maps exactly one file to an expected identifier:
 }
 ```
 
+**🆕 Sequential Matching Behavior (NEW):**
+
+Each single match rule can be used **exactly once**. When you have multiple files that could match the same rule, only the first matching file will be assigned to that rule. Subsequent matching files will move to the next available rule.
+
+```typescript
+// Example: 3 identical files, 3 identical rules
+const result = filterFiles({
+  files: [
+    { fileName: 'event1.json', data: { type: 'event' } },
+    { fileName: 'event2.json', data: { type: 'event' } },
+    { fileName: 'event3.json', data: { type: 'event' } },
+  ],
+  rules: [
+    { match: [{ path: ['type'], check: { value: 'event' } }], expected: 'expected1' },
+    { match: [{ path: ['type'], check: { value: 'event' } }], expected: 'expected2' },
+    { match: [{ path: ['type'], check: { value: 'event' } }], expected: 'expected3' },
+  ]
+});
+
+// Result:
+// - event1.json → expected1
+// - event2.json → expected2
+// - event3.json → expected3
+```
+
+**Note:** Wildcard rules (`matchAny`) are not affected - they can still match multiple files when `greedy: true`.
+
 #### 🆕 Wildcard Match Rule (NEW)
 
 Matches arbitrary number of files without explicit specification:
@@ -571,13 +598,14 @@ const value = getValueOr(obj, ['data', 'missing'], 'default');
 
 ## Test Results
 
-✅ **194/194 tests passing** (97.93% coverage for Matcher module)
+✅ **204/204 tests passing** (97.93% coverage for Matcher module)
 - ✅ Basic filtering with single matches
 - ✅ Flexible ordering (array of rules)
 - ✅ Optional rules
 - ✅ 🆕 Optional mode (automatic optional file handling)
 - ✅ 🆕 Strict-optional mode
 - ✅ 🆕 Wildcard matches (greedy & non-greedy)
+- ✅ 🆕 Sequential rule matching (each rule matches once)
 - ✅ All filter check types (value, exists, array, time)
 - ✅ PreFilter support
 - ✅ Group filtering

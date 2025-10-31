@@ -1,0 +1,27 @@
+{
+  "_id": "690482d87cacb4920ce985dd",
+  "eventData": {
+    "tripData": {
+      "vehicles": [
+        {
+          "line": "88888",
+          "tripNumber": 10432
+        }
+      ],
+      "events": [
+        {
+          "timeType": 3
+        },
+        {
+          "timeType": 1
+        },
+        {
+          "timeType": 1
+        },
+        {
+          "timeType": 1
+        }
+      ]
+    }
+  }
+}
