@@ -12,7 +12,7 @@ beforeAll(async () => {
   await fs.promises.mkdir(VOLATILE, { recursive: true })
 })
 
-describe('Real World Example - RiFahrtV1', () => {
+describe('Real World Example - EventChannelV1', () => {
   it('should map real event files using mapping criteria', () => {
     // Load grouped mapping criteria
     const criteriaPath = path.join(FIXTURES, 'mapCheck_criteria.json')
@@ -147,7 +147,7 @@ describe('Real World Example - RiFahrtV1', () => {
     // Write summary
     const summaryPath = path.join(volatileDir, 'summary.txt')
     const summaryLines = [
-      '=== Real World Example - RiFahrtV1 ===',
+      '=== Real World Example - EventChannelV1 ===',
       '',
       `Total files: ${result.stats.totalFiles}`,
       `Mapped files: ${result.stats.mappedFiles}`,

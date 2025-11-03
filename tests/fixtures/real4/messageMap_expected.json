@@ -1,0 +1,1018 @@
+{
+  "mapped": {
+    "EventChannel1/01_eventChannel1_planned.json": {
+      "optional": false,
+      "messages": [
+        {
+          "_id": "690878ea588992d07c714540",
+          "eventMetaData": {
+            "topicKeyName": "RiFahrt.v1",
+            "topic": "au.RiFahrt.v1",
+            "timestampMilli": 1762162922165,
+            "timestampIso": "2025-11-03T10:42:02.165+01:00",
+            "key": "20251103-eca32fdc-9931-3123-acbb-59047c61d8a4",
+            "fileName": "4483_Entlastung/events/au.RiFahrt.v1/2025-11-03_10:42:02.165_+0100_690878ea588992d07c714540.json"
+          },
+          "eventData": {
+            "meta": {
+              "correlation": ["3b1b575c-2a0a-4f70-9cd0-b89d8b2798cf"],
+              "id": "976945ad-eb7c-48f2-9b21-a3249ab31915",
+              "owner": "RIS::JOURNEYS",
+              "format": "RIPL",
+              "version": "v1",
+              "created": "2025-11-03T10:42:02.139993055+01:00"
+            },
+            "lastChangedTimestamp": "2025-11-03T10:42:01.521915845+01:00",
+            "riFahrtData": {
+              "allVerkehrsmittel": [
+                {
+                  "produktklasse": 4,
+                  "gattung": "RE",
+                  "fahrtnummer": 12774,
+                  "linie": "88888",
+                  "marketingname": "",
+                  "verwaltungId": "800001",
+                  "fahrtbezeichnung": "RE 88888",
+                  "gattungIntern": "RE"
+                }
+              ],
+              "allVerwaltung": [
+                {
+                  "verwaltungId": "800001",
+                  "betreiberCode": "RB",
+                  "betreiberName": "DB Regio AG Zusatzzug"
+                }
+              ],
+              "allFahrtereignis": [
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 2,
+                  "fahrtereignisId": "8000240_D_1",
+                  "haltestelle": {
+                    "evaNummer": "8000240",
+                    "name": "Mainz Hbf",
+                    "rl100": "FMZ"
+                  },
+                  "zeitPlan": "2025-11-03T10:45:00+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T10:45:00+01:00",
+                  "plattformPlan": "5a",
+                  "plattform": "5a"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 1,
+                  "fahrtereignisId": "8000257_A_1",
+                  "haltestelle": {
+                    "evaNummer": "8000257",
+                    "name": "Worms Hbf",
+                    "rl100": "FWOR"
+                  },
+                  "zeitPlan": "2025-11-03T11:12:00+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T11:12:00+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 2,
+                  "fahrtereignisId": "8000257_D_1",
+                  "haltestelle": {
+                    "evaNummer": "8000257",
+                    "name": "Worms Hbf",
+                    "rl100": "FWOR"
+                  },
+                  "zeitPlan": "2025-11-03T11:18:00+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T11:18:00+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 1,
+                  "fahrtereignisId": "8000332_A_1",
+                  "haltestelle": {
+                    "evaNummer": "8000332",
+                    "name": "Frankenthal Hbf",
+                    "rl100": "RFT"
+                  },
+                  "zeitPlan": "2025-11-03T11:19:00+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T11:19:00+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                }
+              ],
+              "allDurchbindungAuf": [],
+              "allDurchbindungVon": [],
+              "fahrtId": "20251103-eca32fdc-9931-3123-acbb-59047c61d8a4",
+              "fahrtRelation": {
+                "startZeit": "2025-11-03T10:45:00+01:00",
+                "startEvaNummer": "8000240",
+                "startVerwaltungId": "800001",
+                "kopfVerwaltungId": "800001",
+                "startGattung": "RE",
+                "startFahrtnummer": 12774,
+                "kopfFahrtnummer": 12774,
+                "zielZeit": "2025-11-03T11:19:00+01:00",
+                "zielEvaNummer": "8000332"
+              },
+              "fahrtInfo": {
+                "typ": 4,
+                "kopfVerwaltungId": "800001",
+                "kopfFahrtnummer": 12774
+              },
+              "allNachricht": {
+                "allAttribut": {},
+                "allStoerungsKommunikation": {},
+                "allHinweis": {},
+                "allRisKundenGrund": {
+                  "1": {
+                    "nachrichtId": 1,
+                    "code": "31",
+                    "text": "Bauarbeiten"
+                  }
+                },
+                "allRisQualitaetsabweichung": {}
+              }
+            }
+          },
+          "extractedData": {
+            "fahrtNummer": "12774"
+          }
+        }
+      ],
+      "info": {
+        "channelName": "EventChannel1",
+        "subCategory": "Planned",
+        "trainNumbers": ["12774"],
+        "timestamp": "2025-11-03T10:42:02.165+01:00"
+      }
+    },
+    "EventChannel1/02_eventChannel1_planned_relief.json": {
+      "optional": false,
+      "messages": [
+        {
+          "_id": "69087928588992d07c7145e0",
+          "eventMetaData": {
+            "topicKeyName": "RiFahrt.v1",
+            "topic": "au.RiFahrt.v1",
+            "timestampMilli": 1762162983640,
+            "timestampIso": "2025-11-03T10:43:03.640+01:00",
+            "key": "20251103-67333018-93ac-3788-b095-6e6f263eb19d",
+            "fileName": "4483_Entlastung/events/au.RiFahrt.v1/2025-11-03_10:43:03.640_+0100_69087928588992d07c7145e0.json"
+          },
+          "eventData": {
+            "meta": {
+              "correlation": ["021b9b35-5c41-48b3-a37a-bb80c5aa4df8"],
+              "id": "d00671d8-4d59-4d56-9be0-da2261274535",
+              "owner": "RIS::JOURNEYS",
+              "format": "RIPL",
+              "version": "v1",
+              "created": "2025-11-03T10:43:03.614112399+01:00"
+            },
+            "lastChangedTimestamp": "2025-11-03T10:43:03.351196934+01:00",
+            "riFahrtData": {
+              "allVerkehrsmittel": [
+                {
+                  "produktklasse": 4,
+                  "gattung": "RE",
+                  "fahrtnummer": 12775,
+                  "linie": "88888",
+                  "marketingname": "",
+                  "verwaltungId": "800001",
+                  "fahrtbezeichnung": "RE 88888",
+                  "gattungIntern": "RE"
+                }
+              ],
+              "allVerwaltung": [
+                {
+                  "verwaltungId": "800001",
+                  "betreiberCode": "RB",
+                  "betreiberName": "DB Regio AG Zusatzzug"
+                }
+              ],
+              "allFahrtereignis": [
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [
+                    {
+                      "fahrtId": "20251103-eca32fdc-9931-3123-acbb-59047c61d8a4",
+                      "verkehrsmittel": {
+                        "produktklasse": 4,
+                        "gattung": "RE",
+                        "fahrtnummer": 12774,
+                        "linie": "88888",
+                        "marketingname": "",
+                        "fahrtbezeichnung": "RE 88888",
+                        "gattungIntern": "RE"
+                      }
+                    }
+                  ],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 2,
+                  "fahrtereignisId": "8000240_D_1",
+                  "haltestelle": {
+                    "evaNummer": "8000240",
+                    "name": "Mainz Hbf",
+                    "rl100": "FMZ",
+                    "ifopt": ""
+                  },
+                  "zeitPlan": "2025-11-03T10:48:00+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T10:48:00+01:00",
+                  "plattformPlan": "5a",
+                  "plattform": "5a"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [
+                    {
+                      "fahrtId": "20251103-eca32fdc-9931-3123-acbb-59047c61d8a4",
+                      "verkehrsmittel": {
+                        "produktklasse": 4,
+                        "gattung": "RE",
+                        "fahrtnummer": 12774,
+                        "linie": "88888",
+                        "marketingname": "",
+                        "fahrtbezeichnung": "RE 88888",
+                        "gattungIntern": "RE"
+                      }
+                    }
+                  ],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 1,
+                  "fahrtereignisId": "8000257_A_1",
+                  "haltestelle": {
+                    "evaNummer": "8000257",
+                    "name": "Worms Hbf",
+                    "rl100": "FWOR",
+                    "ifopt": ""
+                  },
+                  "zeitPlan": "2025-11-03T11:15:00+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T11:15:00+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [
+                    {
+                      "fahrtId": "20251103-eca32fdc-9931-3123-acbb-59047c61d8a4",
+                      "verkehrsmittel": {
+                        "produktklasse": 4,
+                        "gattung": "RE",
+                        "fahrtnummer": 12774,
+                        "linie": "88888",
+                        "marketingname": "",
+                        "fahrtbezeichnung": "RE 88888",
+                        "gattungIntern": "RE"
+                      }
+                    }
+                  ],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 2,
+                  "fahrtereignisId": "8000257_D_1",
+                  "haltestelle": {
+                    "evaNummer": "8000257",
+                    "name": "Worms Hbf",
+                    "rl100": "FWOR",
+                    "ifopt": ""
+                  },
+                  "zeitPlan": "2025-11-03T11:21:00+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T11:21:00+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [
+                    {
+                      "fahrtId": "20251103-eca32fdc-9931-3123-acbb-59047c61d8a4",
+                      "verkehrsmittel": {
+                        "produktklasse": 4,
+                        "gattung": "RE",
+                        "fahrtnummer": 12774,
+                        "linie": "88888",
+                        "marketingname": "",
+                        "fahrtbezeichnung": "RE 88888",
+                        "gattungIntern": "RE"
+                      }
+                    }
+                  ],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 1,
+                  "fahrtereignisId": "8000332_A_1",
+                  "haltestelle": {
+                    "evaNummer": "8000332",
+                    "name": "Frankenthal Hbf",
+                    "rl100": "RFT",
+                    "ifopt": ""
+                  },
+                  "zeitPlan": "2025-11-03T11:22:00+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T11:22:00+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                }
+              ],
+              "allDurchbindungAuf": [],
+              "allDurchbindungVon": [],
+              "fahrtId": "20251103-67333018-93ac-3788-b095-6e6f263eb19d",
+              "fahrtRelation": {
+                "startZeit": "2025-11-03T10:48:00+01:00",
+                "startEvaNummer": "8000240",
+                "startVerwaltungId": "800001",
+                "kopfVerwaltungId": "800001",
+                "startGattung": "RE",
+                "startFahrtnummer": 12775,
+                "kopfFahrtnummer": 12775,
+                "zielZeit": "2025-11-03T11:22:00+01:00",
+                "zielEvaNummer": "8000332"
+              },
+              "fahrtInfo": {
+                "typ": 3,
+                "kopfVerwaltungId": "800001",
+                "kopfFahrtnummer": 12775
+              },
+              "allNachricht": {
+                "allAttribut": {},
+                "allStoerungsKommunikation": {},
+                "allHinweis": {},
+                "allRisKundenGrund": {
+                  "1": {
+                    "nachrichtId": 1,
+                    "code": "1",
+                    "text": "nähere Informationen in Kürze"
+                  }
+                },
+                "allRisQualitaetsabweichung": {}
+              }
+            }
+          },
+          "extractedData": {
+            "fahrtNummer": "12775"
+          }
+        }
+      ],
+      "info": {
+        "channelName": "EventChannel1",
+        "subCategory": "Plannedned Relief",
+        "trainNumbers": ["12775"],
+        "timestamp": "2025-11-03T10:43:03.640+01:00"
+      }
+    },
+    "EventChannel1/03_eventChannel1_relieved_by.json": {
+      "optional": false,
+      "messages": [
+        {
+          "_id": "6908792a588992d07c7145e7",
+          "eventMetaData": {
+            "topicKeyName": "RiFahrt.v1",
+            "topic": "au.RiFahrt.v1",
+            "timestampMilli": 1762162986285,
+            "timestampIso": "2025-11-03T10:43:06.285+01:00",
+            "key": "20251103-eca32fdc-9931-3123-acbb-59047c61d8a4",
+            "fileName": "4483_Entlastung/events/au.RiFahrt.v1/2025-11-03_10:43:06.285_+0100_6908792a588992d07c7145e7.json"
+          },
+          "eventData": {
+            "meta": {
+              "correlation": ["044bd4dc-73f5-48ad-93db-e7a42720d0b7"],
+              "id": "ca298dd0-8923-4b2d-8e78-b9d69fa8bccb",
+              "owner": "RIS::JOURNEYS",
+              "format": "RIPL",
+              "version": "v1",
+              "created": "2025-11-03T10:43:06.2551792+01:00"
+            },
+            "lastChangedTimestamp": "2025-11-03T10:43:06.114283001+01:00",
+            "riFahrtData": {
+              "allVerkehrsmittel": [
+                {
+                  "produktklasse": 4,
+                  "gattung": "RE",
+                  "fahrtnummer": 12774,
+                  "linie": "88888",
+                  "marketingname": "",
+                  "richtung": {
+                    "allHaltestelle": [],
+                    "text": ""
+                  },
+                  "verwaltungId": "800001",
+                  "fahrtbezeichnung": "RE 88888",
+                  "gattungIntern": "RE"
+                }
+              ],
+              "allVerwaltung": [
+                {
+                  "verwaltungId": "800001",
+                  "betreiberCode": "RB",
+                  "betreiberName": "DB Regio AG Zusatzzug"
+                }
+              ],
+              "allFahrtereignis": [
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [
+                    {
+                      "fahrtId": "20251103-67333018-93ac-3788-b095-6e6f263eb19d",
+                      "verkehrsmittel": {
+                        "produktklasse": 4,
+                        "gattung": "RE",
+                        "fahrtnummer": 12775,
+                        "linie": "88888",
+                        "marketingname": "",
+                        "fahrtbezeichnung": "RE 88888",
+                        "gattungIntern": "RE"
+                      }
+                    }
+                  ],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 2,
+                  "fahrtereignisId": "8000240_D_1",
+                  "haltestelle": {
+                    "evaNummer": "8000240",
+                    "name": "Mainz Hbf",
+                    "rl100": "FMZ",
+                    "ifopt": ""
+                  },
+                  "zeitPlan": "2025-11-03T10:45:00+01:00",
+                  "zeitTyp": 2,
+                  "zeit": "2025-11-03T10:45:00+01:00",
+                  "plattformPlan": "5a",
+                  "plattform": "5a"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [
+                    {
+                      "fahrtId": "20251103-67333018-93ac-3788-b095-6e6f263eb19d",
+                      "verkehrsmittel": {
+                        "produktklasse": 4,
+                        "gattung": "RE",
+                        "fahrtnummer": 12775,
+                        "linie": "88888",
+                        "marketingname": "",
+                        "fahrtbezeichnung": "RE 88888",
+                        "gattungIntern": "RE"
+                      }
+                    }
+                  ],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 1,
+                  "fahrtereignisId": "8000257_A_1",
+                  "haltestelle": {
+                    "evaNummer": "8000257",
+                    "name": "Worms Hbf",
+                    "rl100": "FWOR",
+                    "ifopt": ""
+                  },
+                  "zeitPlan": "2025-11-03T11:12:00+01:00",
+                  "zeitTyp": 2,
+                  "zeit": "2025-11-03T11:12:00+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [
+                    {
+                      "fahrtId": "20251103-67333018-93ac-3788-b095-6e6f263eb19d",
+                      "verkehrsmittel": {
+                        "produktklasse": 4,
+                        "gattung": "RE",
+                        "fahrtnummer": 12775,
+                        "linie": "88888",
+                        "marketingname": "",
+                        "fahrtbezeichnung": "RE 88888",
+                        "gattungIntern": "RE"
+                      }
+                    }
+                  ],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 2,
+                  "fahrtereignisId": "8000257_D_1",
+                  "haltestelle": {
+                    "evaNummer": "8000257",
+                    "name": "Worms Hbf",
+                    "rl100": "FWOR",
+                    "ifopt": ""
+                  },
+                  "zeitPlan": "2025-11-03T11:18:00+01:00",
+                  "zeitTyp": 2,
+                  "zeit": "2025-11-03T11:18:00+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [
+                    {
+                      "fahrtId": "20251103-67333018-93ac-3788-b095-6e6f263eb19d",
+                      "verkehrsmittel": {
+                        "produktklasse": 4,
+                        "gattung": "RE",
+                        "fahrtnummer": 12775,
+                        "linie": "88888",
+                        "marketingname": "",
+                        "fahrtbezeichnung": "RE 88888",
+                        "gattungIntern": "RE"
+                      }
+                    }
+                  ],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 1,
+                  "fahrtereignisId": "8000332_A_1",
+                  "haltestelle": {
+                    "evaNummer": "8000332",
+                    "name": "Frankenthal Hbf",
+                    "rl100": "RFT",
+                    "ifopt": ""
+                  },
+                  "zeitPlan": "2025-11-03T11:19:00+01:00",
+                  "zeitTyp": 2,
+                  "zeit": "2025-11-03T11:23:00+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                }
+              ],
+              "allDurchbindungAuf": [],
+              "allDurchbindungVon": [],
+              "fahrtId": "20251103-eca32fdc-9931-3123-acbb-59047c61d8a4",
+              "fahrtRelation": {
+                "startZeit": "2025-11-03T10:45:00+01:00",
+                "startEvaNummer": "8000240",
+                "startVerwaltungId": "800001",
+                "kopfVerwaltungId": "800001",
+                "startGattung": "RE",
+                "startFahrtnummer": 12774,
+                "kopfFahrtnummer": 12774,
+                "zielZeit": "2025-11-03T11:19:00+01:00",
+                "zielEvaNummer": "8000332"
+              },
+              "fahrtInfo": {
+                "typ": 4,
+                "kopfVerwaltungId": "800001",
+                "kopfFahrtnummer": 12774
+              },
+              "allNachricht": {
+                "allAttribut": {},
+                "allStoerungsKommunikation": {},
+                "allHinweis": {},
+                "allRisKundenGrund": {
+                  "1": {
+                    "nachrichtId": 1,
+                    "code": "1",
+                    "text": "nähere Informationen in Kürze"
+                  }
+                },
+                "allRisQualitaetsabweichung": {}
+              }
+            }
+          },
+          "extractedData": {
+            "fahrtNummer": "12774"
+          }
+        }
+      ],
+      "info": {
+        "channelName": "EventChannel1",
+        "subCategory": "Relieved By",
+        "trainNumbers": ["12774"]
+      }
+    },
+    "EventChannel1/04_eventChannel1_departure_start.json": {
+      "optional": false,
+      "messages": [
+        {
+          "_id": "6908799d588992d07c714601",
+          "eventMetaData": {
+            "topicKeyName": "RiFahrt.v1",
+            "topic": "au.RiFahrt.v1",
+            "timestampMilli": 1762163100813,
+            "timestampIso": "2025-11-03T10:45:00.813+01:00",
+            "key": "20251103-eca32fdc-9931-3123-acbb-59047c61d8a4",
+            "fileName": "4483_Entlastung/events/au.RiFahrt.v1/2025-11-03_10:45:00.813_+0100_6908799d588992d07c714601.json"
+          },
+          "eventData": {
+            "meta": {
+              "correlation": [],
+              "id": "35624df3-d3b2-43f4-88d9-3abcf177c75b",
+              "owner": "RIS::JOURNEYS::e2e",
+              "format": "RIPL",
+              "version": "v1",
+              "created": "2025-11-03T10:42:00.000+01:00"
+            },
+            "lastChangedTimestamp": "2025-11-03T10:45:00.000+01:00",
+            "riFahrtData": {
+              "allVerkehrsmittel": [
+                {
+                  "produktklasse": 4,
+                  "gattung": "RE",
+                  "fahrtnummer": 12774,
+                  "linie": "88888",
+                  "marketingname": "",
+                  "verwaltungId": "800001"
+                }
+              ],
+              "allVerwaltung": [
+                {
+                  "verwaltungId": "800001",
+                  "betreiberCode": "RB",
+                  "betreiberName": "DB Regio AG Zusatzzug"
+                }
+              ],
+              "allFahrtereignis": [
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 2,
+                  "fahrtereignisId": "8000240_D_1",
+                  "haltestelle": {
+                    "evaNummer": "8000240",
+                    "name": "Mainz Hbf",
+                    "rl100": "FMZ"
+                  },
+                  "zeitPlan": "2025-11-03T10:45:00.000+01:00",
+                  "zeitTyp": 3,
+                  "zeit": "2025-11-03T10:45:00.000+01:00",
+                  "plattformPlan": "5a",
+                  "plattform": "5a"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 1,
+                  "fahrtereignisId": "8000257_A_1",
+                  "haltestelle": {
+                    "evaNummer": "8000257",
+                    "name": "Worms Hbf",
+                    "rl100": "FWOR"
+                  },
+                  "zeitPlan": "2025-11-03T11:12:00.000+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T11:12:00.000+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 2,
+                  "fahrtereignisId": "8000257_D_1",
+                  "haltestelle": {
+                    "evaNummer": "8000257",
+                    "name": "Worms Hbf",
+                    "rl100": "FWOR"
+                  },
+                  "zeitPlan": "2025-11-03T11:18:00.000+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T11:18:00.000+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 1,
+                  "fahrtereignisId": "8000332_A_1",
+                  "haltestelle": {
+                    "evaNummer": "8000332",
+                    "name": "Frankenthal Hbf",
+                    "rl100": "RFT"
+                  },
+                  "zeitPlan": "2025-11-03T11:19:00.000+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T11:19:00.000+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                }
+              ],
+              "allDurchbindungAuf": [],
+              "allDurchbindungVon": [],
+              "fahrtId": "20251103-eca32fdc-9931-3123-acbb-59047c61d8a4",
+              "fahrtRelation": {
+                "startZeit": "2025-11-03T10:45:00.000+01:00",
+                "startEvaNummer": "8000240",
+                "startVerwaltungId": "800001",
+                "kopfVerwaltungId": "800001",
+                "startGattung": "RE",
+                "startFahrtnummer": 12774,
+                "kopfFahrtnummer": 12774
+              },
+              "fahrtInfo": {
+                "typ": 4,
+                "kopfVerwaltungId": "800001",
+                "kopfFahrtnummer": 12774
+              },
+              "allNachricht": {
+                "allAttribut": {},
+                "allStoerungsKommunikation": {},
+                "allHinweis": {},
+                "allRisKundenGrund": {
+                  "1": {
+                    "nachrichtId": 1,
+                    "code": "31",
+                    "text": "Bauarbeiten"
+                  }
+                },
+                "allRisQualitaetsabweichung": {}
+              }
+            }
+          },
+          "extractedData": {
+            "fahrtNummer": "12774"
+          }
+        }
+      ],
+      "info": {
+        "channelName": "EventChannel1",
+        "subCategory": "Departure Start",
+        "trainNumbers": ["12774"],
+        "timestamp": "2025-11-03T10:45:00.813+01:00"
+      }
+    },
+    "EventChannel1/05_eventChannel1_departure_start_relief.json": {
+      "optional": false,
+      "messages": [
+        {
+          "_id": "69087a64588992d07c714666",
+          "eventMetaData": {
+            "topicKeyName": "RiFahrt.v1",
+            "topic": "au.RiFahrt.v1",
+            "timestampMilli": 1762163300147,
+            "timestampIso": "2025-11-03T10:48:20.147+01:00",
+            "key": "20251103-67333018-93ac-3788-b095-6e6f263eb19d",
+            "fileName": "4483_Entlastung/events/au.RiFahrt.v1/2025-11-03_10:48:20.147_+0100_69087a64588992d07c714666.json"
+          },
+          "eventData": {
+            "meta": {
+              "correlation": [],
+              "id": "f27625c3-7b69-4985-9ecc-ba115877d9d9",
+              "owner": "RIS::JOURNEYS::e2e",
+              "format": "RIPL",
+              "version": "v1",
+              "created": "2025-11-03T10:42:00.000+01:00"
+            },
+            "lastChangedTimestamp": "2025-11-03T10:45:00.000+01:00",
+            "riFahrtData": {
+              "allVerkehrsmittel": [
+                {
+                  "produktklasse": 4,
+                  "gattung": "RE",
+                  "fahrtnummer": 12775,
+                  "linie": "88888",
+                  "marketingname": "",
+                  "verwaltungId": "800001"
+                }
+              ],
+              "allVerwaltung": [
+                {
+                  "verwaltungId": "800001",
+                  "betreiberCode": "RB",
+                  "betreiberName": "DB Regio AG Zusatzzug"
+                }
+              ],
+              "allFahrtereignis": [
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 2,
+                  "fahrtereignisId": "8000240_D_1",
+                  "haltestelle": {
+                    "evaNummer": "8000240",
+                    "name": "Mainz Hbf",
+                    "rl100": "FMZ"
+                  },
+                  "zeitPlan": "2025-11-03T10:48:00.000+01:00",
+                  "zeitTyp": 3,
+                  "zeit": "2025-11-03T10:48:00.000+01:00",
+                  "plattformPlan": "5a",
+                  "plattform": "5a"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 1,
+                  "fahrtereignisId": "8000257_A_1",
+                  "haltestelle": {
+                    "evaNummer": "8000257",
+                    "name": "Worms Hbf",
+                    "rl100": "FWOR"
+                  },
+                  "zeitPlan": "2025-11-03T11:15:00.000+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T11:15:00.000+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 2,
+                  "fahrtereignisId": "8000257_D_1",
+                  "haltestelle": {
+                    "evaNummer": "8000257",
+                    "name": "Worms Hbf",
+                    "rl100": "FWOR"
+                  },
+                  "zeitPlan": "2025-11-03T11:21:00.000+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T11:21:00.000+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                },
+                {
+                  "allNachrichtId": [1],
+                  "allEntlastungFuer": [],
+                  "allEntlastungDurch": [],
+                  "allErsatzFuer": [],
+                  "allErsatzDurch": [],
+                  "allVereinigungMit": [],
+                  "allCodeshare": [],
+                  "typ": 1,
+                  "fahrtereignisId": "8000332_A_1",
+                  "haltestelle": {
+                    "evaNummer": "8000332",
+                    "name": "Frankenthal Hbf",
+                    "rl100": "RFT"
+                  },
+                  "zeitPlan": "2025-11-03T11:22:00.000+01:00",
+                  "zeitTyp": 1,
+                  "zeit": "2025-11-03T11:22:00.000+01:00",
+                  "plattformPlan": "2",
+                  "plattform": "2"
+                }
+              ],
+              "allDurchbindungAuf": [],
+              "allDurchbindungVon": [],
+              "fahrtId": "20251103-67333018-93ac-3788-b095-6e6f263eb19d",
+              "fahrtRelation": {
+                "startZeit": "2025-11-03T10:48:00.000+01:00",
+                "startEvaNummer": "8000240",
+                "startVerwaltungId": "800001",
+                "kopfVerwaltungId": "800001",
+                "startGattung": "RE",
+                "startFahrtnummer": 12775,
+                "kopfFahrtnummer": 12775
+              },
+              "fahrtInfo": {
+                "typ": 4,
+                "kopfVerwaltungId": "800001",
+                "kopfFahrtnummer": 12775
+              },
+              "allNachricht": {
+                "allAttribut": {},
+                "allStoerungsKommunikation": {},
+                "allHinweis": {},
+                "allRisKundenGrund": {
+                  "1": {
+                    "nachrichtId": 1,
+                    "code": "31",
+                    "text": "Bauarbeiten"
+                  }
+                },
+                "allRisQualitaetsabweichung": {}
+              }
+            }
+          },
+          "extractedData": {
+            "fahrtNummer": "12775"
+          }
+        }
+      ],
+      "info": {
+        "channelName": "EventChannel1",
+        "subCategory": "Departure Start Relief",
+        "trainNumbers": ["12775"],
+        "timestamp": "2025-11-03T10:48:20.147+01:00"
+      }
+    }
+  },
+  "unexpected": [],
+  "ignored": [],
+  "channelName": "EventChannel1",
+  "optionalFiles": [
+    {
+      "fileName": "2025-11-03_10:42:03.104_+0100_690878eb588992d07c714551.json",
+      "position": 1,
+      "between": {
+        "afterRule": "01_eventChannel1_planned.json",
+        "beforeRule": "02_eventChannel1_planned_relief.json"
+      },
+      "failedMatches": []
+    },
+    {
+      "fileName": "2025-11-03_10:43:03.772_+0100_69087928588992d07c7145e1.json",
+      "position": 3,
+      "between": {
+        "afterRule": "02_eventChannel1_planned_relief.json",
+        "beforeRule": "04_eventChannel1_departure_start.json"
+      },
+      "failedMatches": []
+    },
+    {
+      "fileName": "2025-11-03_10:43:05.369_+0100_69087929588992d07c7145e6.json",
+      "position": 4,
+      "between": {
+        "afterRule": "02_eventChannel1_planned_relief.json",
+        "beforeRule": "04_eventChannel1_departure_start.json"
+      },
+      "failedMatches": []
+    }
+  ]
+}

@@ -1,0 +1,59 @@
+{
+  "_id": "6908792a588992d07c7145e7",
+  "eventData": {
+    "tripData": {
+      "vehicles": [
+        {
+          "line": "88888",
+          "tripNumber": 12774
+        }
+      ],
+      "events": [
+        {
+          "timeType": 2,
+          "relievingFor": [],
+          "relievedBy": [
+            {
+              "vehicle": {
+                "tripNumber": 12775
+              }
+            }
+          ]
+        },
+        {
+          "timeType": 2,
+          "relievingFor": [],
+          "relievedBy": [
+            {
+              "vehicle": {
+                "tripNumber": 12775
+              }
+            }
+          ]
+        },
+        {
+          "timeType": 2,
+          "relievingFor": [],
+          "relievedBy": [
+            {
+              "vehicle": {
+                "tripNumber": 12775
+              }
+            }
+          ]
+        },
+        {
+          "timeType": 2,
+          "relievingFor": [],
+          "relievedBy": [
+            {
+              "vehicle": {
+                "tripNumber": 12775
+              }
+            }
+          ]
+        }
+      ]
+    }
+  }
+}

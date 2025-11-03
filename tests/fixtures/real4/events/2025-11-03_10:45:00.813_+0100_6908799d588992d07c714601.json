@@ -1,0 +1,35 @@
+{
+  "_id": "6908799d588992d07c714601",
+  "eventData": {
+    "tripData": {
+      "vehicles": [
+        {
+          "line": "88888",
+          "tripNumber": 12774
+        }
+      ],
+      "events": [
+        {
+          "timeType": 3,
+          "relievingFor": [],
+          "relievedBy": []
+        },
+        {
+          "timeType": 1,
+          "relievingFor": [],
+          "relievedBy": []
+        },
+        {
+          "timeType": 1,
+          "relievingFor": [],
+          "relievedBy": []
+        },
+        {
+          "timeType": 1,
+          "relievingFor": [],
+          "relievedBy": []
+        }
+      ]
+    }
+  }
+}

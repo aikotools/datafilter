@@ -333,91 +333,104 @@ export class Matcher {
 
     for (let ruleIndex = 0; ruleIndex < rules.length; ruleIndex++) {
       const ruleOrRules = rules[ruleIndex]
+      const isFlexibleArray = Array.isArray(ruleOrRules)
       let found = false
 
-      // Scan forward from current position to find a matching file
-      for (let fileIndex = currentFileIndex; fileIndex < sortedFiles.length; fileIndex++) {
-        const file = sortedFiles[fileIndex]
+      // For flexible arrays, keep trying to match until no more subrules can be matched
+      let continueFlexibleArray = true
+      while (continueFlexibleArray) {
+        continueFlexibleArray = false
 
-        // Try to match against this rule
-        let matchResult: MatchResult | null = null
-        let matchedRule: MatchRule | null = null
+        // Scan forward from current position to find a matching file
+        for (let fileIndex = currentFileIndex; fileIndex < sortedFiles.length; fileIndex++) {
+          const file = sortedFiles[fileIndex]
 
-        if (Array.isArray(ruleOrRules)) {
-          // Try each rule in the flexible array
-          for (let subRuleIndex = 0; subRuleIndex < ruleOrRules.length; subRuleIndex++) {
-            const rule = ruleOrRules[subRuleIndex]
+          // Try to match against this rule
+          let matchResult: MatchResult | null = null
+          let matchedRule: MatchRule | null = null
 
-            // Check if this subrule was already used
-            if (isSingleMatchRule(rule)) {
-              const usedSubRules = usedFlexibleRules.get(ruleIndex)
-              if (usedSubRules && usedSubRules.has(subRuleIndex)) {
-                // This subrule was already used, skip it
-                continue
-              }
-            }
+          if (isFlexibleArray) {
+            // Try each rule in the flexible array
+            for (let subRuleIndex = 0; subRuleIndex < ruleOrRules.length; subRuleIndex++) {
+              const rule = ruleOrRules[subRuleIndex]
 
-            const result = this.matchFile(file, rule)
-            if (result.matched) {
-              matchResult = result
-              matchedRule = rule
-
-              // Mark this subrule as used if it's a single match rule
+              // Check if this subrule was already used
               if (isSingleMatchRule(rule)) {
-                if (!usedFlexibleRules.has(ruleIndex)) {
-                  usedFlexibleRules.set(ruleIndex, new Set())
+                const usedSubRules = usedFlexibleRules.get(ruleIndex)
+                if (usedSubRules && usedSubRules.has(subRuleIndex)) {
+                  // This subrule was already used, skip it
+                  continue
                 }
-                usedFlexibleRules.get(ruleIndex)!.add(subRuleIndex)
               }
 
-              break
+              const result = this.matchFile(file, rule)
+              if (result.matched) {
+                matchResult = result
+                matchedRule = rule
+
+                // Mark this subrule as used if it's a single match rule
+                if (isSingleMatchRule(rule)) {
+                  if (!usedFlexibleRules.has(ruleIndex)) {
+                    usedFlexibleRules.set(ruleIndex, new Set())
+                  }
+                  usedFlexibleRules.get(ruleIndex)!.add(subRuleIndex)
+                }
+
+                break
+              }
+            }
+          } else {
+            matchResult = this.matchFile(file, ruleOrRules)
+            if (matchResult.matched) {
+              matchedRule = ruleOrRules
             }
           }
-        } else {
-          matchResult = this.matchFile(file, ruleOrRules)
-          if (matchResult.matched) {
-            matchedRule = ruleOrRules
-          }
-        }
 
-        if (matchResult && matchResult.matched && matchedRule) {
-          // Found a match! Mark all files between last match and this match as optional
-          for (let i = lastMatchedIndex + 1; i < fileIndex; i++) {
-            const optionalFile = sortedFiles[i]
-            optionalFiles.push({
-              fileName: optionalFile.fileName,
-              position: i,
-              between: {
-                afterRule: lastMatchedRule || '(start)',
-                beforeRule: isSingleMatchRule(matchedRule) ? matchedRule.expected : '(wildcard)',
-              },
-              failedMatches: [], // TODO: collect actual failed matches
-            })
-          }
+          if (matchResult && matchResult.matched && matchedRule) {
+            // Found a match! Mark all files between last match and this match as optional
+            for (let i = lastMatchedIndex + 1; i < fileIndex; i++) {
+              const optionalFile = sortedFiles[i]
+              optionalFiles.push({
+                fileName: optionalFile.fileName,
+                position: i,
+                between: {
+                  afterRule: lastMatchedRule || '(start)',
+                  beforeRule: isSingleMatchRule(matchedRule) ? matchedRule.expected : '(wildcard)',
+                },
+                failedMatches: [], // TODO: collect actual failed matches
+              })
+            }
 
-          // Add the matched file
-          if (isSingleMatchRule(matchedRule)) {
-            mapped.push({
-              expected: matchedRule.expected,
-              file,
-              matchResult,
-              optional: matchedRule.optional || false,
-              info: matchedRule.info,
-            })
-            lastMatchedRule = matchedRule.expected
-          } else if (isWildcardRule(matchedRule)) {
-            wildcardMatched.push({
-              file,
-              matchResult,
-              info: matchedRule.info,
-            })
-            lastMatchedRule = '(wildcard)'
-          }
+            // Add the matched file
+            if (isSingleMatchRule(matchedRule)) {
+              mapped.push({
+                expected: matchedRule.expected,
+                file,
+                matchResult,
+                optional: matchedRule.optional || false,
+                info: matchedRule.info,
+              })
+              lastMatchedRule = matchedRule.expected
+            } else if (isWildcardRule(matchedRule)) {
+              wildcardMatched.push({
+                file,
+                matchResult,
+                info: matchedRule.info,
+              })
+              lastMatchedRule = '(wildcard)'
+            }
 
-          lastMatchedIndex = fileIndex
-          currentFileIndex = fileIndex + 1
-          found = true
-          break
+            lastMatchedIndex = fileIndex
+            currentFileIndex = fileIndex + 1
+            found = true
+
+            // For flexible arrays, continue trying to match more subrules
+            if (isFlexibleArray) {
+              continueFlexibleArray = true
+            }
+
+            break
+          }
         }
       }
 

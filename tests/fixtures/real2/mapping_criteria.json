@@ -15,10 +15,10 @@
         }
       }
     ],
-    "expected": "01_riFahrtV1_plan_mapCheck.json",
+    "expected": "01_EventChannelV1_plan_mapCheck.json",
     "optional": false,
     "info": {
-      "channelName": "RiFahrtV1",
+      "channelName": "EventChannelV1",
       "subCategory": "Plan",
       "trainNumbers": ["17064"]
     }
@@ -54,10 +54,10 @@
           }
         }
       ],
-      "expected": "02_riFahrtV1_plan_entlastung_mapCheck.json",
+      "expected": "02_EventChannelV1_plan_entlastung_mapCheck.json",
       "optional": false,
       "info": {
-        "channelName": "RiFahrtV1",
+        "channelName": "EventChannelV1",
         "subCategory": "Plan Entlastung",
         "trainNumbers": ["17065"]
       }
@@ -77,10 +77,10 @@
           }
         }
       ],
-      "expected": "03_riFahrtV1_entlastungDurch_mapCheck.json",
+      "expected": "03_EventChannelV1_entlastungDurch_mapCheck.json",
       "optional": false,
       "info": {
-        "channelName": "RiFahrtV1",
+        "channelName": "EventChannelV1",
         "subCategory": "Entlastet durch",
         "trainNumbers": ["17064"]
       }
@@ -107,10 +107,10 @@
         }
       }
     ],
-    "expected": "04_riFahrtV1_abfahrtStartHalt_mapCheck.json",
+    "expected": "04_EventChannelV1_abfahrtStartHalt_mapCheck.json",
     "optional": false,
     "info": {
-      "channelName": "RiFahrtV1",
+      "channelName": "EventChannelV1",
       "subCategory": "Abfahrt StartHalt",
       "trainNumbers": ["17064"]
     }
@@ -136,10 +136,10 @@
         }
       }
     ],
-    "expected": "05_riFahrtV1_abfahrtStarthalt_entlastung_mapCheck.json",
+    "expected": "05_EventChannelV1_abfahrtStarthalt_entlastung_mapCheck.json",
     "optional": false,
     "info": {
-      "channelName": "RiFahrtV1",
+      "channelName": "EventChannelV1",
       "subCategory": "Abfahrt StartHalt entöastung",
       "trainNumbers": ["17065"]
     }

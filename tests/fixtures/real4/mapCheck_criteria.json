@@ -1,0 +1,138 @@
+{
+  "channelName": "EventChannel1",
+  "mode": "optional",
+  "preFilter": [
+    {
+      "path": ["eventData", "tripData", "vehicles", 0, "line"],
+      "check": {
+        "value": "88888"
+      }
+    }
+  ],
+  "rules": [
+    {
+      "match": [
+        {
+          "path": ["eventData", "tripData", "events", 0, "timeType"],
+          "check": {
+            "min": 1,
+            "max": 2
+          }
+        }
+      ],
+      "expected": "01_eventChannel1_planned.json",
+      "optional": false,
+      "info": {
+        "channelName": "EventChannel1",
+        "subCategory": "Planned",
+        "trainNumbers": ["12774"]
+      }
+    },
+    [
+      {
+        "match": [
+          {
+            "path": ["eventData", "tripData", "vehicles", 0, "tripNumber"],
+            "check": {
+              "value": 12775
+            }
+          },
+          {
+            "path": [
+              "eventData",
+              "tripData",
+              "events",
+              0,
+              "relievingFor",
+              0,
+              "vehicle",
+              "tripNumber"
+            ],
+            "check": {
+              "value": 12774
+            }
+          }
+        ],
+        "expected": "02_eventChannel1_planned_relief.json",
+        "optional": false,
+        "info": {
+          "channelName": "EventChannel1",
+          "subCategory": "Planned Relief",
+          "trainNumbers": ["12775"]
+        }
+      },
+      {
+        "match": [
+          {
+            "path": [
+              "eventData",
+              "tripData",
+              "events",
+              0,
+              "relievedBy",
+              0,
+              "vehicle",
+              "tripNumber"
+            ],
+            "check": {
+              "value": 12775
+            }
+          }
+        ],
+        "expected": "03_eventChannel1_relieved_by.json",
+        "optional": false,
+        "info": {
+          "channelName": "EventChannel1",
+          "subCategory": "Relieved By",
+          "trainNumbers": ["12774"]
+        }
+      }
+    ],
+    {
+      "match": [
+        {
+          "path": ["eventData", "tripData", "events", 0, "timeType"],
+          "check": {
+            "value": 3
+          }
+        },
+        {
+          "path": ["eventData", "tripData", "events", 1, "timeType"],
+          "check": {
+            "value": 1
+          }
+        }
+      ],
+      "expected": "04_eventChannel1_departure_start.json",
+      "optional": false,
+      "info": {
+        "channelName": "EventChannel1",
+        "subCategory": "Departure Start",
+        "trainNumbers": ["12774"]
+      }
+    },
+    {
+      "match": [
+        {
+          "path": ["eventData", "tripData", "events", 0, "timeType"],
+          "check": {
+            "value": 3
+          }
+        },
+        {
+          "path": ["eventData", "tripData", "events", 1, "timeType"],
+          "check": {
+            "value": 1
+          }
+        }
+      ],
+      "expected": "05_eventChannel1_departure_start_relief.json",
+      "optional": false,
+      "info": {
+        "channelName": "EventChannel1",
+        "subCategory": "Departure Start Relief",
+        "trainNumbers": ["12775"]
+      }
+    }
+  ]
+}

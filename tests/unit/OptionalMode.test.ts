@@ -210,11 +210,17 @@ describe('Optional Mode', () => {
 
       const result = matcher.filterFiles(files, rules, undefined, undefined, 'optional')
 
-      // In optional mode with flexible ordering, once one rule from the array matches, we move to next rule
-      // So only event1, event4 (first match from array), and event5 are matched
-      expect(result.mapped).toHaveLength(3) // event1, event4, event5
-      expect(result.optionalFiles).toHaveLength(3) // opt1, opt2, and event3 (didn't match)
+      // In optional mode with flexible ordering, each rule in the array can match independently
+      // So event1, event4 (from array), event3 (also from array), and event5 are matched
+      expect(result.mapped).toHaveLength(4) // event1, event4, event3, event5
+      expect(result.optionalFiles).toHaveLength(2) // opt1, opt2
       expect(result.unmapped).toHaveLength(0)
+
+      // Verify the mapped files
+      expect(result.mapped[0].expected).toBe('event1')
+      expect(result.mapped[1].expected).toBe('event4') // event4 comes first in file order
+      expect(result.mapped[2].expected).toBe('event3') // event3 comes after event4
+      expect(result.mapped[3].expected).toBe('event5')
     })
 
     it('should work with wildcard rules', () => {

@@ -15,10 +15,10 @@
         }
       }
     ],
-    "expected": "RiFahrtV1/01_riFahrtV1_plan.json",
+    "expected": "EventChannelV1/01_EventChannelV1_plan.json",
     "optional": false,
     "info": {
-      "channelName": "RiFahrtV1",
+      "channelName": "EventChannelV1",
       "subCategory": "Plan",
       "trainNumbers": ["16670"]
     }
@@ -53,10 +53,10 @@
         }
       }
     ],
-    "expected": "RiFahrtV1/02_riFahrtV1_ersatz.json",
+    "expected": "EventChannelV1/02_EventChannelV1_ersatz.json",
     "optional": false,
     "info": {
-      "channelName": "RiFahrtV1",
+      "channelName": "EventChannelV1",
       "subCategory": "Ersatz",
       "trainNumbers": ["16671"]
     }
@@ -82,10 +82,10 @@
         }
       }
     ],
-    "expected": "RiFahrtV1/03_riFahrtV1_ausfall.json",
+    "expected": "EventChannelV1/03_EventChannelV1_ausfall.json",
     "optional": false,
     "info": {
-      "channelName": "RiFahrtV1",
+      "channelName": "EventChannelV1",
       "subCategory": "Ausfall",
       "trainNumbers": ["16670"]
     }
@@ -111,10 +111,10 @@
         }
       }
     ],
-    "expected": "RiFahrtV1/04_riFahrtV1_ersatz_abfahrtStartHalt.json",
+    "expected": "EventChannelV1/04_EventChannelV1_ersatz_abfahrtStartHalt.json",
     "optional": false,
     "info": {
-      "channelName": "RiFahrtV1",
+      "channelName": "EventChannelV1",
       "subCategory": "Ersatz Abfahrt",
       "trainNumbers": ["16671"]
     }
