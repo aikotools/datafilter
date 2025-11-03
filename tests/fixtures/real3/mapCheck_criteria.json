@@ -1,5 +1,5 @@
 {
-  "channelName": "RiFahrtV1",
+  "channelName": "EventChannel1",
   "mode": "optional",
   "preFilter": [
     {
@@ -20,11 +20,11 @@
           }
         }
       ],
-      "expected": "01_riFahrtV1_plan.json",
+      "expected": "01_eventChannel1_planned.json",
       "optional": false,
       "info": {
-        "channelName": "RiFahrtV1",
-        "subCategory": "Plan",
+        "channelName": "EventChannel1",
+        "subCategory": "Planned",
         "trainNumbers": ["10431"]
       }
     },
@@ -53,11 +53,11 @@
             }
           }
         ],
-        "expected": "02_riFahrtV1_plan_entlastung.json",
+        "expected": "02_eventChannel1_planned_relief.json",
         "optional": false,
         "info": {
-          "channelName": "RiFahrtV1",
-          "subCategory": "Plan Entlastung",
+          "channelName": "EventChannel1",
+          "subCategory": "Planned Relief",
           "trainNumbers": ["10432"]
         }
       },
@@ -79,11 +79,11 @@
             }
           }
         ],
-        "expected": "03_riFahrtV1_entlastungDurch.json",
+        "expected": "03_eventChannel1_relieved_by.json",
         "optional": false,
         "info": {
-          "channelName": "RiFahrtV1",
-          "subCategory": "Entlastet durch",
+          "channelName": "EventChannel1",
+          "subCategory": "Relieved By",
           "trainNumbers": ["10431"]
         }
       }
@@ -103,11 +103,11 @@
           }
         }
       ],
-      "expected": "04_riFahrtV1_abfahrtStartHalt.json",
+      "expected": "04_eventChannel1_departure_start.json",
       "optional": false,
       "info": {
-        "channelName": "RiFahrtV1",
-        "subCategory": "Abfahrt StartHalt",
+        "channelName": "EventChannel1",
+        "subCategory": "Departure Start",
         "trainNumbers": ["10431"]
       }
     },
@@ -126,11 +126,11 @@
           }
         }
       ],
-      "expected": "05_riFahrtV1_abfahrtStarthalt_entlastung.json",
+      "expected": "05_eventChannel1_departure_start_relief.json",
       "optional": false,
       "info": {
-        "channelName": "RiFahrtV1",
-        "subCategory": "Abfahrt StartHalt entöastung",
+        "channelName": "EventChannel1",
+        "subCategory": "Departure Start Relief",
         "trainNumbers": ["10432"]
       }
     }
