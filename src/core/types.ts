@@ -73,6 +73,14 @@ export interface CheckNumericRange {
 }
 
 /**
+ * Check if a value is one of a set of allowed values
+ */
+export interface CheckOneOf {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  oneOf: any[]
+}
+
+/**
  * A single filter criterion that checks one aspect of the data
  */
 export interface FilterCriterion {
@@ -91,6 +99,7 @@ export interface FilterCriterion {
     | CheckArraySize
     | CheckTimeRange
     | CheckNumericRange
+    | CheckOneOf
 }
 
 /**

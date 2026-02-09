@@ -286,10 +286,12 @@ describe('Real World Example - EventChannelV1 with flexible array rules', () => 
 
     // Verify optional files
     if (expectedOptionalCount > 0) {
-      const expectedOptionalFileNames = expectedMessageMap
-        .optionalFiles!.map(f => f.fileName)
+      const expectedOptionalFileNames = (expectedMessageMap.optionalFiles ?? [])
+        .map(f => f.fileName)
         .sort()
-      const actualOptionalFileNames = actualMessageMap.optionalFiles!.map(f => f.fileName).sort()
+      const actualOptionalFileNames = (actualMessageMap.optionalFiles ?? [])
+        .map(f => f.fileName)
+        .sort()
 
       expect(actualOptionalFileNames).toEqual(expectedOptionalFileNames)
       console.log(`  ✓ All ${expectedOptionalCount} optional files matched`)

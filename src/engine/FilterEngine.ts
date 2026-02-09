@@ -8,6 +8,7 @@ import type {
   CheckArraySize,
   CheckTimeRange,
   CheckNumericRange,
+  CheckOneOf,
 } from '../core/types'
 import { getValueFromPath } from '../utils/ObjectAccess'
 
@@ -63,6 +64,10 @@ export class FilterEngine {
       } else {
         return this.checkTimeRange(data, criterion.path, check as CheckTimeRange)
       }
+    }
+
+    if ('oneOf' in check) {
+      return this.checkOneOf(data, criterion.path, check as CheckOneOf)
     }
 
     return {
@@ -484,6 +489,55 @@ export class FilterEngine {
         actual: value,
         min: check.min,
         max: check.max,
+      },
+    }
+  }
+
+  /**
+   * Checks if a value is one of a set of allowed values.
+   *
+   * @param data - The data object
+   * @param path - Path to the value
+   * @param check - The oneOf check specification
+   * @returns FilterCheckResult
+   */
+  private checkOneOf(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: any,
+    path: (string | number)[],
+    check: CheckOneOf
+  ): FilterCheckResult {
+    const accessResult = getValueFromPath(data, path)
+
+    if (!accessResult.found) {
+      return {
+        status: false,
+        checkType: 'checkOneOf',
+        reason: {
+          message: accessResult.error || 'Path not found',
+          path,
+        },
+      }
+    }
+
+    const actual = accessResult.value
+    const found = check.oneOf.some(allowed => this.deepEqual(actual, allowed))
+
+    if (found) {
+      return {
+        status: true,
+        checkType: 'checkOneOf',
+      }
+    }
+
+    return {
+      status: false,
+      checkType: 'checkOneOf',
+      reason: {
+        message: `Value not in allowed set`,
+        path,
+        actual,
+        allowedValues: check.oneOf,
       },
     }
   }

@@ -548,6 +548,92 @@ describe('FilterEngine', () => {
     })
   })
 
+  describe('checkOneOf', () => {
+    it('should match when value is in allowed set', () => {
+      const data = { status: 'PLAN' }
+      const criterion: FilterCriterion = {
+        path: ['status'],
+        check: { oneOf: ['PLAN', 'PROGNOSE'] },
+      }
+
+      const result = engine.evaluateCriterion(data, criterion)
+      expect(result.status).toBe(true)
+      expect(result.checkType).toBe('checkOneOf')
+    })
+
+    it('should match second value in allowed set', () => {
+      const data = { status: 'PROGNOSE' }
+      const criterion: FilterCriterion = {
+        path: ['status'],
+        check: { oneOf: ['PLAN', 'PROGNOSE'] },
+      }
+
+      const result = engine.evaluateCriterion(data, criterion)
+      expect(result.status).toBe(true)
+    })
+
+    it('should fail when value is not in allowed set', () => {
+      const data = { status: 'ECHT' }
+      const criterion: FilterCriterion = {
+        path: ['status'],
+        check: { oneOf: ['PLAN', 'PROGNOSE'] },
+      }
+
+      const result = engine.evaluateCriterion(data, criterion)
+      expect(result.status).toBe(false)
+      expect(result.checkType).toBe('checkOneOf')
+    })
+
+    it('should work with numeric values', () => {
+      const data = { code: 2 }
+      const criterion: FilterCriterion = {
+        path: ['code'],
+        check: { oneOf: [1, 2, 3] },
+      }
+
+      const result = engine.evaluateCriterion(data, criterion)
+      expect(result.status).toBe(true)
+    })
+
+    it('should work with nested paths', () => {
+      const data = { event: { type: 'ABFAHRT' } }
+      const criterion: FilterCriterion = {
+        path: ['event', 'type'],
+        check: { oneOf: ['ANKUNFT', 'ABFAHRT'] },
+      }
+
+      const result = engine.evaluateCriterion(data, criterion)
+      expect(result.status).toBe(true)
+    })
+
+    it('should fail when path not found', () => {
+      const data = { other: 'value' }
+      const criterion: FilterCriterion = {
+        path: ['status'],
+        check: { oneOf: ['PLAN', 'PROGNOSE'] },
+      }
+
+      const result = engine.evaluateCriterion(data, criterion)
+      expect(result.status).toBe(false)
+    })
+
+    it('should use deep equality for object values', () => {
+      const data = { item: { name: 'A', code: 1 } }
+      const criterion: FilterCriterion = {
+        path: ['item'],
+        check: {
+          oneOf: [
+            { name: 'A', code: 1 },
+            { name: 'B', code: 2 },
+          ],
+        },
+      }
+
+      const result = engine.evaluateCriterion(data, criterion)
+      expect(result.status).toBe(true)
+    })
+  })
+
   describe('Unknown Check Type', () => {
     it('should fail on unknown check type', () => {
       const data = { value: 42 }

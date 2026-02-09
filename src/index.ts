@@ -14,6 +14,7 @@ export type {
   CheckArraySize,
   CheckTimeRange,
   CheckNumericRange,
+  CheckOneOf,
   FilterCriterion,
   SingleMatchRule,
   WildcardMatchRule,

@@ -373,7 +373,7 @@ export class Matcher {
                   if (!usedFlexibleRules.has(ruleIndex)) {
                     usedFlexibleRules.set(ruleIndex, new Set())
                   }
-                  usedFlexibleRules.get(ruleIndex)!.add(subRuleIndex)
+                  usedFlexibleRules.get(ruleIndex)?.add(subRuleIndex)
                 }
 
                 break
