@@ -2,8 +2,6 @@ name: Release
 
 env:
   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-  NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
-  NODE_AUTH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
 on:
   push:
@@ -16,7 +14,7 @@ jobs:
       contents: write
       issues: write
       pull-requests: write
-      packages: write   # umfasst read+write
+      packages: write
       id-token: write
 
     strategy:
