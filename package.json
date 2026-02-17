@@ -51,7 +51,6 @@
   "author": "",
   "license": "MIT",
   "dependencies": {
-    "depcheck": "^1.4.7",
     "luxon": "^3.7.2"
   },
   "devDependencies": {
@@ -60,6 +59,7 @@
     "@typescript-eslint/eslint-plugin": "^8.56.0",
     "@typescript-eslint/parser": "^8.56.0",
     "@vitest/coverage-v8": "^4.0.18",
+    "depcheck": "^1.4.7",
     "eslint": "^10.0.0",
     "prettier": "^3.8.1",
     "typescript": "^5.9.3",
