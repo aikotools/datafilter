@@ -208,6 +208,17 @@ Validate array length:
 { path: ['records'], check: { type: 'greaterThan', size: 10 } }
 ```
 
+Also counts the **keys of an object**. A protobuf `map` arrives as an object, so this is how
+"exactly one entry" is expressed for a map — the assertion that catches a second entry nobody
+expected:
+
+```typescript
+{ path: ['messages'], check: { type: 'equal', size: 1 } }
+```
+
+Primitives stay an error: counting the characters of a string answers a question nobody asked.
+The reason says `Entry count …` for objects and `Array length …` for arrays.
+
 ### 5. Time Range Check
 
 Validate timestamps (ISO strings or numeric):

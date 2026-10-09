@@ -155,3 +155,64 @@ describe('FilterEngine with wildcards', () => {
     expect(result.checkType).toBe('checkValue')
   })
 })
+
+describe('size check on objects', () => {
+  const engine = new FilterEngine()
+
+  it('counts the keys of an object', () => {
+    const data = { m: { '3': { code: '3' } } }
+
+    expect(
+      engine.evaluateCriterion(data, { path: ['m'], check: { type: 'equal', size: 1 } }).status
+    ).toBe(true)
+    expect(
+      engine.evaluateCriterion(data, { path: ['m'], check: { type: 'equal', size: 2 } }).status
+    ).toBe(false)
+  })
+
+  it('catches a second entry — the assertion "exactly one message"', () => {
+    const data = { m: { '3': { code: '3' }, '4': { code: '9' } } }
+    const result = engine.evaluateCriterion(data, {
+      path: ['m'],
+      check: { type: 'equal', size: 1 },
+    })
+
+    expect(result.status).toBe(false)
+    expect(JSON.stringify(result.reason)).toContain('Entry count should be 1 but is 2')
+  })
+
+  it('still counts arrays by length', () => {
+    const data = { a: [1, 2, 3] }
+
+    expect(
+      engine.evaluateCriterion(data, { path: ['a'], check: { type: 'equal', size: 3 } }).status
+    ).toBe(true)
+    const result = engine.evaluateCriterion(data, {
+      path: ['a'],
+      check: { type: 'equal', size: 1 },
+    })
+    expect(JSON.stringify(result.reason)).toContain('Array length')
+  })
+
+  it('rejects a primitive', () => {
+    const result = engine.evaluateCriterion(
+      { s: 'text' },
+      { path: ['s'], check: { type: 'equal', size: 4 } }
+    )
+
+    expect(result.status).toBe(false)
+    expect(JSON.stringify(result.reason)).toContain('neither an array nor an object')
+  })
+
+  it('works with lessThan and greaterThan on objects', () => {
+    const data = { m: { a: 1, b: 2 } }
+
+    expect(
+      engine.evaluateCriterion(data, { path: ['m'], check: { type: 'lessThan', size: 3 } }).status
+    ).toBe(true)
+    expect(
+      engine.evaluateCriterion(data, { path: ['m'], check: { type: 'greaterThan', size: 1 } })
+        .status
+    ).toBe(true)
+  })
+})

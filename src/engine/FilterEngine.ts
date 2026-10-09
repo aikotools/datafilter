@@ -322,21 +322,35 @@ export class FilterEngine {
       }
     }
 
-    const array = accessResult.value
+    const value = accessResult.value
 
-    if (!Array.isArray(array)) {
+    /*
+     * Arrays are counted by length, objects by their number of keys.
+     *
+     * A protobuf `map` arrives as an object, not as an array. Without this, "exactly one entry"
+     * cannot be expressed for a map at all — and that is the one assertion that catches a
+     * second entry nobody expected. Primitives stay an error: counting the characters of a
+     * string would answer a question nobody asked.
+     */
+    const istArray = Array.isArray(value)
+    const istObjekt = !istArray && typeof value === 'object' && value !== null
+
+    if (!istArray && !istObjekt) {
       return {
         status: false,
         checkType: 'checkArraySize',
         reason: {
-          message: 'Value is not an array',
+          message: 'Value is neither an array nor an object',
           path,
-          actualType: typeof array,
+          actualType: typeof value,
         },
       }
     }
 
-    const actualSize = array.length
+    const actualSize = istArray
+      ? (value as unknown[]).length
+      : Object.keys(value as Record<string, unknown>).length
+    const begriff = istArray ? 'Array length' : 'Entry count'
     const expectedSize = check.size
 
     let passes = false
@@ -345,15 +359,15 @@ export class FilterEngine {
     switch (check.type) {
       case 'equal':
         passes = actualSize === expectedSize
-        message = `Array length should be ${expectedSize} but is ${actualSize}`
+        message = `${begriff} should be ${expectedSize} but is ${actualSize}`
         break
       case 'lessThan':
         passes = actualSize < expectedSize
-        message = `Array length should be less than ${expectedSize} but is ${actualSize}`
+        message = `${begriff} should be less than ${expectedSize} but is ${actualSize}`
         break
       case 'greaterThan':
         passes = actualSize > expectedSize
-        message = `Array length should be greater than ${expectedSize} but is ${actualSize}`
+        message = `${begriff} should be greater than ${expectedSize} but is ${actualSize}`
         break
     }
 
