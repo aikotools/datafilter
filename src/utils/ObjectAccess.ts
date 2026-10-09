@@ -137,6 +137,98 @@ export function getValueFromPath(
 }
 
 /**
+ * The path segment that matches any key of an object or any index of an array.
+ */
+export const PATH_WILDCARD = '*'
+
+/**
+ * Expands a path containing {@link PATH_WILDCARD} into every concrete path that exists
+ * in the given object.
+ *
+ * A wildcard stands for one segment and matches **all** keys of an object or **all**
+ * indices of an array at that position. Nested wildcards are allowed; the result is the
+ * cross product of the branches that actually exist.
+ *
+ * Paths that do not exist are left out, so the result contains resolvable paths only. A
+ * path without a wildcard is returned as is when it exists, and as an empty list when it
+ * does not — the caller can therefore treat "no concrete path" the same for both cases.
+ *
+ * @param object - The object to walk
+ * @param path - Path that may contain wildcards
+ * @returns Every concrete path that exists, in document order
+ *
+ * @example
+ * ```typescript
+ * const obj = { messages: { '3': { code: 'A' }, '7': { code: 'B' } } };
+ * expandWildcardPaths(obj, ['messages', '*', 'code']);
+ * // [['messages', '3', 'code'], ['messages', '7', 'code']]
+ * ```
+ */
+export function expandWildcardPaths(
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  object: any,
+  path: PathElement[]
+): PathElement[][] {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  let offen: Array<{ current: any; prefix: PathElement[] }> = [{ current: object, prefix: [] }]
+
+  for (let i = 0; i < path.length; i++) {
+    const segment = path[i]
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const next: Array<{ current: any; prefix: PathElement[] }> = []
+
+    for (const { current, prefix } of offen) {
+      if (current === null || current === undefined || typeof current !== 'object') {
+        continue
+      }
+
+      if (segment === PATH_WILDCARD) {
+        if (Array.isArray(current)) {
+          current.forEach((value, index) => {
+            next.push({ current: value, prefix: [...prefix, index] })
+          })
+        } else {
+          for (const key of Object.keys(current)) {
+            next.push({ current: current[key], prefix: [...prefix, key] })
+          }
+        }
+        continue
+      }
+
+      if (Array.isArray(current)) {
+        const index = typeof segment === 'number' ? segment : parseInt(String(segment), 10)
+        if (!isNaN(index) && index >= 0 && index < current.length) {
+          next.push({ current: current[index], prefix: [...prefix, index] })
+        }
+        continue
+      }
+
+      const key = String(segment)
+      if (key in current) {
+        next.push({ current: current[key], prefix: [...prefix, key] })
+      }
+    }
+
+    offen = next
+    if (offen.length === 0) {
+      return []
+    }
+  }
+
+  return offen.map(entry => entry.prefix)
+}
+
+/**
+ * Whether a path contains at least one wildcard segment.
+ *
+ * @param path - The path to inspect
+ * @returns true when the path has to be expanded before it can be resolved
+ */
+export function hasWildcard(path: PathElement[]): boolean {
+  return path.some(segment => segment === PATH_WILDCARD)
+}
+
+/**
  * Checks if a path exists in an object.
  *
  * @param object - The object to check

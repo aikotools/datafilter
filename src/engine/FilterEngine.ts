@@ -10,7 +10,7 @@ import type {
   CheckNumericRange,
   CheckOneOf,
 } from '../core/types'
-import { getValueFromPath } from '../utils/ObjectAccess'
+import { expandWildcardPaths, getValueFromPath, hasWildcard } from '../utils/ObjectAccess'
 
 /**
  * Filter engine that evaluates filter criteria against data objects.
@@ -32,12 +32,81 @@ export class FilterEngine {
   /**
    * Evaluates a single filter criterion against a data object.
    *
+   * When the path contains a wildcard (`'*'`), it is expanded into every concrete path that
+   * exists in the data and the criterion is evaluated against each of them. The criterion
+   * passes as soon as **one** concrete path satisfies the check — a wildcard therefore reads
+   * as "any entry at this position".
+   *
+   * This is what makes a criterion independent of keys that the producer assigns. A protobuf
+   * map is keyed by an id chosen by the sender; addressing it by that id ties the criterion to
+   * a number nobody controls.
+   *
    * @param data - The data object to check
    * @param criterion - The filter criterion to evaluate
    * @returns FilterCheckResult indicating success or failure
    */
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   evaluateCriterion(data: any, criterion: FilterCriterion): FilterCheckResult {
+    if (hasWildcard(criterion.path)) {
+      return this.evaluateWildcardCriterion(data, criterion)
+    }
+    return this.evaluateConcreteCriterion(data, criterion)
+  }
+
+  /**
+   * Evaluates a criterion whose path contains a wildcard.
+   *
+   * Fails with a single reason when no concrete path exists, and with the reason of the last
+   * attempt when concrete paths exist but none satisfies the check. The number of attempts is
+   * part of the reason so a failure can be told apart from "nothing to check".
+   */
+  private evaluateWildcardCriterion(
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    data: any,
+    criterion: FilterCriterion
+  ): FilterCheckResult {
+    const paths = expandWildcardPaths(data, criterion.path)
+
+    if (paths.length === 0) {
+      return {
+        status: false,
+        checkType: 'wildcard',
+        reason: {
+          message: 'No path matches the wildcard',
+          path: criterion.path,
+        },
+      }
+    }
+
+    let last: FilterCheckResult | undefined
+    for (const path of paths) {
+      const result = this.evaluateConcreteCriterion(data, { ...criterion, path })
+      if (result.status) {
+        return result
+      }
+      last = result
+    }
+
+    return {
+      status: false,
+      checkType: last?.checkType ?? 'wildcard',
+      reason: {
+        message: `No entry matches (${paths.length} checked)`,
+        path: criterion.path,
+        lastAttempt: last?.reason,
+      },
+    }
+  }
+
+  /**
+   * Evaluates a criterion against one concrete path.
+   *
+   * @param data - The data object to check
+   * @param criterion - The filter criterion, its path free of wildcards
+   * @returns FilterCheckResult indicating success or failure
+   */
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  private evaluateConcreteCriterion(data: any, criterion: FilterCriterion): FilterCheckResult {
     const check = criterion.check
 
     // Determine check type and delegate to appropriate method

@@ -143,6 +143,32 @@ Use arrays of rules when order is not deterministic:
 // Either event3 or event4 can come first
 ```
 
+### Path Wildcards
+
+A path segment may be `'*'`. It matches **any** key of an object or **any** index of an array
+at that position, and the criterion passes as soon as **one** entry satisfies the check.
+
+```typescript
+// Any entry of the map carries code '3' — whatever its key is
+{ path: ['messages', '*', 'code'], check: { value: '3' } }
+
+// Any element of the array is cancelled
+{ path: ['events', '*', 'cancelled'], check: { value: true } }
+```
+
+Wildcards work with every check type and may appear more than once; the paths are then the
+cross product of the branches that exist.
+
+Why this matters: a protobuf `map` is keyed by an id the **sender** assigns. Addressing an
+entry by that id ties the criterion to a number the consumer does not control — it changes as
+soon as the producer sends one more message for the same object. With a wildcard the criterion
+names what the entry *is*, not where it happens to sit.
+
+When no concrete path exists, the result carries `checkType: 'wildcard'` and the reason
+`No path matches the wildcard`. When entries exist but none matches, the reason states how many
+were checked and includes the last attempt under `lastAttempt` — so "nothing to check" and
+"checked and rejected" stay distinguishable.
+
 ## Filter Check Types
 
 ### 1. Value Check
